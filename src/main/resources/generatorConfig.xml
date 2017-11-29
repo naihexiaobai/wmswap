@@ -8,7 +8,7 @@
     <!--<properties resource="generator.properties"></properties>-->
 
     <!--指定特定数据库的jdbc驱动jar包的位置-->
-    <classPathEntry location="E:\wmswap\src\main\webapp\WEB-INF\lib\mysql-connector-java-5.1.29.jar"/>
+    <classPathEntry location="E:\文件备份\ideaPro\wmswap\src\main\webapp\WEB-INF\lib\mysql-connector-java-5.1.29.jar"/>
 
     <context id="default" targetRuntime="MyBatis3">
 
@@ -21,9 +21,9 @@
         <!--jdbc的数据库连接 -->
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://localhost:3306/wcs"
+                connectionURL="jdbc:mysql://localhost:3306/wapmachine"
                 userId="root"
-                password="123456">
+                password="ren130303.">
         </jdbcConnection>
 
 
@@ -67,7 +67,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="errorcodemsg" domainObjectName="ErrorCodeMsg"
+        <table tableName="wcscontrolinfo" domainObjectName="WCSControlInfo"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

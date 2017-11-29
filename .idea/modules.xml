@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/wmswap.iml" filepath="$PROJECT_DIR$/wmswap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wms-wap.iml" filepath="$PROJECT_DIR$/wms-wap.iml" />
     </modules>
   </component>
 </project>

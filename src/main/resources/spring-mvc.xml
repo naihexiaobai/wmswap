@@ -6,9 +6,10 @@
                         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-
-    <!-- 自动扫描  @Controller-->
-    <context:component-scan base-package="com.wap.control"/>
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    <context:annotation-config/>
+    <!-- 自动扫描  -->
+    <context:component-scan base-package="com.wap.*"/>
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
@@ -19,6 +20,7 @@
             </list>
         </property>
     </bean>
+
     <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
@@ -28,6 +30,8 @@
         </property>
     </bean>
 
+    <!-- 普通类使用依赖注入 -->
+    <bean class="com.ren.util.SpringTool"/>
 
     <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
