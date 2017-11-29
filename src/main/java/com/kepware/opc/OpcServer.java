@@ -119,7 +119,7 @@ public class OpcServer {
                     opcServerModel.getServer().setDefaultActive(true);
                     opcServerModel.setStatus(1);
                     opcServerModel.setKey(KEYREAD);
-                    AccessBase access = new Async20Access(server, 1000, true);
+                    AccessBase access = new Async20Access(server, 1000, false);
                     for (OpcItems opcItems : opcItemsList) {
                         if (opcItems.getDatatype() == 1) {
                             readItemBoolean(access, opcItems.getItem());

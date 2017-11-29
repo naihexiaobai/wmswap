@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wap.control.dao.WCSControlInfoMapper">
+    <resultMap id="BaseResultMap" type="com.wap.model.WCSControlInfo">
+        <constructor>
+            <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="machineInfoID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="wcsTaskNo" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="movementID" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="y" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="x" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="z" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="reserved1" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="reserved2" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="reserved3" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, machineInfoID, createTime, status, wcsTaskNo, movementID, y, x, z, REMARK, reserved1, 
+    reserved2, reserved3
+  </sql>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from wcscontrolinfo
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByWCSControlInfo" resultMap="BaseResultMap" parameterType="com.wap.model.WCSControlInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from wcscontrolinfo
+        where  1=1
+        <if test="id != null">
+            and  ID = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="machineinfoid != null">
+            and   machineInfoID = #{machineinfoid,jdbcType=INTEGER}
+        </if>
+        <if test="createtime != null">
+            and   createTime = #{createtime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="status != null">
+            and   status = #{status,jdbcType=TINYINT}
+        </if>
+        <if test="wcstaskno != null">
+            and   wcsTaskNo = #{wcstaskno,jdbcType=SMALLINT}
+        </if>
+        <if test="movementid != null">
+            and   movementID = #{movementid,jdbcType=TINYINT}
+        </if>
+        <if test="y != null">
+            and   y = #{y,jdbcType=SMALLINT}
+        </if>
+        <if test="x != null">
+            and   x = #{x,jdbcType=SMALLINT}
+        </if>
+        <if test="z != null">
+            and   z = #{z,jdbcType=SMALLINT}
+        </if>
+        <if test="remark != null">
+            and   REMARK = #{remark,jdbcType=VARCHAR}
+        </if>
+        <if test="reserved1 != null">
+            and   reserved1 = #{reserved1,jdbcType=VARCHAR}
+        </if>
+        <if test="reserved2 != null">
+            and   reserved2 = #{reserved2,jdbcType=VARCHAR}
+        </if>
+        <if test="reserved3 != null">
+            and   reserved3 = #{reserved3,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <select id="selectOneByWCSControlInfo" resultMap="BaseResultMap" parameterType="com.wap.model.WCSControlInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from wcscontrolinfo
+        where  1=1
+        <if test="id != null">
+            and  ID = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="machineinfoid != null">
+            and   machineInfoID = #{machineinfoid,jdbcType=INTEGER}
+        </if>
+        <if test="createtime != null">
+            and   createTime = #{createtime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="status != null">
+            and   status = #{status,jdbcType=TINYINT}
+        </if>
+        <if test="wcstaskno != null">
+            and   wcsTaskNo = #{wcstaskno,jdbcType=SMALLINT}
+        </if>
+        <if test="movementid != null">
+            and   movementID = #{movementid,jdbcType=TINYINT}
+        </if>
+        <if test="y != null">
+            and   y = #{y,jdbcType=SMALLINT}
+        </if>
+        <if test="x != null">
+            and   x = #{x,jdbcType=SMALLINT}
+        </if>
+        <if test="z != null">
+            and   z = #{z,jdbcType=SMALLINT}
+        </if>
+        <if test="remark != null">
+            and   REMARK = #{remark,jdbcType=VARCHAR}
+        </if>
+        <if test="reserved1 != null">
+            and   reserved1 = #{reserved1,jdbcType=VARCHAR}
+        </if>
+        <if test="reserved2 != null">
+            and   reserved2 = #{reserved2,jdbcType=VARCHAR}
+        </if>
+        <if test="reserved3 != null">
+            and   reserved3 = #{reserved3,jdbcType=VARCHAR}
+        </if>
+         LIMIT 1
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wcscontrolinfo
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.wap.model.WCSControlInfo">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into wcscontrolinfo (ID, machineInfoID, createTime,
+        status, wcsTaskNo, movementID,
+        y, x, z, REMARK,
+        reserved1, reserved2, reserved3
+        )
+        values (#{id,jdbcType=INTEGER}, #{machineinfoid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+        #{status,jdbcType=TINYINT}, #{wcstaskno,jdbcType=SMALLINT}, #{movementid,jdbcType=TINYINT},
+        #{y,jdbcType=SMALLINT}, #{x,jdbcType=SMALLINT}, #{z,jdbcType=SMALLINT}, #{remark,jdbcType=VARCHAR},
+        #{reserved1,jdbcType=VARCHAR}, #{reserved2,jdbcType=VARCHAR}, #{reserved3,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.wap.model.WCSControlInfo">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into wcscontrolinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="machineinfoid != null">
+                machineInfoID,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="wcstaskno != null">
+                wcsTaskNo,
+            </if>
+            <if test="movementid != null">
+                movementID,
+            </if>
+            <if test="y != null">
+                y,
+            </if>
+            <if test="x != null">
+                x,
+            </if>
+            <if test="z != null">
+                z,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+            <if test="reserved1 != null">
+                reserved1,
+            </if>
+            <if test="reserved2 != null">
+                reserved2,
+            </if>
+            <if test="reserved3 != null">
+                reserved3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="machineinfoid != null">
+                #{machineinfoid,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="wcstaskno != null">
+                #{wcstaskno,jdbcType=SMALLINT},
+            </if>
+            <if test="movementid != null">
+                #{movementid,jdbcType=TINYINT},
+            </if>
+            <if test="y != null">
+                #{y,jdbcType=SMALLINT},
+            </if>
+            <if test="x != null">
+                #{x,jdbcType=SMALLINT},
+            </if>
+            <if test="z != null">
+                #{z,jdbcType=SMALLINT},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved1 != null">
+                #{reserved1,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved2 != null">
+                #{reserved2,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved3 != null">
+                #{reserved3,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.wap.model.WCSControlInfo">
+        update wcscontrolinfo
+        <set>
+            <if test="machineinfoid != null">
+                machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="wcstaskno != null">
+                wcsTaskNo = #{wcstaskno,jdbcType=SMALLINT},
+            </if>
+            <if test="movementid != null">
+                movementID = #{movementid,jdbcType=TINYINT},
+            </if>
+            <if test="y != null">
+                y = #{y,jdbcType=SMALLINT},
+            </if>
+            <if test="x != null">
+                x = #{x,jdbcType=SMALLINT},
+            </if>
+            <if test="z != null">
+                z = #{z,jdbcType=SMALLINT},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved1 != null">
+                reserved1 = #{reserved1,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved2 != null">
+                reserved2 = #{reserved2,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved3 != null">
+                reserved3 = #{reserved3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByStatusMachineIdTaskNO" parameterType="com.wap.model.WCSControlInfo">
+        update wcscontrolinfo
+        <set>
+            <if test="machineinfoid != null">
+                machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="wcstaskno != null">
+                wcsTaskNo = #{wcstaskno,jdbcType=SMALLINT},
+            </if>
+            <if test="movementid != null">
+                movementID = #{movementid,jdbcType=TINYINT},
+            </if>
+            <if test="y != null">
+                y = #{y,jdbcType=SMALLINT},
+            </if>
+            <if test="x != null">
+                x = #{x,jdbcType=SMALLINT},
+            </if>
+            <if test="z != null">
+                z = #{z,jdbcType=SMALLINT},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved1 != null">
+                reserved1 = #{reserved1,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved2 != null">
+                reserved2 = #{reserved2,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved3 != null">
+                reserved3 = #{reserved3,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where wcsTaskNo = #{wcstaskno,jdbcType=SMALLINT}
+        AND status = #{status,jdbcType=TINYINT}
+        AND machineInfoID = #{machineinfoid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.wap.model.WCSControlInfo">
+    update wcscontrolinfo
+    set machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      wcsTaskNo = #{wcstaskno,jdbcType=SMALLINT},
+      movementID = #{movementid,jdbcType=TINYINT},
+      y = #{y,jdbcType=SMALLINT},
+      x = #{x,jdbcType=SMALLINT},
+      z = #{z,jdbcType=SMALLINT},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      reserved1 = #{reserved1,jdbcType=VARCHAR},
+      reserved2 = #{reserved2,jdbcType=VARCHAR},
+      reserved3 = #{reserved3,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -8,6 +8,8 @@ import com.wap.model.WCSControlInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 
 /**
  * 堆垛机处理消息线程
@@ -29,8 +31,9 @@ public class DuiDuoJiWcsInfoIPCThread extends ControlCc implements Runnable {
                 if (result) {
                     WCSControlInfo wcsControlInfo = new WCSControlInfo();
                     wcsControlInfo.setStatus(getByte(0));
-                    WCSControlInfo wcsControlInfo2 = selectOneByWCSControlInfo(wcsControlInfo);
-                    if (wcsControlInfo2.getId() > 0) {
+                    List<WCSControlInfo> wcsControlInfoList = selectByWCSControlInfo(wcsControlInfo);
+                    if (wcsControlInfoList.size() > 0) {
+                        WCSControlInfo wcsControlInfo2 = wcsControlInfoList.get(0);
                         byte command = wcsControlInfo2.getMovementid();
                         if (checkStaus(command)) {
                             result = executeWrite(wcsControlInfo2);

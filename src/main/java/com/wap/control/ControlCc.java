@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kepware.opc.DuiDuoJiMsgModel;
 import com.kepware.opc.OpcServer;
 import com.kepware.opc.ZiCheMsgModel;
+import com.ren.util.LoggerUtil;
 import com.ren.util.SpringTool;
 import com.wap.control.dao.daoImpl.*;
 import com.wap.model.OpcItemFinalString;
@@ -24,6 +25,8 @@ import java.util.Random;
  */
 @Controller
 public class ControlCc {
+
+    private LoggerUtil loggerUtil = new LoggerUtil("ControlCc");
 
     @Resource(name = "opcItemsMapperImpl", type = OpcItemsMapperImpl.class)
     public OpcItemsMapperImpl opcItemsMapperImpl;
@@ -89,7 +92,7 @@ public class ControlCc {
      *
      * @return
      */
-    public JSONObject getDuiDuoJiStatus() {
+    public JSONObject getDuiDuoJiStatus() throws Exception {
         JSONObject jsonObject = new JSONObject();
         String y = OpcServer.monitoringMap.get(OpcItemFinalString.DDJCENG).toString();
         String x = OpcServer.monitoringMap.get(OpcItemFinalString.DDJLIE).toString();
@@ -278,6 +281,7 @@ public class ControlCc {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            loggerUtil.getLogger().warn("获取堆垛机信息异常" + e.getMessage());
         }
         return result;
     }

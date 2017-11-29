@@ -2,6 +2,7 @@ package com.wap.control.init;
 
 
 import com.ren.util.LoggerUtil;
+import com.wap.control.Thread.DuiDuoJiWcsInfoIPCThread;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class StartInit implements ApplicationListener<ContextRefreshedEvent> {
             if (contextRefreshedEvent.getSource() instanceof XmlWebApplicationContext) {
                 if (((XmlWebApplicationContext) contextRefreshedEvent.getSource()).getDisplayName().equals("Root WebApplicationContext")) {
                     loggerUtil.getLogger().info("测试 ---  进来了");
+                    DuiDuoJiWcsInfoIPCThread duiDuoJiWcsInfoIPCThread = new DuiDuoJiWcsInfoIPCThread();
+                    new Thread(duiDuoJiWcsInfoIPCThread).start();
                 }
             }
         } catch (Exception e) {

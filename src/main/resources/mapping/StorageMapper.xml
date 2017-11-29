@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wap.control.dao.StorageMapper" >
+  <resultMap id="BaseResultMap" type="com.wap.model.Storage" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="storageNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="y" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="x" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="z" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="warehouseArea" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="useTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="reserved1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserved2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserved3" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, storageNo, y, x, z, status, warehouseArea, createTime, useTime, count, reserved1, 
+    reserved2, reserved3, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from storage
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByStorage" resultMap="BaseResultMap" parameterType="com.wap.model.Storage" >
+    select
+    <include refid="Base_Column_List" />
+    from storage
+    where 1=1
+    <if test="id != null" >
+    ID = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="storageno != null" >
+     AND storageNo = #{storageno,jdbcType=VARCHAR}
+    </if>
+    <if test="y != null" >
+      AND y = #{y,jdbcType=SMALLINT}
+    </if>
+    <if test="x != null" >
+      AND x = #{x,jdbcType=SMALLINT}
+    </if>
+    <if test="z != null" >
+      AND  z = #{z,jdbcType=SMALLINT}
+    </if>
+    <if test="status != null" >
+      AND  status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="warehousearea != null" >
+      AND  warehouseArea = #{warehousearea,jdbcType=VARCHAR}
+    </if>
+    <if test="createtime != null" >
+      AND createTime = #{createtime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="usetime != null" >
+      AND  useTime = #{usetime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="count != null" >
+      AND  count = #{count,jdbcType=INTEGER}
+    </if>
+    ORDER BY ID
+    desc
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from storage
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wap.model.Storage" >
+    insert into storage (ID, storageNo, y, 
+      x, z, status, warehouseArea, 
+      createTime, useTime, count, 
+      reserved1, reserved2, reserved3, 
+      REMARK)
+    values (#{id,jdbcType=INTEGER}, #{storageno,jdbcType=VARCHAR}, #{y,jdbcType=SMALLINT}, 
+      #{x,jdbcType=SMALLINT}, #{z,jdbcType=SMALLINT}, #{status,jdbcType=TINYINT}, #{warehousearea,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{usetime,jdbcType=TIMESTAMP}, #{count,jdbcType=INTEGER}, 
+      #{reserved1,jdbcType=VARCHAR}, #{reserved2,jdbcType=VARCHAR}, #{reserved3,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wap.model.Storage" >
+    insert into storage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="storageno != null" >
+        storageNo,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="z != null" >
+        z,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="warehousearea != null" >
+        warehouseArea,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="usetime != null" >
+        useTime,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="reserved1 != null" >
+        reserved1,
+      </if>
+      <if test="reserved2 != null" >
+        reserved2,
+      </if>
+      <if test="reserved3 != null" >
+        reserved3,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="storageno != null" >
+        #{storageno,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=SMALLINT},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=SMALLINT},
+      </if>
+      <if test="z != null" >
+        #{z,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="warehousearea != null" >
+        #{warehousearea,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usetime != null" >
+        #{usetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="reserved1 != null" >
+        #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved2 != null" >
+        #{reserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved3 != null" >
+        #{reserved3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wap.model.Storage" >
+    update storage
+    <set >
+      <if test="storageno != null" >
+        storageNo = #{storageno,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null" >
+        y = #{y,jdbcType=SMALLINT},
+      </if>
+      <if test="x != null" >
+        x = #{x,jdbcType=SMALLINT},
+      </if>
+      <if test="z != null" >
+        z = #{z,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="warehousearea != null" >
+        warehouseArea = #{warehousearea,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usetime != null" >
+        useTime = #{usetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="reserved1 != null" >
+        reserved1 = #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved2 != null" >
+        reserved2 = #{reserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved3 != null" >
+        reserved3 = #{reserved3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wap.model.Storage" >
+    update storage
+    set storageNo = #{storageno,jdbcType=VARCHAR},
+      y = #{y,jdbcType=SMALLINT},
+      x = #{x,jdbcType=SMALLINT},
+      z = #{z,jdbcType=SMALLINT},
+      status = #{status,jdbcType=TINYINT},
+      warehouseArea = #{warehousearea,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      useTime = #{usetime,jdbcType=TIMESTAMP},
+      count = #{count,jdbcType=INTEGER},
+      reserved1 = #{reserved1,jdbcType=VARCHAR},
+      reserved2 = #{reserved2,jdbcType=VARCHAR},
+      reserved3 = #{reserved3,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

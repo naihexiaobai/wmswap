@@ -57,10 +57,6 @@ public class MonitoringCc extends ControlCc {
                 loggerUtil.getLogger().info("获取监控数据--" + opcItemsList.size() + "-条");
                 OpcReadThread opcReadThread = new OpcReadThread(opcItemsList);
                 new Thread(opcReadThread).start();
-                DuiDuoJiWcsInfoIPCThread duiDuoJiWcsInfoIPCThread = new DuiDuoJiWcsInfoIPCThread();
-                new Thread(duiDuoJiWcsInfoIPCThread).start();
-//                ZiCheWcsInfoIPCThread ziCheWcsInfoIPCThread = new ZiCheWcsInfoIPCThread();
-//                new Thread(ziCheWcsInfoIPCThread).start();
                 result = true;
                 jsonObject.put("result", result);
                 jsonObject.put("msg", "成功");

@@ -1,0 +1,59 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#container-fluid-body {
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-header h2 {
+    color: white;
+    margin-left: 22px;
+    margin-bottom: 15px;
+}
+
+/*菜单栏*/
+.panel li a {
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.panel ul li ul li a{
+    padding-left: 80px;
+}
+
+#sidebar {
+    height: 100%;
+    background-color: #bce8f1;
+    padding-top: 25px;
+}
+
+.breadcrumb {
+    margin-top: 25px;
+}
+
+/*修改弹出框的位置*/
+.alert {
+    margin-bottom: 0px;
+}
+
+/*除去model模态框的灰色背景*/
+.modal-backdrop {
+    opacity: 0 !important;
+    filter: alpha(opacity=0) !important;
+}
+
+
+/*iframe设置*/
+#div-iframe {
+    width: 100%;
+}

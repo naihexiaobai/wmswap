@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wap.control.dao.TaskHistoryMapper">
+    <resultMap id="BaseResultMap" type="com.wap.model.TaskHistory">
+        <constructor>
+            <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="cargoID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="startPoint" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="endPoint" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="machineInfoName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="machineInfoID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="startTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="finshTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="priority" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="wcsTaskNo" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="movementID" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="y" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="x" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="z" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="reserved1" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="reserved2" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="reserved3" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, cargoID, startPoint, endPoint, machineInfoName, machineInfoID, createTime, startTime, 
+    finshTime, status, priority, wcsTaskNo, movementID, y, x, z, reserved1, reserved2, 
+    reserved3, REMARK
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from taskhistory
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from taskhistory
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.wap.model.TaskHistory">
+    insert into taskhistory (ID, cargoID, startPoint, 
+      endPoint, machineInfoName, machineInfoID, 
+      createTime, startTime, finshTime, 
+      status, priority, wcsTaskNo, 
+      movementID, y, x, 
+      z, reserved1, reserved2, 
+      reserved3, REMARK)
+    values (#{id,jdbcType=INTEGER}, #{cargoid,jdbcType=INTEGER}, #{startpoint,jdbcType=VARCHAR}, 
+      #{endpoint,jdbcType=VARCHAR}, #{machineinfoname,jdbcType=VARCHAR}, #{machineinfoid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{starttime,jdbcType=TIMESTAMP}, #{finshtime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT}, #{priority,jdbcType=TINYINT}, #{wcstaskno,jdbcType=SMALLINT}, 
+      #{movementid,jdbcType=TINYINT}, #{y,jdbcType=SMALLINT}, #{x,jdbcType=SMALLINT}, 
+      #{z,jdbcType=SMALLINT}, #{reserved1,jdbcType=VARCHAR}, #{reserved2,jdbcType=VARCHAR}, 
+      #{reserved3,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.wap.model.TaskHistory">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into taskhistory
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="cargoid != null">
+                cargoID,
+            </if>
+            <if test="startpoint != null">
+                startPoint,
+            </if>
+            <if test="endpoint != null">
+                endPoint,
+            </if>
+            <if test="machineinfoname != null">
+                machineInfoName,
+            </if>
+            <if test="machineinfoid != null">
+                machineInfoID,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="starttime != null">
+                startTime,
+            </if>
+            <if test="finshtime != null">
+                finshTime,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="priority != null">
+                priority,
+            </if>
+            <if test="wcstaskno != null">
+                wcsTaskNo,
+            </if>
+            <if test="movementid != null">
+                movementID,
+            </if>
+            <if test="y != null">
+                y,
+            </if>
+            <if test="x != null">
+                x,
+            </if>
+            <if test="z != null">
+                z,
+            </if>
+            <if test="reserved1 != null">
+                reserved1,
+            </if>
+            <if test="reserved2 != null">
+                reserved2,
+            </if>
+            <if test="reserved3 != null">
+                reserved3,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="cargoid != null">
+                #{cargoid,jdbcType=INTEGER},
+            </if>
+            <if test="startpoint != null">
+                #{startpoint,jdbcType=VARCHAR},
+            </if>
+            <if test="endpoint != null">
+                #{endpoint,jdbcType=VARCHAR},
+            </if>
+            <if test="machineinfoname != null">
+                #{machineinfoname,jdbcType=VARCHAR},
+            </if>
+            <if test="machineinfoid != null">
+                #{machineinfoid,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="starttime != null">
+                #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="finshtime != null">
+                #{finshtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="priority != null">
+                #{priority,jdbcType=TINYINT},
+            </if>
+            <if test="wcstaskno != null">
+                #{wcstaskno,jdbcType=SMALLINT},
+            </if>
+            <if test="movementid != null">
+                #{movementid,jdbcType=TINYINT},
+            </if>
+            <if test="y != null">
+                #{y,jdbcType=SMALLINT},
+            </if>
+            <if test="x != null">
+                #{x,jdbcType=SMALLINT},
+            </if>
+            <if test="z != null">
+                #{z,jdbcType=SMALLINT},
+            </if>
+            <if test="reserved1 != null">
+                #{reserved1,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved2 != null">
+                #{reserved2,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved3 != null">
+                #{reserved3,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wap.model.TaskHistory">
+        update taskhistory
+        <set>
+            <if test="cargoid != null">
+                cargoID = #{cargoid,jdbcType=INTEGER},
+            </if>
+            <if test="startpoint != null">
+                startPoint = #{startpoint,jdbcType=VARCHAR},
+            </if>
+            <if test="endpoint != null">
+                endPoint = #{endpoint,jdbcType=VARCHAR},
+            </if>
+            <if test="machineinfoname != null">
+                machineInfoName = #{machineinfoname,jdbcType=VARCHAR},
+            </if>
+            <if test="machineinfoid != null">
+                machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="starttime != null">
+                startTime = #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="finshtime != null">
+                finshTime = #{finshtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="priority != null">
+                priority = #{priority,jdbcType=TINYINT},
+            </if>
+            <if test="wcstaskno != null">
+                wcsTaskNo = #{wcstaskno,jdbcType=SMALLINT},
+            </if>
+            <if test="movementid != null">
+                movementID = #{movementid,jdbcType=TINYINT},
+            </if>
+            <if test="y != null">
+                y = #{y,jdbcType=SMALLINT},
+            </if>
+            <if test="x != null">
+                x = #{x,jdbcType=SMALLINT},
+            </if>
+            <if test="z != null">
+                z = #{z,jdbcType=SMALLINT},
+            </if>
+            <if test="reserved1 != null">
+                reserved1 = #{reserved1,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved2 != null">
+                reserved2 = #{reserved2,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved3 != null">
+                reserved3 = #{reserved3,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wap.model.TaskHistory">
+    update taskhistory
+    set cargoID = #{cargoid,jdbcType=INTEGER},
+      startPoint = #{startpoint,jdbcType=VARCHAR},
+      endPoint = #{endpoint,jdbcType=VARCHAR},
+      machineInfoName = #{machineinfoname,jdbcType=VARCHAR},
+      machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      finshTime = #{finshtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      priority = #{priority,jdbcType=TINYINT},
+      wcsTaskNo = #{wcstaskno,jdbcType=SMALLINT},
+      movementID = #{movementid,jdbcType=TINYINT},
+      y = #{y,jdbcType=SMALLINT},
+      x = #{x,jdbcType=SMALLINT},
+      z = #{z,jdbcType=SMALLINT},
+      reserved1 = #{reserved1,jdbcType=VARCHAR},
+      reserved2 = #{reserved2,jdbcType=VARCHAR},
+      reserved3 = #{reserved3,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

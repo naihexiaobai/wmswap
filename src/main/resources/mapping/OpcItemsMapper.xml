@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wap.control.dao.OpcItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.wap.model.OpcItems" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="groups" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="item" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="machineInfoID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="dataType" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="itemType" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="reserved1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserved2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserved3" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, groups, item, machineInfoID, createTime, dataType, itemType, status, reserved1, 
+    reserved2, reserved3, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from opcitems
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="selectByGroups" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from opcitems
+    GROUP BY groups
+  </select>
+
+  <select id="selectByOpcItems" resultMap="BaseResultMap" parameterType="com.wap.model.OpcItems" >
+    select
+    <include refid="Base_Column_List" />
+    from opcitems
+    where 1=1
+    <if test="groups != null" >
+      AND groups = #{groups,jdbcType=VARCHAR},
+    </if>
+    <if test="item != null" >
+      AND item = #{item,jdbcType=VARCHAR},
+    </if>
+    <if test="machineinfoid != null" >
+      AND machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+    </if>
+    <if test="createtime != null" >
+      AND createTime = #{createtime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="datatype != null" >
+      AND dataType = #{datatype,jdbcType=TINYINT},
+    </if>
+    <if test="itemtype != null" >
+      AND itemType = #{itemtype,jdbcType=TINYINT},
+    </if>
+    <if test="status != null" >
+      AND status = #{status,jdbcType=TINYINT},
+    </if>
+    <if test="reserved1 != null" >
+      AND reserved1 = #{reserved1,jdbcType=VARCHAR},
+    </if>
+    <if test="reserved2 != null" >
+      AND reserved2 = #{reserved2,jdbcType=VARCHAR},
+    </if>
+    <if test="reserved3 != null" >
+      AND reserved3 = #{reserved3,jdbcType=VARCHAR},
+    </if>
+    <if test="remark != null" >
+      AND REMARK = #{remark,jdbcType=VARCHAR},
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from opcitems
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wap.model.OpcItems" >
+    insert into opcitems (ID, groups, item, 
+      machineInfoID, createTime, dataType, 
+      itemType, status, reserved1, 
+      reserved2, reserved3, REMARK
+      )
+    values (#{id,jdbcType=INTEGER}, #{groups,jdbcType=VARCHAR}, #{item,jdbcType=VARCHAR}, 
+      #{machineinfoid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{datatype,jdbcType=TINYINT}, 
+      #{itemtype,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{reserved1,jdbcType=VARCHAR}, 
+      #{reserved2,jdbcType=VARCHAR}, #{reserved3,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wap.model.OpcItems" >
+    insert into opcitems
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="groups != null" >
+        groups,
+      </if>
+      <if test="item != null" >
+        item,
+      </if>
+      <if test="machineinfoid != null" >
+        machineInfoID,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="datatype != null" >
+        dataType,
+      </if>
+      <if test="itemtype != null" >
+        itemType,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="reserved1 != null" >
+        reserved1,
+      </if>
+      <if test="reserved2 != null" >
+        reserved2,
+      </if>
+      <if test="reserved3 != null" >
+        reserved3,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groups != null" >
+        #{groups,jdbcType=VARCHAR},
+      </if>
+      <if test="item != null" >
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="machineinfoid != null" >
+        #{machineinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datatype != null" >
+        #{datatype,jdbcType=TINYINT},
+      </if>
+      <if test="itemtype != null" >
+        #{itemtype,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="reserved1 != null" >
+        #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved2 != null" >
+        #{reserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved3 != null" >
+        #{reserved3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wap.model.OpcItems" >
+    update opcitems
+    <set >
+      <if test="groups != null" >
+        groups = #{groups,jdbcType=VARCHAR},
+      </if>
+      <if test="item != null" >
+        item = #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="machineinfoid != null" >
+        machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datatype != null" >
+        dataType = #{datatype,jdbcType=TINYINT},
+      </if>
+      <if test="itemtype != null" >
+        itemType = #{itemtype,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="reserved1 != null" >
+        reserved1 = #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved2 != null" >
+        reserved2 = #{reserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved3 != null" >
+        reserved3 = #{reserved3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wap.model.OpcItems" >
+    update opcitems
+    set groups = #{groups,jdbcType=VARCHAR},
+      item = #{item,jdbcType=VARCHAR},
+      machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      dataType = #{datatype,jdbcType=TINYINT},
+      itemType = #{itemtype,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      reserved1 = #{reserved1,jdbcType=VARCHAR},
+      reserved2 = #{reserved2,jdbcType=VARCHAR},
+      reserved3 = #{reserved3,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
