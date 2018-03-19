@@ -11,7 +11,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
     <!-- 自动扫描 -->
-    <context:component-scan base-package="com.wap.*"/>
+    <context:component-scan base-package="com.wap.*,com.www.util,com.thief.wcs.*"/>
 
     <!-- 第一种方式：加载一个properties文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -47,35 +47,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.wap.control.dao"/>
+        <property name="basePackage" value="com.wap.control.dao,com.thief.wcs.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
-
-    <!--&lt;!&ndash;  Dao &ndash;&gt;-->
-    <!--<bean id="wCSControlInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
-    <!--<property name="mapperInterface" value="com.wap.control.dao.WCSControlInfoMapper"></property>-->
-    <!--</bean>-->
-    <!--<bean id="taskHistoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
-    <!--<property name="mapperInterface" value="com.wap.control.dao.TaskHistoryMapper"></property>-->
-    <!--</bean>-->
-    <!--<bean id="storageMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
-    <!--<property name="mapperInterface" value="com.wap.control.dao.StorageMapper"></property>-->
-    <!--</bean>-->
-    <!--<bean id="opcItemsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
-    <!--<property name="mapperInterface" value="com.wap.control.dao.OpcItemsMapper"></property>-->
-    <!--</bean>-->
-    <!--<bean id="machineInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
-    <!--<property name="mapperInterface" value="com.wap.control.dao.MachineInfoMapper"></property>-->
-    <!--</bean>-->
-    <!--<bean id="cargoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
-    <!--<property name="mapperInterface" value="com.wap.control.dao.CargoMapper"></property>-->
-    <!--</bean>-->
 
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

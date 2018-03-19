@@ -20,7 +20,8 @@ public class WCSControlInfo implements Serializable {
     private Date createtime;
 
     /**
-     * 0-默认，1-开始执行，2-执行中，3-执行成功，4-失败,5-多次写入失败,6-指令与当前设备状态条件不符合
+     * 0-默认，1-开始执行，2-执行中，3-执行成功，4-失败,5-多次写入失败,6-指令与当前设备状态条件不符合，7-当前位置与目标位相同
+     * 12-状态正常  13-写入成功
      */
     private Byte status;
 

@@ -9,4 +9,3 @@ function changeFrameHeight() {
 window.onresize = function () {
     changeFrameHeight();
 }
-

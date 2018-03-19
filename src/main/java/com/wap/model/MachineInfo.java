@@ -27,7 +27,7 @@ public class MachineInfo implements Serializable {
     private String remark;
 
     /**
-     * 1-运行，0-禁止
+     * 1-运行，0-禁止    10-锁定，接收但不执行任务（//TODO 待细化）
      */
     private Byte status;
 

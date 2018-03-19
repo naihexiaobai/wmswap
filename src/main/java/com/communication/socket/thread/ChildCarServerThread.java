@@ -4,7 +4,7 @@ import com.communication.socket.connect.CreateConnectAbs;
 import com.communication.socket.data.model.SocketInfo;
 import com.communication.socket.data.model.SocketInitLinkInfo;
 import com.communication.socket.server.CreateServerConnect;
-import com.ren.util.LoggerUtil;
+import com.www.util.LoggerUtil;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,7 +14,7 @@ import java.net.Socket;
  */
 public class ChildCarServerThread extends ServerThread {
 
-    private LoggerUtil loggerUtil = new LoggerUtil(ChildCarServerThread.class.getName());
+//    private LoggerUtil loggerUtil = new LoggerUtil(ChildCarServerThread.class.getName());
 
     public ChildCarServerThread(SocketInfo socketInfo, SocketInitLinkInfo socketInitLinkInfo) {
         super(socketInfo, socketInitLinkInfo);

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wms-wap:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="wms-wap.war">
+      <element id="artifact" artifact-name="wms-wap:war exploded" />
+    </root>
+  </artifact>
+</component>

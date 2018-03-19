@@ -38,10 +38,10 @@
 
             </div>
             <div class="col-md-8">
-                <button type="button" id="startMonitor_btn" class="btn btn-primary" onclick="monitoring(1)"
-                        data-loading-text="监控中">开始监控
-                </button> &nbsp;
-                <button type="button"  id="stopMonitor_btn" class="btn btn-primary" data-loading-text="关闭监控" onclick="monitoring(0)">关闭监控</button> &nbsp;
+                <%--<button type="button" id="startMonitor_btn" class="btn btn-primary" onclick="monitoring(1)"--%>
+                <%--data-loading-text="监控中">开始监控--%>
+                <%--</button> &nbsp;--%>
+                <%--<button type="button"  id="stopMonitor_btn" class="btn btn-primary" data-loading-text="关闭监控" onclick="monitoring(0)">关闭监控</button> &nbsp;--%>
                 <button type="button" class="btn btn-primary" onclick="showMonitorData(1)">子车</button> &nbsp;
                 <button type="button" class="btn btn-primary" onclick="showMonitorData(2)">母车</button> &nbsp;
                 <button type="button" class="btn btn-primary" onclick="showMonitorData(3)">堆垛机</button> &nbsp;

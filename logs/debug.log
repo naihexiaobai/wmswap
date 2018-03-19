@@ -1,0 +1,17 @@
+[INFO][main][2018-01-29 16:26:16][Test] - 这是一条info
+[WARN][main][2018-01-29 16:26:16][Test] - 这是一条warn
+[INFO][main][2018-01-29 16:27:42][Test] - 这是一条info
+[WARN][main][2018-01-29 16:27:42][Test] - 这是一条warn
+[INFO][main][2018-01-29 16:30:02][Test] - 这是一条info
+[WARN][main][2018-01-29 16:30:02][Test] - 这是一条warn
+[INFO][main][2018-01-29 16:30:24][Test] - 这是一条info
+[WARN][main][2018-01-29 16:30:24][Test] - 这是一条warn/ by zero
+[WARN][main][2018-01-29 16:31:54][Test] - 这是一条warn/ by zero
+[WARN][main][2018-01-29 16:34:26][Test] - 这是一条warn/ by zero
+[INFO][main][2018-03-14 10:01:44][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+[INFO][main][2018-03-14 10:05:18][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+[INFO][main][2018-03-14 10:08:18][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+[INFO][main][2018-03-14 10:13:32][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+[INFO][main][2018-03-14 10:14:10][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+[INFO][main][2018-03-14 10:15:36][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+[INFO][main][2018-03-14 10:17:40][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited

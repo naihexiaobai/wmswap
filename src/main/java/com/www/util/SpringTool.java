@@ -1,4 +1,4 @@
-package com.ren.util;
+package com.www.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -26,4 +26,15 @@ public final class SpringTool implements ApplicationContextAware {
     public static Object getBean(String name) {
         return getApplicationContext().getBean(name);
     }
+
+    /**
+     * 根据bean的class来查找对象
+     *
+     * @param c
+     * @return
+     */
+    public static Object getBeanByClass(Class c) {
+        return applicationContext.getBean(c);
+    }
+
 }

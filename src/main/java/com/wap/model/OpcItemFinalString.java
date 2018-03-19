@@ -7,6 +7,24 @@ package com.wap.model;
  * @create 2017/11/28  11:58
  */
 public class OpcItemFinalString {
+
+    /**
+     * 堆垛机锁定值
+     */
+    public static final String DDJLOCK = "DDJLOCK";
+    /**
+     * 母车一锁定值
+     */
+    public static final String MUCHEYILOCK = "MUCHEYILOCK";
+    /**
+     * 母车二锁定值
+     */
+    public static final String MUCHEERLOCK = "MUCHEERLOCK";
+    /**
+     * 母车三锁定值
+     */
+    public static final String MUCHESANLOCK = "MUCHESANLOCK";
+
     /**
      * 堆垛机自/手动
      */
@@ -69,6 +87,19 @@ public class OpcItemFinalString {
      * 三号子车group
      */
     public static final String SANHAOZICHEGROUP = "machine.sanHaoZiChe";
+
+    /**
+     * 一号母车group
+     */
+    public static final String YIHAOMUCHEGROUP = "machine.yiHaoMuChe";
+    /**
+     * 二号母车group
+     */
+    public static final String ERHAOMUCHEGROUP = "machine.erHaoMuChe";
+    /**
+     * 三号母车group
+     */
+    public static final String SANHAOMUCHEGROUP = "machine.sanHaoMuChe";
 
     /**
      * 子车自/手动
@@ -156,6 +187,97 @@ public class OpcItemFinalString {
     public static final String ZICHEMUBIAOPAI = "muBiaoPai";
 
     /**
+     * 母车自手动
+     */
+    public static final String MUCHEZISHOUDONG = "ziShouDong";
+    /**
+     * 母车待命
+     */
+    public static final String MUCHEDAIMING = "daiMing";
+    /**
+     * 母车空闲
+     */
+    public static final String MUCHEKONGXIAN = "kongXian";
+    /**
+     * 前进
+     */
+    public static final String MUCHEQIANJINZHONG = "qianJinZhong";
+    /**
+     * 后退
+     */
+    public static final String MUCHEHOUTUIZHONG = "houTuiZhong";
+    /**
+     * 母车载物
+     */
+    public static final String MUCHEZAIWU = "zaiWu";
+    /**
+     * 母车载车
+     */
+    public static final String MUCHEZAICHE = "zaiChe";
+    /**
+     * 母车wcs任务码
+     */
+    public static final String MUCHEWCSRENWUMA = "wcsRenWuMa";
+    /**
+     * 当前任务码
+     */
+    public static final String MUCHERENWUMA = "renWuMa";
+    /**
+     * 母车当前列
+     */
+    public static final String MUCHELIE = "lie";
+    /**
+     * 母车目标列
+     */
+    public static final String MUCHEMUBIAOLIE = "muBiaoLie";
+    /**
+     * 母车动作指令
+     */
+    public static final String MUCHEDONGZUOZHILING = "dongZuoZhiLing";
+    /**
+     * 母车动作任务码
+     */
+    public static final String MUCHEDONGZUORENWUHAO = "dongZuoRenWuHao";
+
+    /**
+     * 升降机自动
+     **/
+    public static final String SSJZISHOUDONG = "machine.shengJiangJi.ziShouDong";
+    /**
+     * 升降机待命
+     **/
+    public static final String SSJDAIMING = "machine.shengJiangJi.daiMing";
+    /**
+     * 升降机空闲
+     **/
+    public static final String SSJKONGXIAN = "machine.shengJiangJi.kongXian";
+    /**
+     * 升降机载物
+     **/
+    public static final String SSJZAIWU = "machine.shengJiangJi.zaiWu";
+    /**
+     * 升降机载车
+     **/
+    public static final String SSJZAICHE = "machine.shengJiangJi.zaiChe";
+    /**
+     * 升降机任务码
+     **/
+    public static final String SSJRENWUMA = "machine.shengJiangJi.renWuMa";
+    /**
+     * 升降机层
+     **/
+    public static final String SSJCENG = "machine.shengJiangJi.ceng";
+    /**
+     * 升降机动作指令
+     **/
+    public static final String SSJDONGZUOZHILING = "machine.shengJiangJi.dongZuoZhiLing";
+    /**
+     * 升降机动作任务码
+     **/
+    public static final String SSJDONGZUORENWUHAO = "machine.shengJiangJi.dongZuoRenWuHao";
+
+
+    /**
      * 任务优先级 N
      */
     public static final String LEVEL_N = "N";
@@ -180,7 +302,10 @@ public class OpcItemFinalString {
      * 堆垛机设备id
      */
     public static final int DDJMACHINEID = 10;
-
+    /**
+     * 升降机设备id
+     */
+    public static final int SSJMACHINEID = 11;
     /**
      * 一号子车id
      */
@@ -193,6 +318,18 @@ public class OpcItemFinalString {
      * 三号子车id
      */
     public static final int ZICHESANMACHINEID = 6;
+    /**
+     * 一号母车id
+     */
+    public static final int MUCHEYIMACHINEID = 7;
+    /**
+     * 二号母车id
+     */
+    public static final int MUCHEERMACHINEID = 8;
+    /**
+     * 三号母车id
+     */
+    public static final int MUCHESANMACHINEID = 9;
 
     /**
      * 静止

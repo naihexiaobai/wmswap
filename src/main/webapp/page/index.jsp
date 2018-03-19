@@ -72,6 +72,8 @@
                                 <ul id="collapseTwo24" class="panel-collapse collapse nav nav-pills nav-stacked">
                                     <li><a onclick="goToPage('<%=basePath %>page/sendMsg.jsp')">发送消息</a>
                                     </li>
+                                    <li><a onclick="goToPage('<%=basePath %>page/sendMsgWCS.jsp')">WCS消息</a>
+                                    </li>
                                     <li><a>历史消息</a>
                                     </li>
                                 </ul>

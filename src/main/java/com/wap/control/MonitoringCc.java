@@ -2,11 +2,10 @@ package com.wap.control;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.communication.socket.data.model.SocketInfoListsSingleton;
 import com.kepware.opc.*;
-import com.ren.util.CalmLakeStringUtil;
-import com.ren.util.LoggerUtil;
-import com.wap.control.Thread.DuiDuoJiWcsInfoIPCThread;
-import com.wap.control.dao.daoImpl.*;
+import com.www.util.CalmLakeStringUtil;
+import com.www.util.LoggerUtil;
 import com.wap.model.MachineInfo;
 import com.wap.model.OpcItems;
 import com.wap.model.WCSControlInfo;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +28,7 @@ import java.util.Random;
 @RequestMapping("monitoringCc")
 public class MonitoringCc extends ControlCc {
 
-    private LoggerUtil loggerUtil = new LoggerUtil("MonitoringCc");
+//    private LoggerUtil loggerUtil = new LoggerUtil("MonitoringCc");
 
     /**
      * 监控 开启/关闭  1/0
@@ -44,7 +42,7 @@ public class MonitoringCc extends ControlCc {
         boolean result = false;
         try {
             String type = request.getParameter("type");
-            loggerUtil.getLogger().info("进入监控程序，请求类型：" + type);
+//            loggerUtil.getLoggerLevelInfo().info("进入监控程序，请求类型：" + type);
             if (CalmLakeStringUtil.stringIsNull(type)) {
                 jsonObject.put("result", result);
                 jsonObject.put("msg", "传输数据为空");
@@ -54,7 +52,7 @@ public class MonitoringCc extends ControlCc {
             if (CalmLakeStringUtil.stringToInt(type) == 1) {
                 OpcItems opcItems = new OpcItems();
                 List<OpcItems> opcItemsList = opcItemsMapperImpl.selectByOpcItems(opcItems);
-                loggerUtil.getLogger().info("获取监控数据--" + opcItemsList.size() + "-条");
+//                loggerUtil.getLoggerLevelInfo().info("获取监控数据--" + opcItemsList.size() + "-条");
                 OpcReadThread opcReadThread = new OpcReadThread(opcItemsList);
                 new Thread(opcReadThread).start();
                 result = true;
@@ -159,7 +157,6 @@ public class MonitoringCc extends ControlCc {
             return jsonArray;
         } catch (Exception e) {
             e.printStackTrace();
-            loggerUtil.getLogger().error("获取数据出错：" + e.getMessage());
         }
         return null;
     }
@@ -185,26 +182,33 @@ public class MonitoringCc extends ControlCc {
     @ResponseBody
     public JSONObject checkMonitorStatus(HttpServletRequest request) {
         JSONObject jsonObject = new JSONObject();
-        boolean result = false;
-        int count = 0;
-        if (OpcServer.opcServerModels.size() > 0) {
-            for (OpcServerModel opcServerModel : OpcServer.opcServerModels) {
-                if (opcServerModel.getKey().equals(OpcServer.KEYREAD) && opcServerModel.getStatus() == 1 && opcServerModel.getAccessBase().isBound()) {
-                    jsonObject.put("result", true);
-                    jsonObject.put("msg", "成功，正在监控");
-                    jsonObject.put("code", 100);
-                    count++;
-                    break;
+        try {
+            boolean result = false;
+            int count = 0;
+            if (OpcServer.opcServerModels.size() > 0) {
+                for (OpcServerModel opcServerModel : OpcServer.opcServerModels) {
+                    if (opcServerModel.getKey().equals(OpcServer.KEYREAD) && opcServerModel.getStatus() == 1 && opcServerModel.getAccessBase().isBound()) {
+                        jsonObject.put("result", true);
+                        jsonObject.put("msg", "成功，正在监控");
+                        jsonObject.put("code", 100);
+                        count++;
+                        break;
+                    }
                 }
-            }
-            if (count < 1) {
+                if (count < 1) {
+                    jsonObject.put("result", result);
+                    jsonObject.put("msg", "失败，监控关闭");
+                    jsonObject.put("code", 101);
+                }
+            } else {
                 jsonObject.put("result", result);
-                jsonObject.put("msg", "失败，监控关闭");
+                jsonObject.put("msg", "失败，无server");
                 jsonObject.put("code", 101);
             }
-        } else {
-            jsonObject.put("result", result);
-            jsonObject.put("msg", "失败，无server");
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonObject.put("result", false);
+            jsonObject.put("msg", "失败，寻找监控标识异常");
             jsonObject.put("code", 101);
         }
         return jsonObject;
@@ -229,8 +233,12 @@ public class MonitoringCc extends ControlCc {
         }
         JSONObject jsonObject = JSONObject.parseObject(json);
         Random random = new Random();
+        //0-手动，1-自动
+        int machineType = jsonObject.getIntValue("machineType");
         //设备序号
         int no = jsonObject.getIntValue("machineId");
+        //目标设备序号
+        String targetNO = jsonObject.getString("targetMachineId");
         //层
         int storey = jsonObject.getIntValue("machineCeng");
         //列
@@ -249,52 +257,57 @@ public class MonitoringCc extends ControlCc {
         wcsControlInfo.setWcstaskno((short) wcsTaskNo);
         wcsControlInfo.setCreatetime(new Date());
         wcsControlInfo.setStatus((byte) 0);
-        int i = wCSControlInfoMapperImpl.insertSelective(wcsControlInfo);
-        if (i > 0) {
-            jsonObject.put("result", true);
+        wcsControlInfo.setReserved3(targetNO);
+        if (machineType == 0) {
+            if (no == 4 || no == 5 || no == 6) {
+                ZiCheMsgModel msgModel = new ZiCheMsgModel();
+                msgModel.setCommandNum(command);
+                msgModel.setNO(no);
+                msgModel.setOrderNum(wcsTaskNo);
+                msgModel.setTargetLine(line);
+                msgModel.setTargetRow(row);
+                msgModel.setTargetStorey(storey);
+                result = OpcServer.getInstance().write(msgModel);
+                jsonObject.put("result", result);
+            } else if (no == 7 || no == 8 || no == 9) {
+                MuCheMsgModel msgModel = new MuCheMsgModel();
+                msgModel.setCommandNum(command);
+                msgModel.setNO(no);
+                msgModel.setOrderNum(wcsTaskNo);
+                msgModel.setTargetLine(line);
+                result = OpcServer.getInstance().write(msgModel);
+                jsonObject.put("result", result);
+            } else if (no == 10) {
+                DuiDuoJiMsgModel msgModel = new DuiDuoJiMsgModel();
+                msgModel.setCommandNum(command);
+                msgModel.setNO(no);
+                msgModel.setOrderNum(wcsTaskNo);
+                msgModel.setTargetLine(line);
+                msgModel.setTargetStorey(storey);
+                result = OpcServer.getInstance().write(msgModel);
+                jsonObject.put("result", result);
+            } else if (no == 11) {
+                ShengJiangJiMsgModel msgModel = new ShengJiangJiMsgModel();
+                msgModel.setCommandNum(command);
+                msgModel.setNO(no);
+                msgModel.setOrderNum(wcsTaskNo);
+                msgModel.setTargetStorey(storey);
+                result = OpcServer.getInstance().write(msgModel);
+                jsonObject.put("result", result);
+            }
         } else {
-            jsonObject.put("result", false);
+            int i = wCSControlInfoMapperImpl.insertSelective(wcsControlInfo);
+            if (i > 0) {
+                //发送消息 {"machineID":"","data":""}
+                JSONObject jsonObject1 = new JSONObject();
+                jsonObject1.put("machineID", no);
+                jsonObject1.put("data", wcsControlInfo.getId());
+                SocketInfoListsSingleton.getInstance().sendMsg(jsonObject1.toJSONString());
+                jsonObject.put("result", true);
+            } else {
+                jsonObject.put("result", false);
+            }
         }
-//        if (no == 4 || no == 5 || no == 6) {
-//            ZiCheMsgModel msgModel = new ZiCheMsgModel();
-//            msgModel.setCommandNum(command);
-//            msgModel.setNO(no);
-//            msgModel.setOrderNum(wcsTaskNo);
-//            msgModel.setTargetLine(line);
-//            msgModel.setTargetRow(row);
-//            msgModel.setTargetStorey(storey);
-//            result = OpcServer.getInstance().write(msgModel);
-//            updateWcsStarus(result, wcsControlInfo);
-//            jsonObject.put("result", result);
-//        } else if (no == 7 || no == 8 || no == 9) {
-//            MuCheMsgModel msgModel = new MuCheMsgModel();
-//            msgModel.setCommandNum(command);
-//            msgModel.setNO(no);
-//            msgModel.setOrderNum(wcsTaskNo);
-//            msgModel.setTargetLine(line);
-//            result = OpcServer.getInstance().write(msgModel);
-//            updateWcsStarus(result, wcsControlInfo);
-//            jsonObject.put("result", result);
-//        } else if (no == 10) {
-//            DuiDuoJiMsgModel msgModel = new DuiDuoJiMsgModel();
-//            msgModel.setCommandNum(command);
-//            msgModel.setNO(no);
-//            msgModel.setOrderNum(wcsTaskNo);
-//            msgModel.setTargetLine(line);
-//            msgModel.setTargetStorey(storey);
-//            result = OpcServer.getInstance().write(msgModel);
-//            updateWcsStarus(result, wcsControlInfo);
-//            jsonObject.put("result", result);
-//        } else if (no == 11) {
-//            ShengJiangJiMsgModel msgModel = new ShengJiangJiMsgModel();
-//            msgModel.setCommandNum(command);
-//            msgModel.setNO(no);
-//            msgModel.setOrderNum(wcsTaskNo);
-//            msgModel.setTargetStorey(storey);
-//            result = OpcServer.getInstance().write(msgModel);
-//            updateWcsStarus(result, wcsControlInfo);
-//            jsonObject.put("result", result);
-//        }
         return jsonObject;
     }
 

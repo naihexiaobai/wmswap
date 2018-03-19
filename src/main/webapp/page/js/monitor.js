@@ -7,7 +7,7 @@ var typeAll = 1;
  * 数据刷新时间 /毫秒
  * @type {number}
  */
-var freshTime = 600;
+var freshTime = 200;
 /**
  * 定时刷新变量
  * @type {null}
@@ -21,7 +21,6 @@ $(function () {
     var oTableZ = new TableInitZ();
     oTableZ.init();
     // $('#table_monitor_info').bootstrapTable("removeAll");
-
     initMonitorStatus();
 });
 

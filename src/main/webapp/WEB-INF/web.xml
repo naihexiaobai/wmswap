@@ -39,6 +39,9 @@
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
 
+    <!--<listener>-->
+        <!--<listener-class>com.thief.wcs.init.InitService</listener-class>-->
+    <!--</listener>-->
 
     <!-- spring mvc servlet-->
     <servlet>
@@ -51,6 +54,17 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+
+
+    <servlet>
+        <servlet-name>initServlet</servlet-name>
+        <servlet-class>com.thief.wcs.init.servlet.InitServlet</servlet-class>
+        <load-on-startup>10</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>initServlet</servlet-name>
+        <url-pattern>/initServlet</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>SpringMVC</servlet-name>
@@ -99,4 +113,6 @@
     <welcome-file-list>
         <welcome-file>./page/index.jsp</welcome-file>
     </welcome-file-list>
+
+
 </web-app>

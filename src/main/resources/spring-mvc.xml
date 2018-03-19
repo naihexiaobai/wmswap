@@ -9,7 +9,9 @@
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
     <context:annotation-config/>
     <!-- 自动扫描  -->
-    <context:component-scan base-package="com.wap.*"/>
+    <context:component-scan base-package="com.wap.*,com.thief.wcs.*"/>
+
+    <bean class="com.www.util.SpringTool"/>
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
@@ -29,9 +31,6 @@
             </list>
         </property>
     </bean>
-
-    <!-- 普通类使用依赖注入 -->
-    <bean class="com.ren.util.SpringTool"/>
 
     <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -10,10 +10,13 @@ import com.communication.socket.data.model.SocketInitLinkInfo;
 import com.communication.socket.thread.IPCThread;
 import com.communication.socket.thread.ServerThread;
 import com.communication.socket.thread.TestIPCThread;
-import com.ren.util.CalmLakeStringUtil;
-import com.ren.util.LoggerUtil;
-import com.wap.control.dao.daoImpl.*;
+import com.thief.wcs.dao.PlcMapper;
+import com.thief.wcs.init.InitService;
+import com.www.util.CalmLakeStringUtil;
+import com.www.util.DBUtil;
+import com.www.util.LoggerUtil;
 import io.netty.util.internal.StringUtil;
+import org.springframework.http.HttpMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +25,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Date;
 import java.util.List;
@@ -34,9 +38,15 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("socketCc")
-public class SocketCc   extends ControlCc  {
+public class SocketCc extends ControlCc {
 
-    private LoggerUtil loggerUtil = new LoggerUtil("SocketCc");
+//    private LoggerUtil loggerUtil = new LoggerUtil("SocketCc");
+
+    @RequestMapping("test")
+    @ResponseBody
+    public void test() {
+
+    }
 
     @RequestMapping("createSocket")
     @ResponseBody
@@ -46,7 +56,6 @@ public class SocketCc   extends ControlCc  {
         SocketInitLinkInfo socketInitLinkInfo = new SocketInitLinkInfo();
         try {
             String string = request.getParameter("submitData");
-            loggerUtil.getLogger().info(string);
             jsonObject = new JSONObject();
             jsonObject.put("time", new Date());
             if (StringUtil.isNullOrEmpty(string)) {
@@ -82,6 +91,7 @@ public class SocketCc   extends ControlCc  {
             } else if (CalmLakeStringUtil.stringToInt(socketInfo_type) == 0) {
                 CreateConnectAbs createConnectClient = new CreateClientConnect(socketInitLinkInfo.getUrl(), socketInitLinkInfo.getPort());
                 Socket socket = createConnectClient.getSocket();
+                socketInfo.setSocket(socket);
                 //TODO    客户端线程起始处
                 IPCThread ipcThread = new TestIPCThread(socketInfo);
                 new Thread(ipcThread).start();
@@ -92,7 +102,6 @@ public class SocketCc   extends ControlCc  {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            loggerUtil.getLogger().error("创建socket连接出错：" + e.getMessage());
             jsonObject.put("result", false);
             jsonObject.put("msg", "服务器繁忙！");
         }
@@ -170,7 +179,7 @@ public class SocketCc   extends ControlCc  {
                 outputStream.writeShort(msgCommandData);
                 outputStream.flush();
                 jsonObject.put("result", true);
-                loggerUtil.getLogger().info(socketInfo.getName() + "发送消息:时间-->" + msgTime + "任务号-->" + msgOrderNum + "指令类型-->" + msgCommandType + "指令内容-->" + msgCommandData + "" + msgCountNum);
+//                loggerUtil.getLoggerLevelInfo().info(socketInfo.getName() + "发送消息:时间-->" + msgTime + "任务号-->" + msgOrderNum + "指令类型-->" + msgCommandType + "指令内容-->" + msgCommandData + "" + msgCountNum);
                 return jsonObject;
             }
         }
@@ -199,7 +208,7 @@ public class SocketCc   extends ControlCc  {
                         closeSocket(socketInfo);
                         socketInfoList.remove(socketInfo);
                         jsonObject.put("result", true);
-                        loggerUtil.getLogger().info("socket正常关闭,连接序号-->" + num);
+//                        loggerUtil.getLoggerLevelInfo().info("socket正常关闭,连接序号-->" + num);
                         break;
                     }
                 }
@@ -207,7 +216,7 @@ public class SocketCc   extends ControlCc  {
         } catch (Exception e) {
             e.printStackTrace();
             jsonObject.put("result", false);
-            loggerUtil.getLogger().info("socket正常关闭异常" + e.getMessage());
+//            loggerUtil.getLoggerLevelInfo().info("socket正常关闭异常" + e.getMessage());
         }
         return jsonObject;
     }
@@ -234,6 +243,57 @@ public class SocketCc   extends ControlCc  {
             jsonArray.add(jsonObject);
         }
         return jsonArray;
+    }
+
+    /**
+     * wcs 发送消息
+     *
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("wcsSendMsg")
+    @ResponseBody
+    public JSONObject wcsSendMsg(HttpServletRequest request) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", false);
+        jsonObject.put("code", 999);
+        jsonObject.put("msg", "失败");
+        String requestData = request.getParameter("data");
+        JSONObject jsonObjectRequest = JSONObject.parseObject(requestData);
+        String msgIdNum = jsonObjectRequest.getString("msgIdNum");
+        String msgNO = jsonObjectRequest.getString("msgNO");
+        String msgCommand = jsonObjectRequest.getString("msgCommand");
+        String msgSendScend = jsonObjectRequest.getString("msgSendScend");
+        String msgSendTime = jsonObjectRequest.getString("msgSendTime");
+        String msgMCkey = jsonObjectRequest.getString("msgMCkey");
+        String msgMachineName = jsonObjectRequest.getString("msgMachineName");
+        String msgCycleCommand = jsonObjectRequest.getString("msgCycleCommand");
+        String msgJobType = jsonObjectRequest.getString("msgJobType");
+        String msgHeight = jsonObjectRequest.getString("msgHeight");
+        String msgWidth = jsonObjectRequest.getString("msgWidth");
+        String msgZ = jsonObjectRequest.getString("msgZ");
+        String msgX = jsonObjectRequest.getString("msgX");
+        String msgY = jsonObjectRequest.getString("msgY");
+        String msgStation = jsonObjectRequest.getString("msgStation");
+        String msgWharf = jsonObjectRequest.getString("msgWharf");
+        String msgBCC = jsonObjectRequest.getString("msgBCC");
+        int size = SocketInfoListsSingleton.getInstance().getSocketInfoList().size();
+        if (size > 0) {
+            for (SocketInfo socketInfo : SocketInfoListsSingleton.getInstance().getSocketInfoList()) {
+                if (socketInfo.getIdNum() == Integer.valueOf(msgIdNum)) {
+                    byte[] bytes = message03(msgNO, msgMachineName, msgStation, msgWharf, msgCycleCommand, msgJobType, msgCommand, msgMCkey, msgX, msgY, msgZ);
+                    OutputStream outputStream = socketInfo.getSocket().getOutputStream();
+                    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+                    dataOutputStream.write(bytes);
+                    jsonObject.put("result", true);
+                    jsonObject.put("code", 100);
+                    jsonObject.put("msg", "成功");
+                    break;
+                }
+            }
+        }
+        return jsonObject;
     }
 
     public static void main(String[] args) {

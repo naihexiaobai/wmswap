@@ -11,7 +11,7 @@ import com.communication.socket.data.model.SocketInfoListsSingleton;
 public class Client {
     public static void main(String[] args) throws Exception {
         int count = 0;
-        while (true) {
+        for (int q = 0; q < 10; q++) {
             count++;
             CreateConnectAbs clientCreate = new CreateClientConnect("localhost", 8080);
             SocketInfo socketInfo = new SocketInfo();
@@ -24,7 +24,6 @@ public class Client {
             System.out.println("当前循环次数" + count);
             System.out.println("socketInfoList--数量" + SocketInfoListsSingleton.getInstance().getSocketInfoList().size());
         }
-
 
 //        Socket socket = new Socket("localhost", 8080);
 //        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());

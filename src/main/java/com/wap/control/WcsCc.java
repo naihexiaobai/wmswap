@@ -3,10 +3,9 @@ package com.wap.control;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.ren.util.CalmLakeStringUtil;
-import com.ren.util.LoggerUtil;
+import com.www.util.CalmLakeStringUtil;
+import com.www.util.LoggerUtil;
 import com.wap.control.Thread.OutStorageThread;
-import com.wap.control.dao.daoImpl.*;
 import com.wap.model.Cargo;
 import com.wap.model.OpcItemFinalString;
 import com.wap.model.Storage;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
@@ -28,9 +26,9 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("wcsCc")
-public class WcsCc  extends ControlCc {
+public class WcsCc extends ControlCc {
 
-    private LoggerUtil loggerUtil = new LoggerUtil("WcsCc");
+//    private LoggerUtil loggerUtil = new LoggerUtil("WcsCc");
 
     /**
      * 获取货位信息
@@ -66,10 +64,10 @@ public class WcsCc  extends ControlCc {
                 }
                 jsonObject.put("x" + storage1.getX().toString(), jsonArray1.toJSONString());
             }
-            loggerUtil.getLogger().info("获取货位结果jsonArray --> " + jsonObject.toJSONString());
+//            loggerUtil.getLoggerLevelInfo().info("获取货位结果jsonArray --> " + jsonObject.toJSONString());
         } catch (Exception e) {
             e.printStackTrace();
-            loggerUtil.getLogger().info("String转Int出错" + e.getMessage());
+//            loggerUtil.getLoggerLevelWarn().info("String转Int出错" + e.getMessage());
         }
         return jsonObject;
     }
@@ -80,56 +78,63 @@ public class WcsCc  extends ControlCc {
      * @param request - data
      * @return
      */
+    @RequestMapping("outStorageCargo")
+    @ResponseBody
     public JSONObject outStorageCargo(HttpServletRequest request) {
-        JSONObject jsonObject = new JSONObject();
-        String json = request.getParameter("data");
-        if (CalmLakeStringUtil.stringIsNull(json)) {
-            jsonObject.put("msg", "数据错误");
-            jsonObject.put("result", false);
-            return jsonObject;
-        }
-        JSONObject jsonObjectData = JSON.parseObject(json);
-        String storageNo = jsonObjectData.containsKey("cargoStorageNoOut") ? jsonObjectData.getString("cargoStorageNoOut") : "";
-        Storage storage = new Storage();
-        Cargo cargo = new Cargo();
-        TaskHistory taskHistory = new TaskHistory();
-        storage.setStorageno(storageNo);
-        cargo.setStorageid(storageNo);
-        List<Storage> storageList = storageMapperImpl.selectByStorage(storage);
-        List<Cargo> cargoList = cargoMapperImpl.selectByCargo(cargo);
-        //出库条件
-        if (cargoList.size() > 0 && storageList.size() > 0 && storageList.get(0).getStatus() == 1 && cargoList.get(0).getStatus() == 2) {
-            taskHistory.setCargoid(cargoList.get(0).getId());
-            taskHistory.setX(storageList.get(0).getX());
-            taskHistory.setY(storageList.get(0).getY());
-            taskHistory.setZ(storageList.get(0).getZ());
-            taskHistory.setStartpoint(storageList.get(0).getStorageno());
-            taskHistory.setEndpoint("A175");
-            taskHistory.setPriority((byte) 1);
-            taskHistory.setCreatetime(new Date());
-            taskHistory.setStarttime(new Date());
-            taskHistory.setStatus((byte) 1);
-            taskHistory.setWcstaskno(getRandomNum(10000));
-            //堆垛机状态
-            JSONObject jsonObjectDuiDuoJi = getDuiDuoJiStatus();
-            if (!jsonObjectDuiDuoJi.getBoolean("result")) {
-                jsonObject.put("msg", "堆垛机状态不正确");
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject();
+            String json = request.getParameter("data");
+            if (CalmLakeStringUtil.stringIsNull(json)) {
+                jsonObject.put("msg", "数据错误");
                 jsonObject.put("result", false);
                 return jsonObject;
             }
-            //子车状态
-            JSONObject jsonObjectZiChe = getZiCheStatus(OpcItemFinalString.ERHAOZICHEGROUP);
-            if (!jsonObjectZiChe.getBoolean("result")) {
-                jsonObject.put("msg", "子车状态不正确");
-                jsonObject.put("result", false);
-                return jsonObject;
+            JSONObject jsonObjectData = JSON.parseObject(json);
+            String storageNo = jsonObjectData.containsKey("cargoStorageNoOut") ? jsonObjectData.getString("cargoStorageNoOut") : "";
+            Storage storage = new Storage();
+            Cargo cargo = new Cargo();
+            TaskHistory taskHistory = new TaskHistory();
+            storage.setStorageno(storageNo);
+            cargo.setStorageid(storageNo);
+            List<Storage> storageList = storageMapperImpl.selectByStorage(storage);
+            List<Cargo> cargoList = cargoMapperImpl.selectByCargo(cargo);
+            //出库条件
+            if (cargoList.size() > 0 && storageList.size() > 0 && storageList.get(0).getStatus() == 1 && cargoList.get(0).getStatus() == 2) {
+                taskHistory.setCargoid(cargoList.get(0).getId());
+                taskHistory.setX(storageList.get(0).getX());
+                taskHistory.setY(storageList.get(0).getY());
+                taskHistory.setZ(storageList.get(0).getZ());
+                taskHistory.setStartpoint(storageList.get(0).getStorageno());
+                taskHistory.setEndpoint("A175");
+                taskHistory.setPriority((byte) 1);
+                taskHistory.setCreatetime(new Date());
+                taskHistory.setStarttime(new Date());
+                taskHistory.setStatus((byte) 1);
+                taskHistory.setWcstaskno(getRandomNum(10000));
+                //堆垛机状态
+                JSONObject jsonObjectDuiDuoJi = getDuiDuoJiStatus();
+//                if (!jsonObjectDuiDuoJi.getBoolean("result")) {
+//                    jsonObject.put("msg", "堆垛机状态不正确");
+//                    jsonObject.put("result", false);
+//                    return jsonObject;
+//                }
+                //子车状态
+                JSONObject jsonObjectZiChe = getZiCheStatus(OpcItemFinalString.ERHAOZICHEGROUP);
+//                if (!jsonObjectZiChe.getBoolean("result")) {
+//                    jsonObject.put("msg", "子车状态不正确");
+//                    jsonObject.put("result", false);
+//                    return jsonObject;
+//                }
+                taskHistoryMapperImpl.insertSelective(taskHistory);
+                //TODO  线程起始处 -  异步生成任务
+                OutStorageThread outStorageThread = new OutStorageThread(taskHistory, jsonObjectDuiDuoJi.toJSONString(), jsonObjectZiChe.toJSONString());
+                new Thread(outStorageThread).start();
+                jsonObject.put("msg", "开始任务");
+                jsonObject.put("result", true);
             }
-            taskHistoryMapperImpl.insertSelective(taskHistory);
-            //TODO  线程起始处 -  异步处理事务
-            OutStorageThread outStorageThread = new OutStorageThread(taskHistory, jsonObjectDuiDuoJi.toJSONString(), jsonObjectZiChe.toJSONString());
-            new Thread(outStorageThread).start();
-            jsonObject.put("msg", "开始任务");
-            jsonObject.put("result", true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return jsonObject;
     }

@@ -32,6 +32,11 @@
         </ol>
     </div>
     <div class="row">
+        <div class="container-fluid">
+
+        </div>
+    </div>
+    <div class="row">
         <form id="from_sendMsg" class="form-horizontal" role="form">
             <div class="form-group">
                 <label for="msgIdNum" class="col-sm-1 control-label">设备名称:</label>

@@ -1,8 +1,10 @@
 package com.communication.socket.thread;
 
+import com.alibaba.fastjson.JSONObject;
 import com.communication.socket.data.model.MsgInfo;
 import com.communication.socket.data.model.SocketInfo;
-import com.ren.util.LoggerUtil;
+import com.communication.socket.data.model.SocketInfoListsSingleton;
+import com.www.util.LoggerUtil;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,27 +18,44 @@ import java.net.Socket;
 public class IPCThread implements Runnable {
 
     private SocketInfo socketInfo;
-    private LoggerUtil loggerUtil = new LoggerUtil(IPCThread.class.getName());
+    private Socket socket;
+//    private LoggerUtil loggerUtil = new LoggerUtil(IPCThread.class.getName());
+
+    public IPCThread(SocketInfo socketInfo, Socket socket) {
+        this.socketInfo = socketInfo;
+        this.socket = socket;
+    }
 
     public IPCThread(SocketInfo socketInfo) {
         this.socketInfo = socketInfo;
     }
 
     public void run() {
-        Socket socket = socketInfo.getSocket();
         boolean result = socket.isConnected();
         while (result) {
             try {
                 DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
                 DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-
-                MsgInfo msgInfoRead = readMsgInfo(dataInputStream);
-                MsgInfo msgInfoWrite = disposeMsg(msgInfoRead);
-                boolean writeStausBool = writeMsgInfo(msgInfoWrite, dataOutputStream);
+                String string = dataInputStream.readUTF();
+//                loggerUtil.getLoggerLevelWarn().info(socket.getPort() + ",服务器接收消息--" + string);
+                if (SocketInfoListsSingleton.HEARTBEAT.equals(string)) {
+                    //TODO   心跳检测
+                    dataOutputStream.writeUTF(string);
+                } else {
+                    JSONObject jsonObject = JSONObject.parseObject(string);
+//                {"machineID":"","data":""}
+                    int machineID = jsonObject.getIntValue("machineID");
+                    for (SocketInfo socketInfo1 : SocketInfoListsSingleton.getInstance().getSocketInfoList()) {
+                        if (socketInfo1.getIdNum() == machineID) {
+                            dataOutputStream.writeUTF(string);
+                            break;
+                        }
+                    }
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                result = !socket.isClosed();
+
             }
         }
     }
@@ -48,7 +67,6 @@ public class IPCThread implements Runnable {
             dataInputStream.read(bytes);
         } catch (IOException e) {
             e.printStackTrace();
-            loggerUtil.getLogger().warn("测试接受消息异常："+e.getMessage());
         }
         return new String(bytes);
     }
@@ -78,7 +96,7 @@ public class IPCThread implements Runnable {
         msgInfo.setMsgCommandType(msgCommandType);
         msgInfo.setMsgOrderNum(msgOrderNum);
         msgInfo.setMsgCountNum(msgCountNum);
-        loggerUtil.getLogger().info("服务器：" + msgInfo.toString());
+//        loggerUtil.getLoggerLevelInfo().info("服务器：" + msgInfo.toString());
         return msgInfo;
     }
 

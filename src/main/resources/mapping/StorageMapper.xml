@@ -65,8 +65,6 @@
     <if test="count != null" >
       AND  count = #{count,jdbcType=INTEGER}
     </if>
-    ORDER BY ID
-    desc
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

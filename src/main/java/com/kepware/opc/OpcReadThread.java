@@ -1,6 +1,6 @@
 package com.kepware.opc;
 
-import com.ren.util.LoggerUtil;
+import com.www.util.LoggerUtil;
 import com.wap.model.OpcItems;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class OpcReadThread implements Runnable {
 
-    private LoggerUtil loggerUtil = new LoggerUtil("OpcReadThread");
+//    private LoggerUtil loggerUtil = new LoggerUtil("OpcReadThread");
     private List<OpcItems> opcItemsList;
 
     public OpcReadThread(List<OpcItems> opcItemsList) {
@@ -21,7 +21,7 @@ public class OpcReadThread implements Runnable {
     }
 
     public void run() {
-        loggerUtil.getLogger().info("读取数据线程进入---");
+//        loggerUtil.getLoggerLevelInfo().info("读取数据线程进入---");
         OpcServer.getInstance().read(opcItemsList);
     }
 }

@@ -1,6 +1,7 @@
 package com.kepware.opc;
 
-import com.ren.util.LoggerUtil;
+import com.www.util.LoggerUtil;
+import com.wap.model.OpcItemFinalString;
 import com.wap.model.OpcItems;
 import org.jinterop.dcom.common.JIException;
 import org.jinterop.dcom.core.JIVariant;
@@ -22,14 +23,14 @@ import java.util.concurrent.Executors;
  */
 public class OpcServer {
 
-    private LoggerUtil loggerUtil = new LoggerUtil("OpcServer");
+//    private static LoggerUtil loggerUtil = new LoggerUtil("OpcServer");
     private static final String HOST = "localhost";
     private static final String DOMAIN = "localhost";
     private static final String USER = "admin";
     private static final String PASSWORD = "ren130303.";
     private static final String PROGID = "Kepware.KEPServerEX 6.3";
     private static final String CLSID = "7BC0CC8E-482C-47CA-ABDC-0FE7F9C6E729";
-    private static final int POOLSIZE = 5;
+    private static final int POOLSIZE = 2;
     public static final String KEYREAD = "readItemKey";
     public static final String KEYWRITE = "writeItemKey";
 
@@ -53,9 +54,20 @@ public class OpcServer {
             for (int i = 0; i < POOLSIZE; i++) {
                 tryAgain();
             }
+            initMap();
         } else {
-            loggerUtil.getLogger().info("opcServer - serverList已创建");
+//            loggerUtil.getLoggerLevelInfo().info("opcServer - serverList已创建");
         }
+    }
+
+    /**
+     * 初始化map中设备数据
+     */
+    private void initMap() {
+        OpcServer.monitoringMap.put(OpcItemFinalString.MUCHEYILOCK, "false");
+        OpcServer.monitoringMap.put(OpcItemFinalString.MUCHEERLOCK, "false");
+        OpcServer.monitoringMap.put(OpcItemFinalString.MUCHESANLOCK, "false");
+        OpcServer.monitoringMap.put(OpcItemFinalString.DDJLOCK, "false");
     }
 
     private Server createServer() {
@@ -72,13 +84,13 @@ public class OpcServer {
             server.connect();
         } catch (UnknownHostException e) {
             e.printStackTrace();
-            loggerUtil.getLogger().info("opcServer - server创建连接失败-" + e.getMessage());
+//            loggerUtil.getLoggerLevelWarn().info("opcServer - server创建连接失败-" + e.getMessage());
         } catch (JIException e) {
             e.printStackTrace();
-            loggerUtil.getLogger().info("opcServer - server创建连接失败-" + e.getMessage());
+//            loggerUtil.getLoggerLevelWarn().info("opcServer - server创建连接失败-" + e.getMessage());
         } catch (AlreadyConnectedException e) {
             e.printStackTrace();
-            loggerUtil.getLogger().info("opcServer - server创建连接失败-" + e.getMessage());
+//            loggerUtil.getLoggerLevelWarn().info("opcServer - server创建连接失败-" + e.getMessage());
         } finally {
 
         }
@@ -97,7 +109,7 @@ public class OpcServer {
                 opcServerModel.setServer(server);
                 opcServerModel.setStatus(0);
                 OpcServer.getInstance().opcServerModels.add(opcServerModel);
-                loggerUtil.getLogger().info("opcServer - server创建连接成功");
+//                loggerUtil.getLoggerLevelInfo().info("opcServer - server创建连接成功");
                 break;
             }
             i++;
@@ -112,67 +124,117 @@ public class OpcServer {
 
     public void read(List<OpcItems> opcItemsList) {
         try {
-            boolean result = false;
-            for (OpcServerModel opcServerModel : OpcServer.getInstance().opcServerModels) {
-                if (!result && opcServerModel.getStatus() == 0) {
-                    server = opcServerModel.getServer();
-                    opcServerModel.getServer().setDefaultActive(true);
-                    opcServerModel.setStatus(1);
-                    opcServerModel.setKey(KEYREAD);
-                    AccessBase access = new Async20Access(server, 1000, false);
-                    for (OpcItems opcItems : opcItemsList) {
-                        if (opcItems.getDatatype() == 1) {
-                            readItemBoolean(access, opcItems.getItem());
-                        } else if (opcItems.getDatatype() == 2) {
-                            readItemWord(access, opcItems.getItem());
-                        }
+//            for (OpcServerModel opcServerModel : OpcServer.getInstance().opcServerModels) {
+//                if (!result && opcServerModel.getStatus() == 0) {
+            Server server = createServer();
+//            AccessBase access = new SyncAccess(server, 500);
+//            AccessBase access = new Async20Access(server, 500, true);
+//            for (OpcItems opcItems : opcItemsList) {
+//                try {
+//                    if (opcItems.getDatatype() == 1) {
+//                        readItemBoolean(access, opcItems.getItem());
+//                    } else if (opcItems.getDatatype() == 2) {
+//                        readItemWord(access, opcItems.getItem());
+//                    }
+//                } catch (JIException e) {
+//                    e.printStackTrace();
+//                } catch (AddFailedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            access.bind();
+            for (int machineId = 4; machineId < 12; machineId++) {
+                List<OpcItems> opcItemsList1 = new ArrayList<OpcItems>();
+                for (OpcItems opcItems : opcItemsList) {
+                    if (machineId == opcItems.getMachineinfoid()) {
+                        opcItemsList1.add(opcItems);
                     }
-                    access.bind();
-                    opcServerModel.setAccessBase(access);
-                    result = true;
                 }
+                final AccessBase access = new Async20Access(server, 500, true);
+                ReadThread readThread = new ReadThread(access, opcItemsList1);
+                new Thread(readThread).start();
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
-            loggerUtil.getLogger().info("opcServer - 读取数据异常-" + e.getMessage());
+//            loggerUtil.getLoggerLevelWarn().info("opcServer - 读取数据异常-" + e.getMessage());
         } catch (NotConnectedException e) {
             e.printStackTrace();
-            loggerUtil.getLogger().info("opcServer - 读取数据异常-" + e.getMessage());
+//            loggerUtil.getLoggerLevelWarn().info("opcServer - 读取数据异常-" + e.getMessage());
         } catch (JIException e) {
             e.printStackTrace();
-            loggerUtil.getLogger().info("opcServer - 读取数据异常-" + e.getMessage());
+//            loggerUtil.getLoggerLevelWarn().info("opcServer - 读取数据异常-" + e.getMessage());
         } catch (DuplicateGroupException e) {
             e.printStackTrace();
-            loggerUtil.getLogger().info("opcServer - 读取数据异常-" + e.getMessage());
-        } catch (AddFailedException e) {
-            e.printStackTrace();
-            loggerUtil.getLogger().info("opcServer - 读取数据异常-" + e.getMessage());
+//            loggerUtil.getLoggerLevelWarn().info("opcServer - 读取数据异常-" + e.getMessage());
         }
     }
 
-    private void readItemBoolean(AccessBase access, final String itemId) throws JIException, AddFailedException {
-        access.addItem(itemId, new DataCallback() {
-            public void changed(Item item, ItemState itemState) {
-                String value = itemState.getValue() + "";
-                value = getCleanValue(value);
-                monitoringMap.put(itemId, value);
-            }
-        });
-    }
+    public static class ReadThread implements Runnable {
 
-    private void readItemWord(AccessBase access, final String itemId) throws JIException, AddFailedException {
-        access.addItem(itemId, new DataCallback() {
-            public void changed(Item item, ItemState itemState) {
-                String value = "";
+        private AccessBase access;
+        private List<OpcItems> opcItemsList = new ArrayList<OpcItems>();
+
+        public ReadThread(AccessBase access, List<OpcItems> opcItemsList) {
+            this.access = access;
+            this.opcItemsList = opcItemsList;
+        }
+
+        public void run() {
+            for (OpcItems opcItems : opcItemsList) {
                 try {
-                    value = itemState.getValue().getObjectAsUnsigned().getValue().toString();
+                    if (opcItems.getDatatype() == 1) {
+                        readItemBoolean(access, opcItems.getItem());
+                    } else if (opcItems.getDatatype() == 2) {
+                        readItemWord(access, opcItems.getItem());
+                    }
                 } catch (JIException e) {
                     e.printStackTrace();
-                    loggerUtil.getLogger().info("opcServer - word数据转换异常-" + e.getMessage());
+                } catch (AddFailedException e) {
+                    e.printStackTrace();
                 }
-                monitoringMap.put(itemId, value);
             }
-        });
+            access.bind();
+        }
+
+
+    }
+
+    private static void readItemBoolean(AccessBase access, final String itemId) throws JIException, AddFailedException {
+        try {
+            access.addItem(itemId, new DataCallback() {
+                public void changed(Item item, ItemState itemState) {
+                    String value = itemState.getValue() + "";
+                    value = getCleanValue(value);
+                    monitoringMap.put(itemId, value);
+                }
+            });
+        } catch (JIException e) {
+            e.printStackTrace();
+        } catch (AddFailedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void readItemWord(AccessBase access, final String itemId) throws JIException, AddFailedException {
+        try {
+            access.addItem(itemId, new DataCallback() {
+                public void changed(Item item, ItemState itemState) {
+                    String value = "";
+                    try {
+                        value = itemState.getValue().getObjectAsUnsigned().getValue().toString();
+                        monitoringMap.put(itemId, value);
+                    } catch (JIException e) {
+                        e.printStackTrace();
+                        monitoringMap.put(itemId, "9999");
+//                        loggerUtil.getLoggerLevelWarn().info("opcServer - word数据转换异常-" + e.getMessage());
+                    }
+                }
+            });
+        } catch (JIException e) {
+            e.printStackTrace();
+        } catch (AddFailedException e) {
+            e.printStackTrace();
+        }
     }
 
     public Server getServer() {
@@ -183,7 +245,7 @@ public class OpcServer {
         this.server = server;
     }
 
-    private String getCleanValue(String result) {
+    private static String getCleanValue(String result) {
         if (result.contains("true")) {
             return "true";
         } else if (result.contains("false")) {
@@ -219,16 +281,12 @@ public class OpcServer {
                         opcServerModel.getServer().addGroup("machine.yiHaoZiChe");
                     } catch (UnknownHostException e) {
                         e.printStackTrace();
-                        loggerUtil.getLogger().warn("添加group出现异常" + e.getMessage());
                     } catch (NotConnectedException e) {
                         e.printStackTrace();
-                        loggerUtil.getLogger().warn("添加group出现异常" + e.getMessage());
                     } catch (JIException e) {
                         e.printStackTrace();
-                        loggerUtil.getLogger().warn("添加group出现异常" + e.getMessage());
                     } catch (DuplicateGroupException e) {
                         e.printStackTrace();
-                        loggerUtil.getLogger().warn("添加group出现异常" + e.getMessage());
                     }
                     resultWrite = true;
                 }
@@ -267,10 +325,9 @@ public class OpcServer {
                             itemCommand.write(new JIVariant(ziCheMsgModel.getCommandNum()));
                             itemOrderNum.write(new JIVariant(ziCheMsgModel.getOrderNum()));
                             writeResult = true;
-                            loggerUtil.getLogger().info("成功---" + ziCheMsgModel.toString());
+//                            loggerUtil.getLoggerLevelInfo().info("成功---" + ziCheMsgModel.toString());
                         } else {
                             writeResult = false;
-                            loggerUtil.getLogger().warn("没有找到group");
                         }
                     }
                     if (msgModel instanceof MuCheMsgModel) {
@@ -293,10 +350,9 @@ public class OpcServer {
                             itemCommand.write(new JIVariant(muCheMsgModel.getCommandNum()));
                             itemOrderNum.write(new JIVariant(muCheMsgModel.getOrderNum()));
                             writeResult = true;
-                            loggerUtil.getLogger().info("成功---" + muCheMsgModel.toString());
+//                            loggerUtil.getLoggerLevelInfo().info("成功---" + muCheMsgModel.toString());
                         } else {
                             writeResult = false;
-                            loggerUtil.getLogger().warn("没有找到group");
                         }
                     }
                     if (msgModel instanceof DuiDuoJiMsgModel) {
@@ -317,10 +373,9 @@ public class OpcServer {
                             itemCommand.write(new JIVariant(duiDuoJiMsgModel.getCommandNum()));
                             itemOrderNum.write(new JIVariant(duiDuoJiMsgModel.getOrderNum()));
                             writeResult = true;
-                            loggerUtil.getLogger().info("成功---" + duiDuoJiMsgModel.toString());
+//                            loggerUtil.getLoggerLevelInfo().info("成功---" + duiDuoJiMsgModel.toString());
                         } else {
                             writeResult = false;
-                            loggerUtil.getLogger().warn("没有找到group");
                         }
                     }
                     if (msgModel instanceof ShengJiangJiMsgModel) {
@@ -339,37 +394,73 @@ public class OpcServer {
                             itemCommand.write(new JIVariant(shengJiangJiMsgModel.getCommandNum()));
                             itemOrderNum.write(new JIVariant(shengJiangJiMsgModel.getOrderNum()));
                             writeResult = true;
-                            loggerUtil.getLogger().info("成功---" + shengJiangJiMsgModel.toString());
+//                            loggerUtil.getLoggerLevelInfo().info("成功---" + shengJiangJiMsgModel.toString());
                         } else {
                             writeResult = false;
-                            loggerUtil.getLogger().warn("没有找到group");
                         }
                     }
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
-                    loggerUtil.getLogger().error("opc写入异常" + e.getMessage());
                     writeResult = false;
                 } catch (JIException e) {
                     e.printStackTrace();
-                    loggerUtil.getLogger().error("opc写入异常" + e.getMessage());
                     writeResult = false;
                 } catch (UnknownGroupException e) {
                     e.printStackTrace();
-                    loggerUtil.getLogger().error("opc写入异常" + e.getMessage());
                     writeResult = false;
                 } catch (NotConnectedException e) {
                     e.printStackTrace();
-                    loggerUtil.getLogger().error("opc写入异常" + e.getMessage());
                     writeResult = false;
                 } catch (AddFailedException e) {
                     e.printStackTrace();
-                    loggerUtil.getLogger().error("opc写入异常" + e.getMessage());
                     writeResult = false;
                 }
                 break;
             }
         }
         return writeResult;
+    }
+
+
+    public static void main(String[] aeg) {
+        try {
+            ConnectionInformation ci = new ConnectionInformation();
+            ci.setHost(HOST);
+            ci.setUser(USER);
+            ci.setPassword(PASSWORD);
+            ci.setDomain(DOMAIN);
+            ci.setProgId(PROGID);
+            ci.setClsid(CLSID);
+            Server server = new Server(ci, Executors.newSingleThreadScheduledExecutor());
+            server.connect();
+            final AccessBase access = new SyncAccess(server, 600);
+            String opcItems = "machine.yiHaoZiChe.ziShouDong&1@machine.yiHaoZiChe.daiMing&1@machine.yiHaoZiChe.kongXian&1@machine.yiHaoZiChe.tiShengZhong&1@machine.yiHaoZiChe.xiaJiangZhong&1@machine.yiHaoZiChe.qianJinZhong&1@machine.yiHaoZiChe.houTuiZhong&1@machine.yiHaoZiChe.AYuanDianDaiJi&1@machine.yiHaoZiChe.BYuanDianDaiJi&1@machine.yiHaoZiChe.zaiWu&1@machine.yiHaoZiChe.shiFouGuZhang&1@machine.yiHaoZiChe.beiYongZhuangTai&1@machine.yiHaoZiChe.jingGao&1@machine.yiHaoZiChe.chongDian&1@machine.yiHaoZiChe.tiShengJiShangDaiJI&1@machine.yiHaoZiChe.muCheShangDaiJi&1@machine.yiHaoZiChe.dianLiang&2@machine.yiHaoZiChe.renWuMa&2@machine.yiHaoZiChe.lie&2@machine.yiHaoZiChe.pai&2@machine.yiHaoZiChe.ceng&2@machine.yiHaoZiChe.wcsRenWuMa&2@machine.yiHaoZiChe.yaoKongQiRenWuMa&2@machine.yiHaoZiChe.panDianTuoPanShu&2@machine.yiHaoZiChe.guZhangXinXi&2@machine.yiHaoZiChe.dongZuoZhiLing&2@machine.yiHaoZiChe.dongZuoRenWuHao&2@machine.yiHaoZiChe.muBiaoCeng&2@machine.yiHaoZiChe.muBiaoLie&2@machine.yiHaoZiChe.muBiaoPai&2@machine.sanHaoZiChe.ziShouDong&1@machine.sanHaoZiChe.daiMing&1@machine.sanHaoZiChe.kongXian&1@machine.sanHaoZiChe.tiShengZhong&1@machine.sanHaoZiChe.xiaJiangZhong&1@machine.sanHaoZiChe.qianJinZhong&1@machine.sanHaoZiChe.houTuiZhong&1@machine.sanHaoZiChe.AYuanDianDaiJi&1@machine.sanHaoZiChe.BYuanDianDaiJi&1@machine.sanHaoZiChe.zaiWu&1@machine.sanHaoZiChe.shiFouGuZhang&1@machine.sanHaoZiChe.beiYongZhuangTai&1@machine.sanHaoZiChe.jingGao&1@machine.sanHaoZiChe.chongDian&1@machine.sanHaoZiChe.tiShengJiShangDaiJI&1@machine.sanHaoZiChe.muCheShangDaiJi&1@machine.sanHaoZiChe.dianLiang&2@machine.sanHaoZiChe.renWuMa&2@machine.sanHaoZiChe.lie&2@machine.sanHaoZiChe.pai&2@machine.sanHaoZiChe.ceng&2@machine.sanHaoZiChe.wcsRenWuMa&2@machine.sanHaoZiChe.yaoKongQiRenWuMa&2@machine.sanHaoZiChe.panDianTuoPanShu&2@machine.sanHaoZiChe.dongZuoZhiLing&2@machine.sanHaoZiChe.dongZuoRenWuHao&2@machine.sanHaoZiChe.muBiaoCeng&2@machine.sanHaoZiChe.muBiaoLie&2@machine.sanHaoZiChe.muBiaoPai&2@machine.erHaoZiChe.ziShouDong&1@machine.erHaoZiChe.daiMing&1@machine.erHaoZiChe.kongXian&1@machine.erHaoZiChe.tiShengZhong&1@machine.erHaoZiChe.xiaJiangZhong&1@machine.erHaoZiChe.qianJinZhong&1@machine.erHaoZiChe.houTuiZhong&1@machine.erHaoZiChe.AYuanDianDaiJi&1@machine.erHaoZiChe.BYuanDianDaiJi&1@machine.erHaoZiChe.zaiWu&1@machine.erHaoZiChe.shiFouGuZhang&1@machine.erHaoZiChe.beiYongZhuangTai&1@machine.erHaoZiChe.jingGao&1@machine.erHaoZiChe.chongDian&1@machine.erHaoZiChe.tiShengJiShangDaiJI&1@machine.erHaoZiChe.muCheShangDaiJi&1@machine.erHaoZiChe.dianLiang&2@machine.erHaoZiChe.renWuMa&2@machine.erHaoZiChe.lie&2@machine.erHaoZiChe.pai&2@machine.erHaoZiChe.ceng&2@machine.erHaoZiChe.wcsRenWuMa&2@machine.erHaoZiChe.yaoKongQiRenWuMa&2@machine.erHaoZiChe.panDianTuoPanShu&2@machine.erHaoZiChe.dongZuoZhiLing&2@machine.erHaoZiChe.dongZuoRenWuHao&2@machine.erHaoZiChe.muBiaoCeng&2@machine.erHaoZiChe.muBiaoLie&2@machine.erHaoZiChe.muBiaoPai&2@machine.yiHaoMuChe.ziShouDong&1@machine.yiHaoMuChe.daiMing&1@machine.yiHaoMuChe.kongXian&1@machine.yiHaoMuChe.qianJinZhong&1@machine.yiHaoMuChe.houTuiZhong&1@machine.yiHaoMuChe.huoChaZuoShen&1@machine.yiHaoMuChe.huoChaZuoHui&1@machine.yiHaoMuChe.huoChaYouShen&1@machine.yiHaoMuChe.huoChaYouHui&1@machine.yiHaoMuChe.huoChaZhongWei&1@machine.yiHaoMuChe.zaiWu&1@machine.yiHaoMuChe.zaiChe&1@machine.yiHaoMuChe.shiFouGuZhang&1@machine.yiHaoMuChe.fuWei&1@machine.yiHaoMuChe.wcsRenWuMa&2@machine.yiHaoMuChe.renWuMa&2@machine.yiHaoMuChe.lie&2@machine.yiHaoMuChe.guZhangXinXi&2@machine.yiHaoMuChe.muBiaoLie&2@machine.yiHaoMuChe.dongZuoZhiLing&2@machine.yiHaoMuChe.dongZuoRenWuHao&2@machine.erHaoMuChe.ziShouDong&1@machine.erHaoMuChe.daiMing&1@machine.erHaoMuChe.kongXian&1@machine.erHaoMuChe.qianJinZhong&1@machine.erHaoMuChe.houTuiZhong&1@machine.erHaoMuChe.huoChaZuoShen&1@machine.erHaoMuChe.huoChaZuoHui&1@machine.erHaoMuChe.huoChaYouShen&1@machine.erHaoMuChe.huoChaYouHui&1@machine.erHaoMuChe.huoChaZhongWei&1@machine.erHaoMuChe.zaiWu&1@machine.erHaoMuChe.zaiChe&1@machine.erHaoMuChe.shiFouGuZhang&1@machine.erHaoMuChe.fuWei&1@machine.erHaoMuChe.wcsRenWuMa&2@machine.erHaoMuChe.renWuMa&2@machine.erHaoMuChe.lie&2@machine.erHaoMuChe.muBiaoLie&2@machine.erHaoMuChe.dongZuoZhiLing&2@machine.erHaoMuChe.dongZuoRenWuHao&2@machine.duiDuoJi.ziShouDong&1@machine.duiDuoJi.daiMing&1@machine.duiDuoJi.kongXian&1@machine.duiDuoJi.tiSheng&1@machine.duiDuoJi.xiaJiang&1@machine.duiDuoJi.qianJinZhong&1@machine.duiDuoJi.houTuiZhong&1@machine.duiDuoJi.huoChaZuoShen&1@machine.duiDuoJi.huoChaZuoHui&1@machine.duiDuoJi.huoChaYouShen&1@machine.duiDuoJi.huoChaYouHui&1@machine.duiDuoJi.huoChaZhongWei&1@machine.duiDuoJi.zaiWu&1@machine.duiDuoJi.zaiChe&1@machine.duiDuoJi.shiFouGuZhang&1@machine.duiDuoJi.beiYongZhuangTai&1@machine.duiDuoJi.renWuMa&2@machine.duiDuoJi.lie&2@machine.duiDuoJi.ceng&2@machine.duiDuoJi.guZhangXinXi&2@machine.duiDuoJi.muBiaoLie&2@machine.duiDuoJi.muBiaoCeng&2@machine.duiDuoJi.dongZuoZhiLing&2@machine.duiDuoJi.dongZuoRenWuHao&2@machine.shengJiangJi.ziShouDong&1@machine.shengJiangJi.daiMing&1@machine.shengJiangJi.kongXian&1@machine.shengJiangJi.tiSheng&1@machine.shengJiangJi.xiaJiang&1@machine.shengJiangJi.huoChaZuoShen&1@machine.shengJiangJi.huoChaZuoHui&1@machine.shengJiangJi.huoChaYouShen&1@machine.shengJiangJi.huoChaYouHui&1@machine.shengJiangJi.huoChaZhongWei&1@machine.shengJiangJi.zaiWu&1@machine.shengJiangJi.zaiChe&1@machine.shengJiangJi.shiFouGuZhang&1@machine.shengJiangJi.beiYongZhuangTai&1@machine.shengJiangJi.fuWei&1@machine.shengJiangJi.renWuMa&2@machine.shengJiangJi.ceng&2@machine.shengJiangJi.guZhangXinXi&2@machine.shengJiangJi.muBiaoCeng&2@machine.shengJiangJi.dongZuoZhiLing&2@machine.shengJiangJi.dongZuoRenWuHao&2@machine.sanHaoMuChe.ziShouDong&1@machine.sanHaoMuChe.daiMing&1@machine.sanHaoMuChe.kongXian&1@machine.sanHaoMuChe.qianJinZhong&1@machine.sanHaoMuChe.houTuiZhong&1@machine.sanHaoMuChe.huoChaZuoShen&1@machine.sanHaoMuChe.huoChaZuoHui&1@machine.sanHaoMuChe.huoChaYouShen&1@machine.sanHaoMuChe.huoChaYouHui&1@machine.sanHaoMuChe.huoChaZhongWei&1@machine.sanHaoMuChe.zaiWu&1@machine.sanHaoMuChe.zaiChe&1@machine.sanHaoMuChe.shiFouGuZhang&1@machine.sanHaoMuChe.fuWei&1@machine.sanHaoMuChe.wcsRenWuMa&2@machine.sanHaoMuChe.renWuMa&2@machine.sanHaoMuChe.lie&2@machine.sanHaoMuChe.muBiaoLie&2@machine.sanHaoMuChe.dongZuoZhiLing&2@machine.sanHaoMuChe.dongZuoRenWuHao&2@machine.shengJiangJi.ZhuangTaiYiHaoWei&1@machine.shengJiangJi.daiMingYiHaoWei&1@machine.shengJiangJi.kongXianYiHaoWei&1@machine.shengJiangJi.waiWeiZhangAiYiHaoWei&1@machine.shengJiangJi.qiDongYiHaoWei&1@machine.shengJiangJi.zaiWuYiHaoWei&1@machine.shengJiangJi.renWuMaYiHaoWei&2@machine.shengJiangJi.dongZuoZhiLingYiHaoWei&2@machine.shengJiangJi.wcsRenWuMaYiHaoWei&2@machine.shengJiangJi.ZhuangTaiWuHaoWei&1@machine.shengJiangJi.daiMingWuHaoWei&1@machine.shengJiangJi.kongXianWuHaoWei&1@machine.shengJiangJi.waiWeiZhangAiWuHaoWei&1@machine.shengJiangJi.qiDongWuHaoWei&1@machine.shengJiangJi.zaiWuWuHaoWei&1@machine.shengJiangJi.renWuMaWuHaoWei&2@machine.shengJiangJi.dongZuoZhiLingWuHaoWei&2@machine.shengJiangJi.wcsRenWuMaWuHaoWei&2@machine.shengJiangJi.ZhuangTaiLiuHaoWei&1@machine.shengJiangJi.daiMingLiuHaoWei&1@machine.shengJiangJi.kongXianLiuHaoWei&1@machine.shengJiangJi.waiWeiZhangAiLiuHaoWei&1@machine.shengJiangJi.qiDongLiuHaoWei&1@machine.shengJiangJi.zaiWuLiuHaoWei&1@machine.shengJiangJi.renWuMaLiuHaoWei&2@machine.shengJiangJi.dongZuoZhiLingLiuHaoWei&2@machine.shengJiangJi.wcsRenWuMaLiuHaoWei&2@machine.shengJiangJi.ZhuangTaiErHaoWei&1@machine.shengJiangJi.daiMingErHaoWei&1@machine.shengJiangJi.kongXianErHaoWei&1@machine.shengJiangJi.zaiWuErHaoWei&1@machine.shengJiangJi.renWuMaErHaoWei&2@machine.shengJiangJi.dongZuoZhiLingErHaoWei&2@machine.shengJiangJi.wcsRenWuMaErHaoWei&2@machine.shengJiangJi.ZhuangTaiSanHaoWei&1@machine.shengJiangJi.daiMingSanHaoWei&1@machine.shengJiangJi.kongXianSanHaoWei&1@machine.shengJiangJi.zaiWuSanHaoWei&1@machine.shengJiangJi.renWuMaSanHaoWei&2@machine.shengJiangJi.dongZuoZhiLingSanHaoWei&2@machine.shengJiangJi.wcsRenWuMaSanHaoWei&2@machine.shengJiangJi.ZhuangTaiSiHaoWei&1@machine.shengJiangJi.daiMingSiHaoWei&1@machine.shengJiangJi.kongXianSiHaoWei&1@machine.shengJiangJi.zaiWuSiHaoWei&1@machine.shengJiangJi.renWuMaSiHaoWei&2@machine.shengJiangJi.dongZuoZhiLingSiHaoWei&2@machine.shengJiangJi.wcsRenWuMaSiHaoWei&2";
+            String[] aa = new String[opcItems.split("@").length];
+            for (int i = 0; i < aa.length; i++) {
+                aa[i] = opcItems.split("@")[i];
+            }
+            List<OpcItems> opcItemsList = new ArrayList<OpcItems>();
+            for (String string : aa) {
+                OpcItems opcItems1 = new OpcItems();
+                opcItems1.setItem(string.split("&")[0]);
+                String ssssss = string.split("&")[1];
+                opcItems1.setDatatype(Integer.valueOf(ssssss).byteValue());
+                opcItemsList.add(opcItems1);
+            }
+//            ReadThread readThread = new ReadThread(access, opcItemsList);
+//            new Thread(readThread).start();
+//            access.bind();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (JIException e) {
+            e.printStackTrace();
+        } catch (AlreadyConnectedException e) {
+            e.printStackTrace();
+        } catch (NotConnectedException e) {
+            e.printStackTrace();
+        } catch (DuplicateGroupException e) {
+            e.printStackTrace();
+        }
     }
 
 }

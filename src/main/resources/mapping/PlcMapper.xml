@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thief.wcs.dao.PlcMapper">
+    <resultMap id="BaseResultMap" type="com.thief.wcs.entity.Plc">
+        <constructor>
+            <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="PLCNAME" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="TYPE" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="IPADDRESS" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="PORT" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="CREATETIME" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="LASTHEARTBEAT" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="STATUS" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, PLCNAME, TYPE, IPADDRESS, PORT, CREATETIME, LASTHEARTBEAT, STATUS
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from plc
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByPlcName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from plc
+        where PLCNAME = #{plcname,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByPlc" resultMap="BaseResultMap" parameterType="com.thief.wcs.entity.Plc">
+        select
+        <include refid="Base_Column_List"/>
+        from plc
+        where 1=1
+        <if test="plcname != null">
+            OR PLCNAME = #{plcname,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null">
+            OR TYPE = #{type,jdbcType=TINYINT}
+        </if>
+        <if test="status != null">
+            OR STATUS = #{status,jdbcType=TINYINT}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from plc
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.thief.wcs.entity.Plc">
+    insert into plc (ID, PLCNAME, TYPE, 
+      IPADDRESS, PORT, CREATETIME, 
+      LASTHEARTBEAT, STATUS)
+    values (#{id,jdbcType=INTEGER}, #{plcname,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{ipaddress,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{lastheartbeat,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.thief.wcs.entity.Plc">
+        insert into plc
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="plcname != null">
+                PLCNAME,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+            <if test="ipaddress != null">
+                IPADDRESS,
+            </if>
+            <if test="port != null">
+                PORT,
+            </if>
+            <if test="createtime != null">
+                CREATETIME,
+            </if>
+            <if test="lastheartbeat != null">
+                LASTHEARTBEAT,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="plcname != null">
+                #{plcname,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="ipaddress != null">
+                #{ipaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                #{port,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastheartbeat != null">
+                #{lastheartbeat,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.thief.wcs.entity.Plc">
+        update plc
+        <set>
+            <if test="plcname != null">
+                PLCNAME = #{plcname,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                TYPE = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="ipaddress != null">
+                IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                PORT = #{port,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastheartbeat != null">
+                LASTHEARTBEAT = #{lastheartbeat,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=TINYINT},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.thief.wcs.entity.Plc">
+    update plc
+    set PLCNAME = #{plcname,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=TINYINT},
+      IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      PORT = #{port,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      LASTHEARTBEAT = #{lastheartbeat,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=TINYINT}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

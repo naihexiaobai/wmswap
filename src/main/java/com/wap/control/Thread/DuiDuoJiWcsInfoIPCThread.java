@@ -1,12 +1,11 @@
 package com.wap.control.Thread;
 
 import com.kepware.opc.OpcServer;
-import com.ren.util.LoggerUtil;
+import com.www.util.DBUtil;
+import com.www.util.LoggerUtil;
 import com.wap.control.ControlCc;
 import com.wap.model.OpcItemFinalString;
 import com.wap.model.WCSControlInfo;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -17,49 +16,51 @@ import java.util.List;
  * @auther CalmLake
  * @create 2017/11/28  16:09
  */
-@Controller
-@RequestMapping("duiDuoJiWcsInfoIPCThread")
 public class DuiDuoJiWcsInfoIPCThread extends ControlCc implements Runnable {
 
-    private LoggerUtil loggerUtil = new LoggerUtil("DuiDuoJiWcsInfoIPCThread");
+//    private LoggerUtil loggerUtil = new LoggerUtil("DuiDuoJiWcsInfoIPCThread");
 
     public void run() {
-        loggerUtil.getLogger().info("堆垛机处理线程开启");
         while (true) {
             try {
                 boolean result = duiDuoJiExecuteTask();
                 if (result) {
                     WCSControlInfo wcsControlInfo = new WCSControlInfo();
                     wcsControlInfo.setStatus(getByte(0));
+                    wcsControlInfo.setMachineinfoid(10);
                     List<WCSControlInfo> wcsControlInfoList = selectByWCSControlInfo(wcsControlInfo);
                     if (wcsControlInfoList.size() > 0) {
                         WCSControlInfo wcsControlInfo2 = wcsControlInfoList.get(0);
+                        boolean local = checkLocalDDJ(wcsControlInfo2);
                         byte command = wcsControlInfo2.getMovementid();
-                        if (checkStaus(command)) {
-                            result = executeWrite(wcsControlInfo2);
-                            if (result) {
-                                wcsControlInfo2.setStatus(getByte(2));
-                                updateWCSControlInfoByPrimaryKey(wcsControlInfo2);
-                                boolean taskSuccess = duiDuoJiTaskIsSuccess();
-                                if (taskSuccess) {
-                                    wcsControlInfo2.setStatus(getByte(3));
+                        if (local) {
+                            wcsControlInfo2.setStatus(getByte(7));
+                            updateWCSControlInfoByPrimaryKey(wcsControlInfo2);
+                        } else {
+                            //TODO 锁定有任务时等待
+                            if ("false".equals(OpcServer.monitoringMap.get(OpcItemFinalString.DDJLOCK)) && checkStaus(command)) {
+                                result = executeWrite(wcsControlInfo2);
+                                if (result) {
+                                    wcsControlInfo2.setStatus(getByte(2));
+                                    updateWCSControlInfoByPrimaryKey(wcsControlInfo2);
+                                    boolean taskSuccess = duiDuoJiTaskIsSuccess(wcsControlInfo2.getWcstaskno().toString());
+                                    if (taskSuccess) {
+                                        wcsControlInfo2.setStatus(getByte(3));
+                                        updateWCSControlInfoByPrimaryKey(wcsControlInfo2);
+                                    }
+                                } else {
+                                    wcsControlInfo2.setStatus(getByte(5));
                                     updateWCSControlInfoByPrimaryKey(wcsControlInfo2);
                                 }
                             } else {
-                                wcsControlInfo2.setStatus(getByte(5));
+                                wcsControlInfo2.setStatus(getByte(6));
                                 updateWCSControlInfoByPrimaryKey(wcsControlInfo2);
-                                loggerUtil.getLogger().warn("堆垛机处理线程-多次写入失败请检查" + wcsControlInfo2.toString());
                             }
-                        } else {
-                            wcsControlInfo2.setStatus(getByte(6));
-                            updateWCSControlInfoByPrimaryKey(wcsControlInfo2);
-                            loggerUtil.getLogger().warn("堆垛机处理线程-指令与设备状态不统一" + wcsControlInfo2.toString());
                         }
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                loggerUtil.getLogger().warn("堆垛机处理线程-出现异常" + e.getMessage());
             }
         }
     }
@@ -106,5 +107,52 @@ public class DuiDuoJiWcsInfoIPCThread extends ControlCc implements Runnable {
             }
         }
         return result;
+    }
+
+
+    public void doWork(int machineID, int wcsControlInfoID) {
+        boolean resultStatus = true;
+        while (resultStatus) {
+            try {
+                boolean result = duiDuoJiExecuteTask();
+                if (result) {
+                    WCSControlInfo wcsControlInfo = DBUtil.dbUtil.wCSControlInfoMapperImpl.selectByPrimaryKey(wcsControlInfoID);
+                    if (wcsControlInfo.getId() > 0) {
+                        boolean local = checkLocalDDJ(wcsControlInfo);
+                        byte command = wcsControlInfo.getMovementid();
+                        if (local) {
+                            wcsControlInfo.setStatus(getByte(7));
+                            updateWCSControlInfoByPrimaryKey(wcsControlInfo);
+                            resultStatus = false;
+                        } else {
+                            //TODO 锁定有任务时等待
+                            if ("false".equals(OpcServer.monitoringMap.get(OpcItemFinalString.DDJLOCK)) && checkStaus(command)) {
+                                result = executeWrite(wcsControlInfo);
+                                if (result) {
+                                    wcsControlInfo.setStatus(getByte(2));
+                                    updateWCSControlInfoByPrimaryKey(wcsControlInfo);
+                                    boolean taskSuccess = duiDuoJiTaskIsSuccess(wcsControlInfo.getWcstaskno().toString());
+                                    if (taskSuccess) {
+                                        wcsControlInfo.setStatus(getByte(3));
+                                        updateWCSControlInfoByPrimaryKey(wcsControlInfo);
+                                        resultStatus = false;
+                                    }
+                                } else {
+                                    wcsControlInfo.setStatus(getByte(5));
+                                    updateWCSControlInfoByPrimaryKey(wcsControlInfo);
+                                    resultStatus = false;
+                                }
+                            } else {
+                                wcsControlInfo.setStatus(getByte(6));
+                                updateWCSControlInfoByPrimaryKey(wcsControlInfo);
+                                resultStatus = false;
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
