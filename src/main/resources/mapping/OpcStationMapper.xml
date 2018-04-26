@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kepware.opc.dao.OpcStationMapper">
+    <resultMap id="BaseResultMap" type="com.kepware.opc.entity.OpcStation">
+        <constructor>
+            <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="blockNo" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="type" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="x" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="y" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="z" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, blockNo, type, x, y, z, REMARK
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_station
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_station
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from opc_station
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.kepware.opc.entity.OpcStation">
+    insert into opc_station (ID, blockNo, type, 
+      x, y, z, REMARK
+      )
+    values (#{id,jdbcType=INTEGER}, #{blockno,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{x,jdbcType=VARCHAR}, #{y,jdbcType=VARCHAR}, #{z,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.kepware.opc.entity.OpcStation">
+        insert into opc_station
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="blockno != null">
+                blockNo,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="x != null">
+                x,
+            </if>
+            <if test="y != null">
+                y,
+            </if>
+            <if test="z != null">
+                z,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="blockno != null">
+                #{blockno,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="x != null">
+                #{x,jdbcType=VARCHAR},
+            </if>
+            <if test="y != null">
+                #{y,jdbcType=VARCHAR},
+            </if>
+            <if test="z != null">
+                #{z,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kepware.opc.entity.OpcStation">
+        update opc_station
+        <set>
+            <if test="blockno != null">
+                blockNo = #{blockno,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="x != null">
+                x = #{x,jdbcType=VARCHAR},
+            </if>
+            <if test="y != null">
+                y = #{y,jdbcType=VARCHAR},
+            </if>
+            <if test="z != null">
+                z = #{z,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.kepware.opc.entity.OpcStation">
+    update opc_station
+    set blockNo = #{blockno,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      x = #{x,jdbcType=VARCHAR},
+      y = #{y,jdbcType=VARCHAR},
+      z = #{z,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

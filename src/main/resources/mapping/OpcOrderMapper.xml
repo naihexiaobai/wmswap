@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kepware.opc.dao.OpcOrderMapper">
+    <resultMap id="BaseResultMap" type="com.kepware.opc.entity.OpcOrder">
+        <constructor>
+            <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="orderKey" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="orderType" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="barCode" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="startTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="endTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="fromStation" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="toStation" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="toLocation" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="fromLocation" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="errorMsg" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="routeId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="wmsMckey" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, orderKey, orderType, barCode, createTime, startTime, endTime, fromStation, toStation, 
+    toLocation, fromLocation, status, errorMsg, routeId, wmsMckey, REMARK
+  </sql>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_order
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByOrderKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_order
+        where orderKey = #{orderKey,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectOpcOrderListAll" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_order order by ID DESC
+        -- LIMIT 0,10;
+    </select>
+
+
+    <select id="selectOpcOrderListByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_order
+        where status = #{status,jdbcType=TINYINT} LIMIT 0,1;
+    </select>
+    <select id="selectByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_order
+        where status = #{status,jdbcType=TINYINT} LIMIT 0,1;
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from opc_order
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.kepware.opc.entity.OpcOrder">
+    insert into opc_order (ID, orderKey, orderType, 
+      barCode, createTime, startTime, 
+      endTime, fromStation, toStation, 
+      toLocation, fromLocation, status, 
+      errorMsg, routeId, wmsMckey, 
+      REMARK)
+    values (#{id,jdbcType=INTEGER}, #{orderkey,jdbcType=VARCHAR}, #{ordertype,jdbcType=TINYINT}, 
+      #{barcode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{fromstation,jdbcType=VARCHAR}, #{tostation,jdbcType=VARCHAR}, 
+      #{tolocation,jdbcType=VARCHAR}, #{fromlocation,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{errormsg,jdbcType=VARCHAR}, #{routeid,jdbcType=INTEGER}, #{wmsmckey,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.kepware.opc.entity.OpcOrder">
+        insert into opc_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="orderkey != null">
+                orderKey,
+            </if>
+            <if test="ordertype != null">
+                orderType,
+            </if>
+            <if test="barcode != null">
+                barCode,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="starttime != null">
+                startTime,
+            </if>
+            <if test="endtime != null">
+                endTime,
+            </if>
+            <if test="fromstation != null">
+                fromStation,
+            </if>
+            <if test="tostation != null">
+                toStation,
+            </if>
+            <if test="tolocation != null">
+                toLocation,
+            </if>
+            <if test="fromlocation != null">
+                fromLocation,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="errormsg != null">
+                errorMsg,
+            </if>
+            <if test="routeid != null">
+                routeId,
+            </if>
+            <if test="wmsmckey != null">
+                wmsMckey,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderkey != null">
+                #{orderkey,jdbcType=VARCHAR},
+            </if>
+            <if test="ordertype != null">
+                #{ordertype,jdbcType=TINYINT},
+            </if>
+            <if test="barcode != null">
+                #{barcode,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="starttime != null">
+                #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fromstation != null">
+                #{fromstation,jdbcType=VARCHAR},
+            </if>
+            <if test="tostation != null">
+                #{tostation,jdbcType=VARCHAR},
+            </if>
+            <if test="tolocation != null">
+                #{tolocation,jdbcType=VARCHAR},
+            </if>
+            <if test="fromlocation != null">
+                #{fromlocation,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="errormsg != null">
+                #{errormsg,jdbcType=VARCHAR},
+            </if>
+            <if test="routeid != null">
+                #{routeid,jdbcType=INTEGER},
+            </if>
+            <if test="wmsmckey != null">
+                #{wmsmckey,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kepware.opc.entity.OpcOrder">
+        update opc_order
+        <set>
+            <if test="orderkey != null">
+                orderKey = #{orderkey,jdbcType=VARCHAR},
+            </if>
+            <if test="ordertype != null">
+                orderType = #{ordertype,jdbcType=TINYINT},
+            </if>
+            <if test="barcode != null">
+                barCode = #{barcode,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="starttime != null">
+                startTime = #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                endTime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fromstation != null">
+                fromStation = #{fromstation,jdbcType=VARCHAR},
+            </if>
+            <if test="tostation != null">
+                toStation = #{tostation,jdbcType=VARCHAR},
+            </if>
+            <if test="tolocation != null">
+                toLocation = #{tolocation,jdbcType=VARCHAR},
+            </if>
+            <if test="fromlocation != null">
+                fromLocation = #{fromlocation,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="errormsg != null">
+                errorMsg = #{errormsg,jdbcType=VARCHAR},
+            </if>
+            <if test="routeid != null">
+                routeId = #{routeid,jdbcType=INTEGER},
+            </if>
+            <if test="wmsmckey != null">
+                wmsMckey = #{wmsmckey,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.kepware.opc.entity.OpcOrder">
+    update opc_order
+    set orderKey = #{orderkey,jdbcType=VARCHAR},
+      orderType = #{ordertype,jdbcType=TINYINT},
+      barCode = #{barcode,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      fromStation = #{fromstation,jdbcType=VARCHAR},
+      toStation = #{tostation,jdbcType=VARCHAR},
+      toLocation = #{tolocation,jdbcType=VARCHAR},
+      fromLocation = #{fromlocation,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      errorMsg = #{errormsg,jdbcType=VARCHAR},
+      routeId = #{routeid,jdbcType=INTEGER},
+      wmsMckey = #{wmsmckey,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

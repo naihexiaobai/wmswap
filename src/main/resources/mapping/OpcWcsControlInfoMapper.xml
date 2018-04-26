@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kepware.opc.dao.OpcWcsControlInfoMapper">
+    <resultMap id="BaseResultMap" type="com.kepware.opc.entity.OpcWcsControlInfo">
+        <constructor>
+            <idArg column="ID" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="orderKey" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="blockNo" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="machineInfoID" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="endTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="status" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="wcsTaskNo" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="movementID" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="y" javaType="java.lang.Short" jdbcType="SMALLINT"/>
+            <arg column="x" javaType="java.lang.Short" jdbcType="SMALLINT"/>
+            <arg column="z" javaType="java.lang.Short" jdbcType="SMALLINT"/>
+            <arg column="REMARK" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, orderKey, blockNo, machineInfoID, endTime, createTime, status, wcsTaskNo, movementID, 
+    y, x, z, REMARK
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_wcscontrolinfo
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_wcscontrolinfo ORDER  BY  ID DESC
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from opc_wcscontrolinfo
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.kepware.opc.entity.OpcWcsControlInfo">
+    insert into opc_wcscontrolinfo (ID, orderKey, blockNo, 
+      machineInfoID, endTime, createTime, 
+      status, wcsTaskNo, movementID, 
+      y, x, z, REMARK
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderkey,jdbcType=VARCHAR}, #{blockno,jdbcType=VARCHAR}, 
+      #{machineinfoid,jdbcType=INTEGER}, #{endtime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT}, #{wcstaskno,jdbcType=VARCHAR}, #{movementid,jdbcType=TINYINT}, 
+      #{y,jdbcType=SMALLINT}, #{x,jdbcType=SMALLINT}, #{z,jdbcType=SMALLINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.kepware.opc.entity.OpcWcsControlInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into opc_wcscontrolinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="orderkey != null">
+                orderKey,
+            </if>
+            <if test="blockno != null">
+                blockNo,
+            </if>
+            <if test="machineinfoid != null">
+                machineInfoID,
+            </if>
+            <if test="endtime != null">
+                endTime,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="wcstaskno != null">
+                wcsTaskNo,
+            </if>
+            <if test="movementid != null">
+                movementID,
+            </if>
+            <if test="y != null">
+                y,
+            </if>
+            <if test="x != null">
+                x,
+            </if>
+            <if test="z != null">
+                z,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderkey != null">
+                #{orderkey,jdbcType=VARCHAR},
+            </if>
+            <if test="blockno != null">
+                #{blockno,jdbcType=VARCHAR},
+            </if>
+            <if test="machineinfoid != null">
+                #{machineinfoid,jdbcType=INTEGER},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="wcstaskno != null">
+                #{wcstaskno,jdbcType=VARCHAR},
+            </if>
+            <if test="movementid != null">
+                #{movementid,jdbcType=TINYINT},
+            </if>
+            <if test="y != null">
+                #{y,jdbcType=SMALLINT},
+            </if>
+            <if test="x != null">
+                #{x,jdbcType=SMALLINT},
+            </if>
+            <if test="z != null">
+                #{z,jdbcType=SMALLINT},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kepware.opc.entity.OpcWcsControlInfo">
+        update opc_wcscontrolinfo
+        <set>
+            <if test="orderkey != null">
+                orderKey = #{orderkey,jdbcType=VARCHAR},
+            </if>
+            <if test="blockno != null">
+                blockNo = #{blockno,jdbcType=VARCHAR},
+            </if>
+            <if test="machineinfoid != null">
+                machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+            </if>
+            <if test="endtime != null">
+                endTime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="wcstaskno != null">
+                wcsTaskNo = #{wcstaskno,jdbcType=VARCHAR},
+            </if>
+            <if test="movementid != null">
+                movementID = #{movementid,jdbcType=TINYINT},
+            </if>
+            <if test="y != null">
+                y = #{y,jdbcType=SMALLINT},
+            </if>
+            <if test="x != null">
+                x = #{x,jdbcType=SMALLINT},
+            </if>
+            <if test="z != null">
+                z = #{z,jdbcType=SMALLINT},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER} OR wcsTaskNo = #{wcstaskno,jdbcType=VARCHAR}
+    </update>
+
+
+    <update id="updateByWcsTaskNoAndBlockNo" parameterType="com.kepware.opc.entity.OpcWcsControlInfo">
+        update opc_wcscontrolinfo
+        <set>
+            <if test="id != null">
+                ID = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderkey != null">
+                orderKey = #{orderkey,jdbcType=VARCHAR},
+            </if>
+            <if test="blockno != null">
+                blockNo = #{blockno,jdbcType=VARCHAR},
+            </if>
+            <if test="machineinfoid != null">
+                machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+            </if>
+            <if test="endtime != null">
+                endTime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+
+            <if test="movementid != null">
+                movementID = #{movementid,jdbcType=TINYINT},
+            </if>
+            <if test="y != null">
+                y = #{y,jdbcType=SMALLINT},
+            </if>
+            <if test="x != null">
+                x = #{x,jdbcType=SMALLINT},
+            </if>
+            <if test="z != null">
+                z = #{z,jdbcType=SMALLINT},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where 1==1
+        <if test="wcstaskno != null">
+            AND wcsTaskNo = #{wcstaskno,jdbcType=VARCHAR}
+        </if>
+        <if test="blockno != null">
+            AND blockNo = #{blockno,jdbcType=VARCHAR}
+        </if>
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.kepware.opc.entity.OpcWcsControlInfo">
+    update opc_wcscontrolinfo
+    set orderKey = #{orderkey,jdbcType=VARCHAR},
+      blockNo = #{blockno,jdbcType=VARCHAR},
+      machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      wcsTaskNo = #{wcstaskno,jdbcType=VARCHAR},
+      movementID = #{movementid,jdbcType=TINYINT},
+      y = #{y,jdbcType=SMALLINT},
+      x = #{x,jdbcType=SMALLINT},
+      z = #{z,jdbcType=SMALLINT},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

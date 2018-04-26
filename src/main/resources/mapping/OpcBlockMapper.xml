@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kepware.opc.dao.OpcBlockMapper">
+  <resultMap id="BaseResultMap" type="com.kepware.opc.entity.OpcBlock">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="blockNo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mckey" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reservedMcKey" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="plcName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REMARK" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="line" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tier" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="row" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, blockNo, mckey, reservedMcKey, status, plcName, REMARK, line, tier, row
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from opc_block
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from opc_block
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kepware.opc.entity.OpcBlock">
+    insert into opc_block (ID, blockNo, mckey, 
+      reservedMcKey, status, plcName, 
+      REMARK, line, tier, 
+      row)
+    values (#{id,jdbcType=INTEGER}, #{blockno,jdbcType=VARCHAR}, #{mckey,jdbcType=VARCHAR}, 
+      #{reservedmckey,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{plcname,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{line,jdbcType=VARCHAR}, #{tier,jdbcType=VARCHAR}, 
+      #{row,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kepware.opc.entity.OpcBlock">
+    insert into opc_block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="blockno != null">
+        blockNo,
+      </if>
+      <if test="mckey != null">
+        mckey,
+      </if>
+      <if test="reservedmckey != null">
+        reservedMcKey,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="plcname != null">
+        plcName,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="line != null">
+        line,
+      </if>
+      <if test="tier != null">
+        tier,
+      </if>
+      <if test="row != null">
+        row,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="blockno != null">
+        #{blockno,jdbcType=VARCHAR},
+      </if>
+      <if test="mckey != null">
+        #{mckey,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedmckey != null">
+        #{reservedmckey,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="plcname != null">
+        #{plcname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="line != null">
+        #{line,jdbcType=VARCHAR},
+      </if>
+      <if test="tier != null">
+        #{tier,jdbcType=VARCHAR},
+      </if>
+      <if test="row != null">
+        #{row,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kepware.opc.entity.OpcBlock">
+    update opc_block
+    <set>
+      <if test="blockno != null">
+        blockNo = #{blockno,jdbcType=VARCHAR},
+      </if>
+      <if test="mckey != null">
+        mckey = #{mckey,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedmckey != null">
+        reservedMcKey = #{reservedmckey,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="plcname != null">
+        plcName = #{plcname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="line != null">
+        line = #{line,jdbcType=VARCHAR},
+      </if>
+      <if test="tier != null">
+        tier = #{tier,jdbcType=VARCHAR},
+      </if>
+      <if test="row != null">
+        row = #{row,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kepware.opc.entity.OpcBlock">
+    update opc_block
+    set blockNo = #{blockno,jdbcType=VARCHAR},
+      mckey = #{mckey,jdbcType=VARCHAR},
+      reservedMcKey = #{reservedmckey,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      plcName = #{plcname,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      line = #{line,jdbcType=VARCHAR},
+      tier = #{tier,jdbcType=VARCHAR},
+      row = #{row,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <select id="selectByMcKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from opc_block
+        where mckey = #{mcKey,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectByBlockNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from opc_block
+        where blockNo = #{blockno,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from opc_block
+
+    </select>
+
+    <update id="clearKeyByKey" parameterType="java.lang.String">
+        update opc_block
+        <set>
+            mckey ='',
+            reservedMcKey = '',
+            status = 1,
+        </set>
+        where mckey = #{mckey,jdbcType=VARCHAR} OR reservedMcKey = #{mckey,jdbcType=VARCHAR}
+    </update>
+</mapper>

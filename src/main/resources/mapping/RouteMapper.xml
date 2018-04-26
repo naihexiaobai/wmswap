@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thief.wcs.dao.RouteMapper" >
+  <resultMap id="BaseResultMap" type="com.thief.wcs.entity.Route" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="startBlockNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="endBlockNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, startBlockNo, endBlockNo, status, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from route
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from route
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from route
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.thief.wcs.entity.Route" >
+    insert into route (ID, startBlockNo, endBlockNo, 
+      status, type)
+    values (#{id,jdbcType=INTEGER}, #{startblockno,jdbcType=VARCHAR}, #{endblockno,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{type,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.thief.wcs.entity.Route" >
+    insert into route
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="startblockno != null" >
+        startBlockNo,
+      </if>
+      <if test="endblockno != null" >
+        endBlockNo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="startblockno != null" >
+        #{startblockno,jdbcType=VARCHAR},
+      </if>
+      <if test="endblockno != null" >
+        #{endblockno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thief.wcs.entity.Route" >
+    update route
+    <set >
+      <if test="startblockno != null" >
+        startBlockNo = #{startblockno,jdbcType=VARCHAR},
+      </if>
+      <if test="endblockno != null" >
+        endBlockNo = #{endblockno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thief.wcs.entity.Route" >
+    update route
+    set startBlockNo = #{startblockno,jdbcType=VARCHAR},
+      endBlockNo = #{endblockno,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

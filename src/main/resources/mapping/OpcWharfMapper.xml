@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kepware.opc.dao.OpcWharfMapper" >
+  <resultMap id="BaseResultMap" type="com.kepware.opc.entity.OpcWharf" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="blockNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="x" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="y" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="z" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, blockNo, x, y, z, REMARK
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from opc_wharf
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByBlockNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from opc_wharf
+    where blockNo = #{blockNo,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from opc_wharf
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kepware.opc.entity.OpcWharf" >
+    insert into opc_wharf (ID, blockNo, x,
+    y, z, REMARK)
+    values (#{id,jdbcType=INTEGER}, #{blockno,jdbcType=VARCHAR}, #{x,jdbcType=VARCHAR},
+    #{y,jdbcType=VARCHAR}, #{z,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kepware.opc.entity.OpcWharf" >
+    insert into opc_wharf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="blockno != null" >
+        blockNo,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+      <if test="z != null" >
+        z,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="blockno != null" >
+        #{blockno,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="z != null" >
+        #{z,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kepware.opc.entity.OpcWharf" >
+    update opc_wharf
+    <set >
+      <if test="blockno != null" >
+        blockNo = #{blockno,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        x = #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null" >
+        y = #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="z != null" >
+        z = #{z,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kepware.opc.entity.OpcWharf" >
+    update opc_wharf
+    set blockNo = #{blockno,jdbcType=VARCHAR},
+      x = #{x,jdbcType=VARCHAR},
+      y = #{y,jdbcType=VARCHAR},
+      z = #{z,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

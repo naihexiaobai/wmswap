@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kepware.opc.dao.OpcItemMapper" >
+  <resultMap id="BaseResultMap" type="com.kepware.opc.entity.OpcItem" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="item" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="machineInfoID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="dataType" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="itemType" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="groups" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="chanels" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, item, machineInfoID, createTime, dataType, itemType, status, REMARK, groups, 
+    chanels
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from opc_item
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from opc_item
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from opc_item
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kepware.opc.entity.OpcItem" >
+    insert into opc_item (ID, item, machineInfoID, 
+      createTime, dataType, itemType, 
+      status, REMARK, groups, 
+      chanels)
+    values (#{id,jdbcType=INTEGER}, #{item,jdbcType=VARCHAR}, #{machineinfoid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{datatype,jdbcType=TINYINT}, #{itemtype,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{groups,jdbcType=VARCHAR}, 
+      #{chanels,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kepware.opc.entity.OpcItem" >
+    insert into opc_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="item != null" >
+        item,
+      </if>
+      <if test="machineinfoid != null" >
+        machineInfoID,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="datatype != null" >
+        dataType,
+      </if>
+      <if test="itemtype != null" >
+        itemType,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="groups != null" >
+        groups,
+      </if>
+      <if test="chanels != null" >
+        chanels,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="item != null" >
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="machineinfoid != null" >
+        #{machineinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datatype != null" >
+        #{datatype,jdbcType=TINYINT},
+      </if>
+      <if test="itemtype != null" >
+        #{itemtype,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="groups != null" >
+        #{groups,jdbcType=VARCHAR},
+      </if>
+      <if test="chanels != null" >
+        #{chanels,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kepware.opc.entity.OpcItem" >
+    update opc_item
+    <set >
+      <if test="item != null" >
+        item = #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="machineinfoid != null" >
+        machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datatype != null" >
+        dataType = #{datatype,jdbcType=TINYINT},
+      </if>
+      <if test="itemtype != null" >
+        itemType = #{itemtype,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="groups != null" >
+        groups = #{groups,jdbcType=VARCHAR},
+      </if>
+      <if test="chanels != null" >
+        chanels = #{chanels,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kepware.opc.entity.OpcItem" >
+    update opc_item
+    set item = #{item,jdbcType=VARCHAR},
+      machineInfoID = #{machineinfoid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      dataType = #{datatype,jdbcType=TINYINT},
+      itemType = #{itemtype,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      groups = #{groups,jdbcType=VARCHAR},
+      chanels = #{chanels,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
