@@ -1,6 +1,6 @@
-package com.wap.control.dao.daoImpl;
+package com.wap.dao.daoImpl;
 
-import com.wap.control.dao.StorageMapper;
+import com.wap.dao.StorageMapper;
 import com.wap.model.Storage;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +36,11 @@ public class StorageMapperImpl implements StorageMapper {
 
     public Storage selectByPrimaryKey(Integer id) {
         return storageMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Storage selectByStorageNo(String storageNo) {
+        return storageMapper.selectByStorageNo(storageNo);
     }
 
     public int updateByPrimaryKeySelective(Storage record) {

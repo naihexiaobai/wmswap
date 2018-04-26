@@ -1,6 +1,6 @@
-package com.wap.control.dao.daoImpl;
+package com.wap.dao.daoImpl;
 
-import com.wap.control.dao.TaskHistoryMapper;
+import com.wap.dao.TaskHistoryMapper;
 import com.wap.model.TaskHistory;
 import org.springframework.stereotype.Service;
 

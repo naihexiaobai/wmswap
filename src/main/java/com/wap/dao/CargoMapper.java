@@ -1,4 +1,4 @@
-package com.wap.control.dao;
+package com.wap.dao;
 
 import com.wap.model.Cargo;
 import org.springframework.stereotype.Repository;
@@ -14,6 +14,12 @@ public interface CargoMapper {
     int insertSelective(Cargo record);
 
     List<Cargo> selectByCargo(Cargo record);
+
+    List<Cargo> selectAll();
+
+    Cargo selectByCargoStorageNo(String storageNo);
+
+    Cargo selectByCargoPalletNo(String palletNo);
 
     Cargo selectByPrimaryKey(Integer id);
 

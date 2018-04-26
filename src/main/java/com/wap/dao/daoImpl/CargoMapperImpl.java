@@ -1,6 +1,6 @@
-package com.wap.control.dao.daoImpl;
+package com.wap.dao.daoImpl;
 
-import com.wap.control.dao.CargoMapper;
+import com.wap.dao.CargoMapper;
 import com.wap.model.Cargo;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +32,21 @@ public class CargoMapperImpl implements CargoMapper {
 
     public List<Cargo> selectByCargo(Cargo record) {
         return cargoMapper.selectByCargo(record);
+    }
+
+    @Override
+    public List<Cargo> selectAll() {
+        return cargoMapper.selectAll();
+    }
+
+    @Override
+    public Cargo selectByCargoStorageNo(String storageNo) {
+        return cargoMapper.selectByCargoStorageNo(storageNo);
+    }
+
+    @Override
+    public Cargo selectByCargoPalletNo(String palletNo) {
+        return cargoMapper.selectByCargoPalletNo(palletNo);
     }
 
     public Cargo selectByPrimaryKey(Integer id) {

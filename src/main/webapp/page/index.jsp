@@ -85,9 +85,13 @@
                            href="#collapseTwo211"><i class="glyphicon glyphicon-eye-open">&nbsp;</i> 设备管理</a>
                         <ul id="collapseTwo211" class="panel-collapse collapse nav nav-pills nav-stacked">
                             <li class="panel">
-                                <a data-toggle="collapse" href="#collapseTwo121" data-parent="#collapseTwo211">设备监控</a>
+                                <a data-toggle="collapse" href="#collapseTwo121" data-parent="#collapseTwo211">设备状态</a>
                                 <ul id="collapseTwo121" class="panel-collapse collapse nav nav-pills nav-stacked">
                                     <li><a onclick="goToPage('<%=basePath %>page/monitor.jsp')">实时数据</a>
+                                    </li>
+                                    <li><a onclick="goToPage('<%=basePath %>page/wcsMessage.jsp')">动作查询</a>
+                                    </li>
+                                    <li><a onclick="goToPage('<%=basePath %>page/block.jsp')">设备查看</a>
                                     </li>
                                 </ul>
                             </li>
@@ -97,6 +101,7 @@
                                 <ul id="collapseTwo33" class="panel-collapse collapse nav nav-pills nav-stacked">
                                     <li><a onclick="goToPage('<%=basePath %>page/machineControl.jsp')">单步操作</a>
                                     </li>
+
                                 </ul>
                             </li>
                             <li class="panel">
@@ -115,18 +120,30 @@
                         <a data-toggle="collapse" data-parent="#example-navbar-collapse"
                            href="#collapseTwoCW"><i class="glyphicon glyphicon-folder-close">&nbsp;</i> 仓储管理</a>
                         <ul id="collapseTwoCW" class="panel-collapse collapse nav nav-pills nav-stacked">
-                            <li class="panel">
-                                <a data-toggle="collapse" href="#collapseTwoHW" data-parent="#collapseTwoCW">货位管理</a>
-                                <ul id="collapseTwoHW" class="panel-collapse collapse nav nav-pills nav-stacked">
-                                    <li><a onclick="goToPage('<%=basePath %>page/monitor.jsp')">实时数据</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            <%--<li class="panel">--%>
+                            <%--<a data-toggle="collapse" href="#collapseTwoHW" data-parent="#collapseTwoCW">货位管理</a>--%>
+                            <%--<ul id="collapseTwoHW" class="panel-collapse collapse nav nav-pills nav-stacked">--%>
+                            <%--<li><a onclick="goToPage('<%=basePath %>page/monitor.jsp')">实时数据</a>--%>
+                            <%--</li>--%>
+                            <%--</ul>--%>
+                            <%--</li>--%>
                             <li class="panel">
                                 <a data-toggle="collapse" href="#collapseTwoHWW"
                                    data-parent="#collapseTwoCW">货物管理</a>
                                 <ul id="collapseTwoHWW" class="panel-collapse collapse nav nav-pills nav-stacked">
                                     <li><a onclick="goToPage('<%=basePath %>page/cargo.jsp')">货物存取</a>
+                                    </li>
+                                    <li><a onclick="goToPage('<%=basePath %>page/cargoDetail.jsp')">货物库存</a>
+                                    </li>
+                                    <li><a onclick="goToPage('<%=basePath %>page/cargoData.jsp')">货物数据</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="panel">
+                                <a data-toggle="collapse" href="#collapseTwoHWWW"
+                                   data-parent="#collapseTwoCW">订单管理</a>
+                                <ul id="collapseTwoHWWW" class="panel-collapse collapse nav nav-pills nav-stacked">
+                                    <li><a onclick="goToPage('<%=basePath %>page/order.jsp')">订单查询</a>
                                     </li>
                                 </ul>
                             </li>

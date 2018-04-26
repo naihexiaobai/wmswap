@@ -11,7 +11,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
     <!-- 自动扫描 -->
-    <context:component-scan base-package="com.wap.*,com.www.util,com.thief.wcs.*"/>
+    <context:component-scan base-package="com.wap.*,com.www.util,com.thief.wcs.*,com.kepware.opc.*"/>
 
     <!-- 第一种方式：加载一个properties文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -47,7 +47,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.wap.control.dao,com.thief.wcs.dao"/>
+        <property name="basePackage" value="com.wap.dao,com.thief.wcs.dao,com.kepware.opc.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 

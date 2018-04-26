@@ -40,12 +40,15 @@
     </div>
     <div class="row">
         <div class="container-fluid">
-            <div class="col-md-2">
-                <button onclick="onclickA(1 )" data-loading-text="操作中" id="outStorage" class="btn btn-primary">
+            <div class="col-md-3">
+                <button onclick="onclickA(1)" data-loading-text="操作中" id="outStorage" class="btn btn-primary">
                     <i class="glyphicon glyphicon-circle-arrow-up">&nbsp;</i>出库
                 </button>&nbsp;
-                <button onclick="onclickA(2 )" data-loading-text="操作中" id="inStorage" class="btn btn-primary">
+                <button onclick="onclickA(2)" data-loading-text="操作中" id="inStorage" class="btn btn-primary">
                     <i class="glyphicon  glyphicon-circle-arrow-down">&nbsp;</i>入库
+                </button>
+                <button onclick="onclickA(3)" data-loading-text="操作中" id="moveStorage" class="btn btn-primary">
+                    <i class="glyphicon  glyphicon-circle-arrow-down">&nbsp;</i>移库
                 </button>
             </div>
         </div>
@@ -62,7 +65,7 @@
                     <div class="form-group">
                         <label for="cargoStorageNoOut" class="col-sm-2 control-label">库位编码:</label>
                         <div class="col-lg-3">
-                            <input id="cargoStorageNoOut" name="cargoStorageNoOut"
+                            <input id="cargoStorageNoOut" name="cargoStorageNo"
                                    class="selectpicker show-tick input-sm form-control" readonly="readonly"/>
                         </div>
                         <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#divStorageMap">
@@ -95,77 +98,115 @@
                         </button>
                     </div>
                     <div class="form-group">
-                        <label for="cargoName" class="col-sm-2 control-label">货物名称:</label>
-                        <div class="col-lg-3">
-                            <input id="cargoName" name="cargoName"
-                                   class="selectpicker show-tick input-sm form-control"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cargoNameId" class="col-sm-2 control-label">货物名称编码:</label>
-                        <div class="col-lg-3">
-                            <input id="cargoNameId" name="cargoNameId"
-                                   class="selectpicker show-tick input-sm form-control"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cargoNumber" class="col-sm-2 control-label">数量:</label>
-                        <div class="col-lg-3">
-                            <input id="cargoNumber" name="cargoNumber"
-                                   class="selectpicker show-tick input-sm form-control"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cargoQuality" class="col-sm-2 control-label">品质:</label>
-                        <div class="col-lg-3">
-                            <input id="cargoQuality" name="cargoQuality"
-                                   class="selectpicker show-tick input-sm form-control"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cargoBatchNo" class="col-sm-2 control-label">批次号:</label>
-                        <div class="col-lg-3">
-                            <input id="cargoBatchNo" name="cargoBatchNo"
-                                   class="selectpicker show-tick input-sm form-control"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="cargoPalletNO" class="col-sm-2 control-label">托盘编号:</label>
                         <div class="col-lg-3">
                             <input id="cargoPalletNO" name="cargoPalletNO"
                                    class="selectpicker show-tick input-sm form-control"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="cargoSpecifiction" class="col-sm-2 control-label">规格:</label>
-                        <div class="col-lg-3">
-                            <input id="cargoSpecifiction" name="cargoSpecifiction"
-                                   class="selectpicker show-tick input-sm form-control"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cargoProductionDate" class="col-sm-2 control-label">生产日期:</label>
-                        <div class="col-lg-3">
-                            <input id="cargoProductionDate" name="cargoProductionDate"
-                                   class="form-control input-sm form_datetime" type="text"
-                                   placeholder="请输入发送时间:yyyyMMddHHmmss"/><span class="add-on"><i
-                                class="icon-remove"></i></span>
-                            <span class="add-on"><i class="icon-th"></i></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cargoShelfLife" class="col-sm-2 control-label">保质期:</label>
-                        <div class="col-lg-3">
-                            <input id="cargoShelfLife" name="cargoShelfLife"
-                                   class="selectpicker show-tick input-sm form-control"/>
-                        </div>
-                    </div>
+                    <%--<div class="form-group">--%>
+                    <%--<label for="cargoName" class="col-sm-2 control-label">货物名称:</label>--%>
+                    <%--<div class="col-lg-3">--%>
+                    <%--<input id="cargoName" name="cargoName"--%>
+                    <%--class="selectpicker show-tick input-sm form-control"/>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label for="cargoNameId" class="col-sm-2 control-label">货物名称编码:</label>--%>
+                    <%--<div class="col-lg-3">--%>
+                    <%--<input id="cargoNameId" name="cargoNameId"--%>
+                    <%--class="selectpicker show-tick input-sm form-control"/>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label for="cargoNumber" class="col-sm-2 control-label">数量:</label>--%>
+                    <%--<div class="col-lg-3">--%>
+                    <%--<input id="cargoNumber" name="cargoNumber"--%>
+                    <%--class="selectpicker show-tick input-sm form-control"/>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label for="cargoQuality" class="col-sm-2 control-label">品质:</label>--%>
+                    <%--<div class="col-lg-3">--%>
+                    <%--<input id="cargoQuality" name="cargoQuality"--%>
+                    <%--class="selectpicker show-tick input-sm form-control"/>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label for="cargoBatchNo" class="col-sm-2 control-label">批次号:</label>--%>
+                    <%--<div class="col-lg-3">--%>
+                    <%--<input id="cargoBatchNo" name="cargoBatchNo"--%>
+                    <%--class="selectpicker show-tick input-sm form-control"/>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label for="cargoSpecifiction" class="col-sm-2 control-label">规格:</label>--%>
+                    <%--<div class="col-lg-3">--%>
+                    <%--<input id="cargoSpecifiction" name="cargoSpecifiction"--%>
+                    <%--class="selectpicker show-tick input-sm form-control"/>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label for="cargoProductionDate" class="col-sm-2 control-label">生产日期:</label>--%>
+                    <%--<div class="col-lg-3">--%>
+                    <%--<input id="cargoProductionDate" name="cargoProductionDate"--%>
+                    <%--class="form-control input-sm form_datetime" type="text"--%>
+                    <%--placeholder="请输入发送时间:yyyyMMddHHmmss"/><span class="add-on"><i--%>
+                    <%--class="icon-remove"></i></span>--%>
+                    <%--<span class="add-on"><i class="icon-th"></i></span>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label for="cargoShelfLife" class="col-sm-2 control-label">保质期:</label>--%>
+                    <%--<div class="col-lg-3">--%>
+                    <%--<input id="cargoShelfLife" name="cargoShelfLife"--%>
+                    <%--class="selectpicker show-tick input-sm form-control"/>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
                     <div class="form-group">
                         <div class="col-lg-1">
                         </div>
                         <div class="col-lg-1">
                             <button type="button" class="btn btn-primary" id="btnSendMsg"
-                                    data-loading-text="Loading..." onclick="machineSendMsg()">
+                                    data-loading-text="Loading..." onclick="CargoBtn(2)">
+                                <i class="glyphicon glyphicon-send">&nbsp;</i>GO
+                            </button>
+                        </div>
+                        <div class="col-lg-10">
+                        </div>
+                    </div>
+                </form>
+                <form id="moveCargoInfo" style="display: none" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="cargoStorageNoOut" class="col-sm-2 control-label">出库位编码:</label>
+                        <div class="col-lg-3">
+                            <input id="cargoStorageNoMoveOut" name="cargoStorageNoMoveOut"
+                                   class="selectpicker show-tick input-sm form-control" readonly="readonly"/>
+                        </div>
+                        <button type="button" class="btn btn-primary " data-toggle="modal" onclick="valueTo(1)"
+                                data-target="#divStorageMap">
+                            <i
+                                    class="glyphicon glyphicon-screenshot">&nbsp;</i>库位
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="cargoStorageNoOut" class="col-sm-2 control-label">入库位编码:</label>
+                        <div class="col-lg-3">
+                            <input id="cargoStorageNoMoveIn" name="cargoStorageNoMoveIn"
+                                   class="selectpicker show-tick input-sm form-control" readonly="readonly"/>
+                        </div>
+                        <button type="button" class="btn btn-primary " data-toggle="modal" onclick="valueTo(2)"
+                                data-target="#divStorageMap">
+                            <i
+                                    class="glyphicon glyphicon-screenshot">&nbsp;</i>库位
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-1">
+                            <button type="button" class="btn btn-primary" id="moveCargo"
+                                    data-loading-text="Loading..." onclick="CargoBtn(3)">
                                 <i class="glyphicon glyphicon-send">&nbsp;</i>GO
                             </button>
                         </div>

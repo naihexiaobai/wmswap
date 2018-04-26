@@ -1,4 +1,4 @@
-package com.wap.control.dao;
+package com.wap.dao;
 
 import com.wap.model.MachineInfo;
 import org.springframework.stereotype.Repository;

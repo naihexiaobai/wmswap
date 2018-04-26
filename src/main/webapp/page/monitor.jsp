@@ -28,7 +28,7 @@
         <ol class="breadcrumb">
             <li>Home</li>
             <li>设备管理</li>
-            <li>设备监控</li>
+            <li>设备状态</li>
             <li class="active">实时数据</li>
         </ol>
     </div>

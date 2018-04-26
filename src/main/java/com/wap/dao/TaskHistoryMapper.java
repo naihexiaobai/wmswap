@@ -1,4 +1,4 @@
-package com.wap.control.dao;
+package com.wap.dao;
 
 import com.wap.model.TaskHistory;
 import org.springframework.stereotype.Repository;

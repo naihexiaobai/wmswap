@@ -1,6 +1,6 @@
-package com.wap.control.dao.daoImpl;
+package com.wap.dao.daoImpl;
 
-import com.wap.control.dao.OpcItemsMapper;
+import com.wap.dao.OpcItemsMapper;
 import com.wap.model.OpcItems;
 import org.springframework.stereotype.Service;
 

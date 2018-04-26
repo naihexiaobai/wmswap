@@ -20,12 +20,12 @@ $.fn.serializeObject = function () {
 function machineSendMsg() {
     var jsonuserinfo = $('#machine_msg').serializeObject();
     $.ajax({
-        url: "http://localhost:8080/wmsWap/monitoringCc/wcsSendMsg",
+        url: "http://localhost:8080/wmsWap/wcsCc/controlMsg",
         type: "post",
         data: {"msg": JSON.stringify(jsonuserinfo)},
         dataType: "json",
         beforeSend: function () {
-            $("#btnSendMsg").button('loading');
+            // $("#btnSendMsg").button('loading');
         },
         success: function (resultData) {
             if (resultData.result) {

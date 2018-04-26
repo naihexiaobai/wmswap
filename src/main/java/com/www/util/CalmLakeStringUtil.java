@@ -1,5 +1,7 @@
 package com.www.util;
 
+import java.util.Random;
+
 /**
  * 字符处理工具类
  *
@@ -8,19 +10,28 @@ package com.www.util;
  */
 public class CalmLakeStringUtil {
 
+    public static String getRandomNum() {
+        return new Random().nextInt(10000)+"";
+    }
+
+
     public static int stringToInt(String string) throws Exception {
         return Integer.valueOf(string);
     }
 
+    public static boolean stringToBool(String string) {
+        return string.contains("true");
+    }
+
     public static boolean stringIsNull(String string) {
-        if (string == null || string.equals("")) {
+        if (string == null || string.equals("") || string.isEmpty()) {
             return true;
         }
         return false;
     }
 
-    public static Byte StringToByte(String integer){
-        return  Byte.valueOf(integer);
+    public static Byte StringToByte(String integer) {
+        return Byte.valueOf(integer);
     }
 
     /**

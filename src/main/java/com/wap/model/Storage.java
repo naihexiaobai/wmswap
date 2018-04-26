@@ -4,6 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Storage implements Serializable {
+
+    public static final Byte STATUS_FREE = 0;
+    /**
+     * 使用中
+     */
+    public static final Byte STATUS_USEING = 1;
+    /**
+     * 存货中
+     */
+    public static final Byte STATUS_INING = 6;
+    /**
+     * 出货中
+     */
+    public static final Byte STATUS_OUTING = 7;
     private Integer id;
 
     /**
@@ -25,7 +39,7 @@ public class Storage implements Serializable {
     private Short z;
 
     /**
-     * 0-空闲，1-有货，2-禁用，3-障碍物，4-无货位，5-输送线，11-母车巷道
+     * 0-空闲，1-有货，2-禁用，3-障碍物，4-无货位，5-输送线，6-存货中，11-母车巷道，7-出货中
      */
     private Byte status;
 

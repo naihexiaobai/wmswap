@@ -26,10 +26,4 @@ public class BccGenerator {
             return bccData.toUpperCase();
         }
     }
-
-    public static  void main(String [] args){
-//        [00021001101561SC01524]
-//      [00021001101561SC04521]
-        System.out.println(GetBcc("1SC045"));
-    }
 }

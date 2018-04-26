@@ -39,7 +39,7 @@
         -->
         <javaModelGenerator targetPackage="com.thief.wcs.entity"
                             targetProject="src/main/java">
-
+            <property name="useActualColumnNames" value="true" />
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
             <!-- 是否对model添加 构造函数 -->
@@ -64,10 +64,11 @@
         <javaClientGenerator targetPackage="com.thief.wcs.dao"
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
+            <property name="useActualColumnNames" value="true" />
         </javaClientGenerator>
 
 
-        <table tableName="messagelog" domainObjectName="MessageLog"
+        <table tableName="route" domainObjectName="Route"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

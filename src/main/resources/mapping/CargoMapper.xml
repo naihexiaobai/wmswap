@@ -1,104 +1,123 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wap.control.dao.CargoMapper" >
-  <resultMap id="BaseResultMap" type="com.wap.model.Cargo" >
-    <constructor >
-      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="storageID" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="nameID" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="number" jdbcType="SMALLINT" javaType="java.lang.Short" />
-      <arg column="quality" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="batchNO" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="palletNo" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="specifiction" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
-      <arg column="productionDate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="shelflife" jdbcType="SMALLINT" javaType="java.lang.Short" />
-      <arg column="reserved1" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="reserved2" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="reserved3" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.wap.dao.CargoMapper">
+    <resultMap id="BaseResultMap" type="com.wap.model.Cargo">
+        <constructor>
+            <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="storageID" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="nameID" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="number" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="quality" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="batchNO" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="palletNo" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="specifiction" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte"/>
+            <arg column="productionDate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="shelflife" jdbcType="SMALLINT" javaType="java.lang.Short"/>
+            <arg column="reserved1" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="reserved2" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="reserved3" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
     ID, storageID, name, nameID, number, quality, batchNO, palletNo, specifiction, status, 
     productionDate, shelflife, reserved1, reserved2, reserved3, REMARK
   </sql>
 
 
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from cargo
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from cargo
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from cargo ORDER  BY ID DESC
+    </select>
 
 
-  <select id="selectByCargo" resultMap="BaseResultMap" parameterType="com.wap.model.Cargo" >
-    select
-    <include refid="Base_Column_List" />
-    from cargo
-    where 1=1
-    <if test="id != null" >
-    AND  ID = #{id,jdbcType=INTEGER}
-    </if>
-    <if test="storageid != null" >
-      AND  storageID = #{storageid,jdbcType=VARCHAR}
-    </if>
-    <if test="name != null" >
-      AND name = #{name,jdbcType=VARCHAR}
-    </if>
-    <if test="nameid != null" >
-      AND nameID = #{nameid,jdbcType=VARCHAR}
-    </if>
-    <!--<if test="number != null" >-->
-      <!--AND  number = #{number,jdbcType=SMALLINT}-->
-    <!--</if>-->
-    <if test="quality != null" >
-      AND quality = #{quality,jdbcType=VARCHAR}
-    </if>
-    <if test="batchno != null" >
-      AND  batchNO = #{batchno,jdbcType=VARCHAR}
-    </if>
-    <if test="palletno != null" >
-      AND  palletNo = #{palletno,jdbcType=VARCHAR}
-    </if>
-    <if test="specifiction != null" >
-      AND specifiction = #{specifiction,jdbcType=VARCHAR}
-    </if>
-    <if test="status != null" >
-      AND  status = #{status,jdbcType=TINYINT}
-    </if>
-    <if test="productiondate != null" >
-      AND productionDate = #{productiondate,jdbcType=TIMESTAMP}
-    </if>
-    <!--<if test="shelflife != null" >-->
-      <!--AND  shelflife = #{shelflife,jdbcType=SMALLINT}-->
-    <!--</if>-->
-    <!--<if test="reserved1 != null" >-->
-      <!--AND  reserved1 = #{reserved1,jdbcType=VARCHAR}-->
-    <!--</if>-->
-    <!--<if test="reserved2 != null" >-->
-      <!--AND  reserved2 = #{reserved2,jdbcType=VARCHAR}-->
-    <!--</if>-->
-    <!--<if test="reserved3 != null" >-->
-      <!--AND reserved3 = #{reserved3,jdbcType=VARCHAR}-->
-    <!--</if>-->
-    <!--<if test="remark != null" >-->
-      <!--AND REMARK = #{remark,jdbcType=VARCHAR}-->
-    <!--</if>-->
-    ORDER BY ID
-    desc
-  </select>
+    <select id="selectByCargoPalletNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from cargo
+        where palletNo = #{palletno,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByCargoStorageNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from cargo
+        where storageID = #{storageid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByCargo" resultMap="BaseResultMap" parameterType="com.wap.model.Cargo">
+        select
+        <include refid="Base_Column_List"/>
+        from cargo
+        where 1=1
+        <if test="id != null">
+            AND ID = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="storageid != null">
+            AND storageID = #{storageid,jdbcType=VARCHAR}
+        </if>
+        <if test="name != null">
+            AND name = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="nameid != null">
+            AND nameID = #{nameid,jdbcType=VARCHAR}
+        </if>
+        <!--<if test="number != null" >-->
+        <!--AND  number = #{number,jdbcType=SMALLINT}-->
+        <!--</if>-->
+        <if test="quality != null">
+            AND quality = #{quality,jdbcType=VARCHAR}
+        </if>
+        <if test="batchno != null">
+            AND batchNO = #{batchno,jdbcType=VARCHAR}
+        </if>
+        <if test="palletno != null">
+            AND palletNo = #{palletno,jdbcType=VARCHAR}
+        </if>
+        <if test="specifiction != null">
+            AND specifiction = #{specifiction,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            AND status = #{status,jdbcType=TINYINT}
+        </if>
+        <if test="productiondate != null">
+            AND productionDate = #{productiondate,jdbcType=TIMESTAMP}
+        </if>
+        <!--<if test="shelflife != null" >-->
+        <!--AND  shelflife = #{shelflife,jdbcType=SMALLINT}-->
+        <!--</if>-->
+        <!--<if test="reserved1 != null" >-->
+        <!--AND  reserved1 = #{reserved1,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="reserved2 != null" >-->
+        <!--AND  reserved2 = #{reserved2,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="reserved3 != null" >-->
+        <!--AND reserved3 = #{reserved3,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="remark != null" >-->
+        <!--AND REMARK = #{remark,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        ORDER BY ID
+        desc
+    </select>
 
 
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cargo
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.wap.model.Cargo" >
+    <insert id="insert" parameterType="com.wap.model.Cargo">
     insert into cargo (ID, storageID, name, 
       nameID, number, quality, 
       batchNO, palletNo, specifiction, 
@@ -112,161 +131,161 @@
       #{reserved1,jdbcType=VARCHAR}, #{reserved2,jdbcType=VARCHAR}, #{reserved3,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wap.model.Cargo" >
-    insert into cargo
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="storageid != null" >
-        storageID,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="nameid != null" >
-        nameID,
-      </if>
-      <if test="number != null" >
-        number,
-      </if>
-      <if test="quality != null" >
-        quality,
-      </if>
-      <if test="batchno != null" >
-        batchNO,
-      </if>
-      <if test="palletno != null" >
-        palletNo,
-      </if>
-      <if test="specifiction != null" >
-        specifiction,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="productiondate != null" >
-        productionDate,
-      </if>
-      <if test="shelflife != null" >
-        shelflife,
-      </if>
-      <if test="reserved1 != null" >
-        reserved1,
-      </if>
-      <if test="reserved2 != null" >
-        reserved2,
-      </if>
-      <if test="reserved3 != null" >
-        reserved3,
-      </if>
-      <if test="remark != null" >
-        REMARK,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="storageid != null" >
-        #{storageid,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="nameid != null" >
-        #{nameid,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null" >
-        #{number,jdbcType=SMALLINT},
-      </if>
-      <if test="quality != null" >
-        #{quality,jdbcType=VARCHAR},
-      </if>
-      <if test="batchno != null" >
-        #{batchno,jdbcType=VARCHAR},
-      </if>
-      <if test="palletno != null" >
-        #{palletno,jdbcType=VARCHAR},
-      </if>
-      <if test="specifiction != null" >
-        #{specifiction,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=TINYINT},
-      </if>
-      <if test="productiondate != null" >
-        #{productiondate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="shelflife != null" >
-        #{shelflife,jdbcType=SMALLINT},
-      </if>
-      <if test="reserved1 != null" >
-        #{reserved1,jdbcType=VARCHAR},
-      </if>
-      <if test="reserved2 != null" >
-        #{reserved2,jdbcType=VARCHAR},
-      </if>
-      <if test="reserved3 != null" >
-        #{reserved3,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wap.model.Cargo" >
-    update cargo
-    <set >
-      <if test="storageid != null" >
-        storageID = #{storageid,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="nameid != null" >
-        nameID = #{nameid,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null" >
-        number = #{number,jdbcType=SMALLINT},
-      </if>
-      <if test="quality != null" >
-        quality = #{quality,jdbcType=VARCHAR},
-      </if>
-      <if test="batchno != null" >
-        batchNO = #{batchno,jdbcType=VARCHAR},
-      </if>
-      <if test="palletno != null" >
-        palletNo = #{palletno,jdbcType=VARCHAR},
-      </if>
-      <if test="specifiction != null" >
-        specifiction = #{specifiction,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=TINYINT},
-      </if>
-      <if test="productiondate != null" >
-        productionDate = #{productiondate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="shelflife != null" >
-        shelflife = #{shelflife,jdbcType=SMALLINT},
-      </if>
-      <if test="reserved1 != null" >
-        reserved1 = #{reserved1,jdbcType=VARCHAR},
-      </if>
-      <if test="reserved2 != null" >
-        reserved2 = #{reserved2,jdbcType=VARCHAR},
-      </if>
-      <if test="reserved3 != null" >
-        reserved3 = #{reserved3,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        REMARK = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.wap.model.Cargo" >
+    <insert id="insertSelective" parameterType="com.wap.model.Cargo">
+        insert into cargo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="storageid != null">
+                storageID,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="nameid != null">
+                nameID,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="quality != null">
+                quality,
+            </if>
+            <if test="batchno != null">
+                batchNO,
+            </if>
+            <if test="palletno != null">
+                palletNo,
+            </if>
+            <if test="specifiction != null">
+                specifiction,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="productiondate != null">
+                productionDate,
+            </if>
+            <if test="shelflife != null">
+                shelflife,
+            </if>
+            <if test="reserved1 != null">
+                reserved1,
+            </if>
+            <if test="reserved2 != null">
+                reserved2,
+            </if>
+            <if test="reserved3 != null">
+                reserved3,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="storageid != null">
+                #{storageid,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="nameid != null">
+                #{nameid,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=SMALLINT},
+            </if>
+            <if test="quality != null">
+                #{quality,jdbcType=VARCHAR},
+            </if>
+            <if test="batchno != null">
+                #{batchno,jdbcType=VARCHAR},
+            </if>
+            <if test="palletno != null">
+                #{palletno,jdbcType=VARCHAR},
+            </if>
+            <if test="specifiction != null">
+                #{specifiction,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="productiondate != null">
+                #{productiondate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shelflife != null">
+                #{shelflife,jdbcType=SMALLINT},
+            </if>
+            <if test="reserved1 != null">
+                #{reserved1,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved2 != null">
+                #{reserved2,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved3 != null">
+                #{reserved3,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wap.model.Cargo">
+        update cargo
+        <set>
+            <if test="storageid != null">
+                storageID = #{storageid,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="nameid != null">
+                nameID = #{nameid,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                number = #{number,jdbcType=SMALLINT},
+            </if>
+            <if test="quality != null">
+                quality = #{quality,jdbcType=VARCHAR},
+            </if>
+            <if test="batchno != null">
+                batchNO = #{batchno,jdbcType=VARCHAR},
+            </if>
+            <if test="palletno != null">
+                palletNo = #{palletno,jdbcType=VARCHAR},
+            </if>
+            <if test="specifiction != null">
+                specifiction = #{specifiction,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="productiondate != null">
+                productionDate = #{productiondate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shelflife != null">
+                shelflife = #{shelflife,jdbcType=SMALLINT},
+            </if>
+            <if test="reserved1 != null">
+                reserved1 = #{reserved1,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved2 != null">
+                reserved2 = #{reserved2,jdbcType=VARCHAR},
+            </if>
+            <if test="reserved3 != null">
+                reserved3 = #{reserved3,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wap.model.Cargo">
     update cargo
     set storageID = #{storageid,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

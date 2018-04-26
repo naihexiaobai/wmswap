@@ -9,7 +9,7 @@
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
     <context:annotation-config/>
     <!-- 自动扫描  -->
-    <context:component-scan base-package="com.wap.*,com.thief.wcs.*"/>
+    <context:component-scan base-package="com.wap.*,com.thief.wcs.*,com.kepware.opc.*"/>
 
     <bean class="com.www.util.SpringTool"/>
 

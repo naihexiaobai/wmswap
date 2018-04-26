@@ -1,6 +1,6 @@
-package com.wap.control.dao.daoImpl;
+package com.wap.dao.daoImpl;
 
-import com.wap.control.dao.MachineInfoMapper;
+import com.wap.dao.MachineInfoMapper;
 import com.wap.model.MachineInfo;
 import org.springframework.stereotype.Service;
 

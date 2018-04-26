@@ -10,6 +10,27 @@ public class Plc implements Serializable {
     public static final Byte _STATUS_SUCCESS = 1;
     public static final Byte _STATUS_FAILED = 2;
 
+    /**
+     * 子车
+     */
+    public static final Byte _TYPE_SC = 1;
+    /**
+     * 母车
+     */
+    public static final Byte _TYPE_MC = 2;
+    /**
+     * 堆垛机
+     */
+    public static final Byte _TYPE_ML = 3;
+    /**
+     * 输送线
+     */
+    public static final Byte _TYPE_LF = 4;
+    /**
+     * 提升机
+     */
+    public static final Byte _TYPE_EL = 5;
+
     private Integer id;
 
     private String plcname;

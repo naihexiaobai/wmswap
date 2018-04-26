@@ -4,6 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Cargo implements Serializable {
+    /**
+     * 状态 0-默认，1-上架中，2-上架完成，5-下架中，6-下架完成
+     */
+    public static final Byte STATUS_DEFAULT_ZERO = 0;
+    public static final Byte STATUS_INING_ONE = 1;
+    public static final Byte STATUS_INFISH_TWO = 2;
+    public static final Byte STATUS_OUTTING_FIVE = 5;
+    public static final Byte STATUS_DOUTFISH_SIX = 6;
+
     private Integer id;
 
     /**

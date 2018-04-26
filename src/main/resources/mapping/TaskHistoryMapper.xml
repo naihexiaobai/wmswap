@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wap.control.dao.TaskHistoryMapper">
+<mapper namespace="com.wap.dao.TaskHistoryMapper">
     <resultMap id="BaseResultMap" type="com.wap.model.TaskHistory">
         <constructor>
             <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer"/>

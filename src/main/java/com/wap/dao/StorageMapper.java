@@ -1,4 +1,4 @@
-package com.wap.control.dao;
+package com.wap.dao;
 
 import com.wap.model.Storage;
 import org.springframework.stereotype.Repository;
@@ -16,6 +16,8 @@ public interface StorageMapper {
     List<Storage> selectByStorage(Storage record);
 
     Storage selectByPrimaryKey(Integer id);
+
+    Storage selectByStorageNo(String storageNo);
 
     int updateByPrimaryKeySelective(Storage record);
 

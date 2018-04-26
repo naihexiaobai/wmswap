@@ -2,126 +2,78 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="wms-wap:war" />
       <artifact name="wms-wap:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96f8ecb7-12cb-4f5d-beda-f42403950205" name="Default" comment="wcs暂时停下，opc继续。">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/wms_wap_war.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/wms_wap_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/logs/debug.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/logs/ssm.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/logs/ssm.log.1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/data/model/MachineMsg.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/frame/ByteBufToBytes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/frame/ByteObjConverter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/BccGenerator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/CommunicationException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/ConnectionManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/MessageCenterQueue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/PlcConnections.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/Receiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/Sender.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/SeqGenerator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer23.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer26.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer30.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer35.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer42.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer50.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/UnMsgConsumer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/consumer/MsgConsumerCenterThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/pro/HeartBeatProThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/pro/StatusProThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dao/MessageLogMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dao/PlcMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dao/impl/PlcMapperImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message01.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message02.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message03.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message05.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message06.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message10.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message23.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message26.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message30.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message35.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message40.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message42.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message50.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/MessageBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/MsgException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/entity/MessageLog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/entity/Plc.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/init/InitService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/init/servlet/InitServlet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/remark.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/MuCheWcsInfoWork.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/ShengJiangJiWcsInfoWork.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/CalmLakeStringUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/DBUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/DruidDBUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/HexAscIIEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/HexUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/LoggerUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/DruidJDBC.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapping/MessageLogMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapping/PlcMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/page/js/sendMsgWCS.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/page/sendMsgWCS.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/Consumer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/L777.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/Producer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/SocketTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wms-wap.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ren/util/CalmLakeStringUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ren/util/HexUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ren/util/LoggerUtil.java" afterPath="" />
+    <list default="true" id="96f8ecb7-12cb-4f5d-beda-f42403950205" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ClientThread.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/DuiDuoJiMsgModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/MsgModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/MuCheMsgModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcReadThread.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcServer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcServerModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/ShengJiangJiMsgModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/ZiCheMsgModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/ControlCc.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/MonitoringCc.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/SocketCc.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/DuiDuoJiWcsInfoIPCThread.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/MuCheWcsInfoWork.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/OutStorageThread.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/ShengJiangJiWcsInfoWork.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/TaskWcsInfoIPCThread.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/ZiCheWcsInfoIPCThread.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/init/StartInit.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/wms_wap_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/wms_wap_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/Client.java" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/data/model/SocketInfoListsSingleton.java" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/data/model/SocketInfoListsSingleton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ChildCarServerIPCThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ChildCarServerIPCThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ChildCarServerThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ChildCarServerThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ClientThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ClientThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/IPCThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/IPCThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ServerThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ServerThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/TestIPCThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/TestIPCThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcReadThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcReadThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcServer.java" afterPath="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/ControlCc.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/ControlCc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/MonitoringCc.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/MonitoringCc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/SocketCc.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/SocketCc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/DuiDuoJiWcsInfoIPCThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/DuiDuoJiWcsInfoIPCThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/OutStorageThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/OutStorageThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/ZiCheWcsInfoIPCThread.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/ZiCheWcsInfoIPCThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/BccGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/BccGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/thief/wcs/entity/Plc.java" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/entity/Plc.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/thief/wcs/init/servlet/InitServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/thief/wcs/init/servlet/InitServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/WcsCc.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/WcsCc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/init/StartInit.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/control/init/StartInit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/model/MachineInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/model/MachineInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/model/OpcItemFinalString.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/model/OpcItemFinalString.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/model/WCSControlInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/model/WCSControlInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/model/Cargo.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/model/Cargo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wap/model/Storage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/model/Storage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/www/util/CalmLakeStringUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/CalmLakeStringUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/www/util/DBUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/DBUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/www/util/LoggerUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/LoggerUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/DruidJDBC.properties" afterPath="$PROJECT_DIR$/src/main/resources/DruidJDBC.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/CargoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/CargoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/MachineInfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/MachineInfoMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/OpcItemsMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/OpcItemsMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/StorageMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/StorageMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/TaskHistoryMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/TaskHistoryMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/WCSControlInfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/WCSControlInfoMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/cargo.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/page/cargo.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/page/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/js/index.js" afterPath="$PROJECT_DIR$/src/main/webapp/page/js/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/js/cargo.js" afterPath="$PROJECT_DIR$/src/main/webapp/page/js/cargo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/js/machineControl.js" afterPath="$PROJECT_DIR$/src/main/webapp/page/js/machineControl.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/js/monitor.js" afterPath="$PROJECT_DIR$/src/main/webapp/page/js/monitor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/machineControl.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/page/machineControl.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/monitor.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/page/monitor.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/sendMsg.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/page/sendMsg.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/Test.java" afterPath="$PROJECT_DIR$/test/Test.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/ren/util/SpringTool.java" afterPath="$PROJECT_DIR$/src/main/java/com/www/util/SpringTool.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/page/模板.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/page/模板.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/L777.java" afterPath="$PROJECT_DIR$/test/L777.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wms-wap.iml" afterPath="$PROJECT_DIR$/wms-wap.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/CargoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/CargoMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/MachineInfoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/MachineInfoMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/OpcItemsMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/OpcItemsMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/StorageMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/StorageMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/TaskHistoryMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/TaskHistoryMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/WCSControlInfoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/WCSControlInfoMapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/daoImpl/CargoMapperImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/daoImpl/CargoMapperImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/daoImpl/MachineInfoMapperImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/daoImpl/MachineInfoMapperImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/daoImpl/OpcItemsMapperImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/daoImpl/OpcItemsMapperImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/daoImpl/StorageMapperImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/daoImpl/StorageMapperImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/daoImpl/TaskHistoryMapperImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/daoImpl/TaskHistoryMapperImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wap/control/dao/daoImpl/WCSControlInfoMapperImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wap/dao/daoImpl/WCSControlInfoMapperImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -132,6 +84,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/wms_wap$OrderCenterThread.coverage" NAME="OrderCenterThread Coverage Results" MODIFIED="1522829784773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.kepware.opc.thread.order.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/wms_wap$wmsWap.coverage" NAME="wmsWap Coverage Results" MODIFIED="1509935954979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/wms_wap$Test.coverage" NAME="Test Coverage Results" MODIFIED="1510217267846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
@@ -147,50 +102,89 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="InitServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/init/servlet/InitServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="27">
+              <caret line="89" column="44" lean-forward="false" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sc_BlockThread.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/block/Sc_BlockThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="119" column="24" lean-forward="true" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Class" />
         <option value="Jsp File" />
-        <option value="Singleton" />
         <option value="Enum" />
+        <option value="Singleton" />
+        <option value="Interface" />
+        <option value="JUnit4 Test Class" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>en</find>
-      <find>language</find>
-      <find>queryParams</find>
-      <find>cache</find>
-      <find>TableInitZ</find>
-      <find>machine_msg</find>
-      <find>JIVariant</find>
-      <find>tableStorageMap</find>
-      <find>initTable</find>
-      <find>htmlTable</find>
-      <find>onclickA</find>
-      <find>freshTime</find>
-      <find>createT</find>
-      <find>getZiCheStatus</find>
-      <find>machineType</find>
-      <find>ssjStatusZiDong</find>
-      <find>cr</find>
-      <find>main</find>
-      <find>json</find>
-      <find>SpringTool</find>
-      <find>getLoggerLevelInfo</find>
-      <find>flagrun</find>
-      <find>insertSelective</find>
-      <find>disconnect</find>
-      <find>plcName</find>
-      <find>POOLSIZE</find>
+      <find>logName</find>
+      <find>toMc</find>
+      <find>nextBlockIsCanWork</find>
+      <find>transplantingTheUnloading</find>
+      <find>transplantingPickUp</find>
+      <find>``</find>
+      <find>updateByWcsTaskNoAndBlockNo</find>
+      <find>cargoOutbound</find>
+      <find>ScblockCommand</find>
+      <find>OpcWcsCcInfoOperation</find>
+      <find>createOpcWcsInfo</find>
+      <find>工作异常</find>
+      <find>Storage</find>
+      <find>orderKeyJson</find>
+      <find>blockDock</find>
+      <find>Opc</find>
+      <find>mcOperation</find>
+      <find>McBlockStatus</find>
+      <find>wait</find>
+      <find>getNextBlockNo</find>
+      <find>scBlockStatus</find>
+      <find>mcBlockStatus</find>
+      <find>mlBlockStatus</find>
+      <find>System.out.println</find>
+      <find>testOpc</find>
+      <find>result =</find>
+      <find>resurn</find>
+      <find>scBlockCommand</find>
+      <find>mlBlockCommand</find>
+      <find>sendBlockNo</find>
     </findStrings>
     <replaceStrings>
       <replace />
+      <replace>MlBlockStatus</replace>
+      <replace>Thread.sleep</replace>
+      <replace>LoggerUtil.getLoggerByName(&quot;testOpc&quot;).info</replace>
+      <replace>opcMonitor</replace>
+      <replace>resurn</replace>
+      <replace>return</replace>
+      <replace>mlBlockStatus</replace>
+      <replace>mlBlockCommand</replace>
+      <replace>mcBlockStatus</replace>
+      <replace>mcBlockCommand</replace>
+      <replace>elBlockStatus</replace>
+      <replace>elBlockCommand</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -200,57 +194,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/page/js/index.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/entity/MessageLog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/dao/MessageLogMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/www/util/DBUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ClientThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/DuiDuoJiWcsInfoIPCThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ChildCarServerIPCThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wap/control/MonitoringCc.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ChildCarServerThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/www/util/DruidDBUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/communication/socket/data/model/SocketInfoListsSingleton.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wap/control/SocketCc.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wap/control/init/StartInit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wap/control/Thread/ZiCheWcsInfoIPCThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wap/control/WcsCc.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wap/control/ControlCc.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcReadThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/TestIPCThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ServerThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/communication/socket/thread/IPCThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/init/InitService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/www/util/LoggerUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/HeartBeaThread.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/CommunicationException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/MessageCenterQueue.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/ConnectionManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/MsgException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/StatusThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/StatusProThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/HeartBeatProThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer23.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer35.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer26.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer42.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer50.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/UnknownMsgProcessException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/init/servlet/InitServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/BccGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/PlcConnections.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/js/block.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/dto/command/McBlockCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/dto/command/MlBlockCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/dto/command/ScBlockCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/MlOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/McOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/ElOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/js/cargo.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/ScOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/entity/Route.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/OpcOrderOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/OpcWcsCcInfoOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/block/impl/Sc_BlockServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/block/BlockService.java" />
         <option value="$PROJECT_DIR$/test/L777.java" />
-        <option value="$PROJECT_DIR$/test/SocketTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/UnMsgConsumer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/consumer/MsgConsumerCenterThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer30.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/remark.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/warehouse/in/Sc_Mc_BlockService_in.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/www/util/LoggerUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/thief/wcs/init/servlet/InitServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/warehouse/out/Sc_Ml_BlockService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/warehouse/out/Ml_Sc_BlockService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/block/Sc_BlockThread.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/cargo.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/js/cargoDate.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/cargoDate.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wap/model/Cargo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/order/OrderCenterThread.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/cargoData.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/js/cargoData.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wap/dao/CargoMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wap/dao/daoImpl/CargoMapperImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/block/util/BlockOperationDBUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/StationOperation.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/cargoDetail.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/模板.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/js/cargoDetail.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapping/CargoMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/monitor.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/wcsMessage.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/block.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/js/index.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/page/js/order.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/monitor/VariantDumper.java" />
+        <option value="$PROJECT_DIR$/test/OpcTest.java" />
+        <option value="$PROJECT_DIR$/test/LogTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/server/OpcDBDataCacheCenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/monitor/MonitorThread.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wap/control/WcsCc.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kepware/opc/server/OpcServerIns.java" />
+        <option value="$PROJECT_DIR$/test/TestSocket.java" />
       </list>
     </option>
   </component>
@@ -263,9 +257,15 @@
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
+    <option name="FILTER_INFO" value="false" />
+    <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -307,6 +307,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -356,108 +359,189 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="wcs" type="462c0819:PsiDirectoryNode" />
-              <item name="communication" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
               <item name="wmswap" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
               <item name="wmswap" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapping" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
               <item name="wmswap" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
               <item name="wmswap" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
               <item name="wmswap" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
               <item name="wmswap" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
               <item name="wmswap" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
               <item name="wmswap" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="block" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wmswap" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="block" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wmswap" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="thread" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wmswap" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="thread" type="462c0819:PsiDirectoryNode" />
+              <item name="block" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wmswap" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="thread" type="462c0819:PsiDirectoryNode" />
+              <item name="monitor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wms-wap" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wmswap" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="opc" type="462c0819:PsiDirectoryNode" />
+              <item name="thread" type="462c0819:PsiDirectoryNode" />
+              <item name="order" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="spring" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="last_opened_file_path" value="D:/workSpace/yili/yili/wcs/wcs.iml" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.kepware.opc.thread.order" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kepware.opc.thread.monitor" />
+      <recent name="" />
+      <recent name="com.kepware.opc.service.block.impl" />
+      <recent name="com.kepware.opc.service.msg.consume.impl" />
+      <recent name="com.kepware.opc.service.msg.consume" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\page\js" />
+      <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\page" />
+      <recent name="E:\文件备份\ideaPro\wmswap\test" />
+      <recent name="E:\文件备份\ideaPro\wmswap\src\main\java\com\kepware\opc\service\warehouse" />
+      <recent name="E:\文件备份\ideaPro\wmswap\src\main\java\com\kepware\opc\thread\service\impl" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\bootStrap\js" />
       <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\bootStrap\fonts" />
       <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\bootStrap" />
       <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\css" />
       <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\js" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.thief.wcs.communication.msg.consumer" />
-      <recent name="com.wap.control.init" />
-      <recent name="com.wap.control" />
-      <recent name="com.wap.model" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\文件备份\ideaPro\wmswap\src\main\java\com\thief\wcs\dto" />
-      <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\WEB-INF" />
-      <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\vipPage" />
-      <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\WEB-INF\lib" />
-      <recent name="E:\文件备份\ideaPro\wmswap\src\main\webapp\page" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -473,28 +557,9 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.wmsWap">
-    <configuration name="BccGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.thief.wcs.communication.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.thief.wcs.communication.BccGenerator" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="wms-wap" />
-      <envs />
-    </configuration>
-    <configuration name="BlockingQueueTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="AsyncOPCPerfTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="BlockingQueueTest" />
+      <option name="MAIN_CLASS_NAME" value="AsyncOPCPerfTest" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -506,24 +571,25 @@
       <module name="wms-wap" />
       <envs />
     </configuration>
-    <configuration name="DruidDBUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.www.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.www.util.DruidDBUtil" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <configuration name="BaseTest.run" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="wms-wap" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BaseTest" />
+      <option name="METHOD_NAME" value="run" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="wms-wap" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
       <envs />
+      <patterns />
     </configuration>
     <configuration name="L777" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -539,14 +605,9 @@
       <module name="wms-wap" />
       <envs />
     </configuration>
-    <configuration name="LoggerUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.www.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.www.util.LoggerUtil" />
+    <configuration name="LogTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="LogTest" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -558,9 +619,23 @@
       <module name="wms-wap" />
       <envs />
     </configuration>
-    <configuration name="SocketTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="OpcTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="SocketTest" />
+      <option name="MAIN_CLASS_NAME" value="OpcTest" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="wms-wap" />
+      <envs />
+    </configuration>
+    <configuration name="TestSocket" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="TestSocket" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -809,7 +884,6 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="wms-wap:war" />
           <artifact name="wms-wap:war exploded" />
         </option>
       </method>
@@ -817,19 +891,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Maven.generator" />
       <item index="1" class="java.lang.String" itemvalue="Tomcat Server.wmsWap" />
-      <item index="2" class="java.lang.String" itemvalue="Application.LoggerUtil" />
-      <item index="3" class="java.lang.String" itemvalue="Application.DruidDBUtil" />
-      <item index="4" class="java.lang.String" itemvalue="Application.SocketTest" />
-      <item index="5" class="java.lang.String" itemvalue="Application.BccGenerator" />
-      <item index="6" class="java.lang.String" itemvalue="Application.L777" />
+      <item index="2" class="java.lang.String" itemvalue="Application.OpcTest" />
+      <item index="3" class="java.lang.String" itemvalue="Application.AsyncOPCPerfTest" />
+      <item index="4" class="java.lang.String" itemvalue="Application.L777" />
+      <item index="5" class="java.lang.String" itemvalue="Application.LogTest" />
+      <item index="6" class="java.lang.String" itemvalue="Application.TestSocket" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.SocketTest" />
-        <item index="1" class="java.lang.String" itemvalue="Application.L777" />
-        <item index="2" class="java.lang.String" itemvalue="Application.BccGenerator" />
-        <item index="3" class="java.lang.String" itemvalue="Application.LoggerUtil" />
-        <item index="4" class="java.lang.String" itemvalue="Application.DruidDBUtil" />
+        <item index="0" class="java.lang.String" itemvalue="Application.TestSocket" />
+        <item index="1" class="java.lang.String" itemvalue="Application.LogTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.OpcTest" />
+        <item index="3" class="java.lang.String" itemvalue="Application.L777" />
+        <item index="4" class="java.lang.String" itemvalue="Application.AsyncOPCPerfTest" />
       </list>
     </recent_temporary>
   </component>
@@ -920,7 +994,69 @@
       <workItem from="1520917516831" duration="57499000" />
       <workItem from="1521161543153" duration="592000" />
       <workItem from="1521163585505" duration="46000" />
-      <workItem from="1521163664202" duration="11534000" />
+      <workItem from="1521163664202" duration="12505000" />
+      <workItem from="1521423876994" duration="1766000" />
+      <workItem from="1521425687852" duration="7954000" />
+      <workItem from="1521440856895" duration="3430000" />
+      <workItem from="1521448264469" duration="2983000" />
+      <workItem from="1521508257229" duration="13035000" />
+      <workItem from="1521525220096" duration="8161000" />
+      <workItem from="1521593112464" duration="18483000" />
+      <workItem from="1521615855044" duration="153866000" />
+      <workItem from="1522284397833" duration="7271000" />
+      <workItem from="1522291848423" duration="5917000" />
+      <workItem from="1522300529667" duration="7859000" />
+      <workItem from="1522310029276" duration="6120000" />
+      <workItem from="1522370755478" duration="8601000" />
+      <workItem from="1522380544182" duration="8199000" />
+      <workItem from="1522397676393" duration="1775000" />
+      <workItem from="1522399484907" duration="3235000" />
+      <workItem from="1522630044271" duration="7899000" />
+      <workItem from="1522638789385" duration="3116000" />
+      <workItem from="1522644094760" duration="264000" />
+      <workItem from="1522647332607" duration="73152000" />
+      <workItem from="1523152080657" duration="1540000" />
+      <workItem from="1523153928164" duration="3078000" />
+      <workItem from="1523157050684" duration="3202000" />
+      <workItem from="1523163139774" duration="6273000" />
+      <workItem from="1523170093929" duration="4038000" />
+      <workItem from="1523177338909" duration="7101000" />
+      <workItem from="1523239240487" duration="6341000" />
+      <workItem from="1523249263386" duration="7617000" />
+      <workItem from="1523257182040" duration="22444000" />
+      <workItem from="1523336920697" duration="5377000" />
+      <workItem from="1523343521832" duration="7150000" />
+      <workItem from="1523351229005" duration="1090000" />
+      <workItem from="1523406999803" duration="12342000" />
+      <workItem from="1523423118868" duration="7302000" />
+      <workItem from="1523430850897" duration="7976000" />
+      <workItem from="1523493381446" duration="10222000" />
+      <workItem from="1523508194274" duration="3264000" />
+      <workItem from="1523511830705" duration="6029000" />
+      <workItem from="1523518922758" duration="5208000" />
+      <workItem from="1523579819840" duration="5887000" />
+      <workItem from="1523587625080" duration="5980000" />
+      <workItem from="1523595553965" duration="7607000" />
+      <workItem from="1523603839795" duration="5902000" />
+      <workItem from="1523839258528" duration="9697000" />
+      <workItem from="1523850248510" duration="4199000" />
+      <workItem from="1523855721791" duration="129000" />
+      <workItem from="1523856008131" duration="5150000" />
+      <workItem from="1523861522310" duration="5884000" />
+      <workItem from="1523868739333" duration="2567000" />
+      <workItem from="1523925756000" duration="4689000" />
+      <workItem from="1523932901184" duration="4261000" />
+      <workItem from="1523942597412" duration="1089000" />
+      <workItem from="1523950469248" duration="904000" />
+      <workItem from="1524012232730" duration="4951000" />
+      <workItem from="1524021206331" duration="11992000" />
+      <workItem from="1524037426342" duration="4883000" />
+      <workItem from="1524098061621" duration="14487000" />
+      <workItem from="1524124862108" duration="4193000" />
+      <workItem from="1524185327382" duration="49050000" />
+      <workItem from="1524617140310" duration="906000" />
+      <workItem from="1524619020267" duration="432000" />
+      <workItem from="1524635557719" duration="2122000" />
     </task>
     <task id="LOCAL-00001" summary="111">
       <created>1511952353877</created>
@@ -950,11 +1086,50 @@
       <option name="project" value="LOCAL" />
       <updated>1511955634270</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="wcs暂时停下，opc继续。">
+      <created>1521422792721</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1521422792721</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="BaseTest - 2018.04.04 at 16h 30m 43s.xml">
+      <configuration name="BaseTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BaseTest_run - 2018.04.04 at 16h 38m 03s.xml">
+      <configuration name="BaseTest.run" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BaseTest_run - 2018.04.04 at 16h 39m 16s.xml">
+      <configuration name="BaseTest.run" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BaseTest_run - 2018.04.04 at 16h 43m 21s.xml">
+      <configuration name="BaseTest.run" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BaseTest_run - 2018.04.04 at 16h 44m 32s.xml">
+      <configuration name="BaseTest.run" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BaseTest_run - 2018.04.04 at 16h 46m 33s.xml">
+      <configuration name="BaseTest.run" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BaseTest_run - 2018.04.04 at 16h 47m 21s.xml">
+      <configuration name="BaseTest.run" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BaseTest_run - 2018.04.04 at 16h 50m 09s.xml">
+      <configuration name="BaseTest.run" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BaseTest_run - 2018.04.04 at 16h 51m 12s.xml">
+      <configuration name="BaseTest.run" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrderCenterThreadTest_run - 2018.04.04 at 16h 25m 54s.xml">
+      <configuration name="OrderCenterThreadTest.run" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="647282000" />
+    <option name="totallyTimeSpent" value="1275894000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -969,37 +1144,70 @@
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56145835" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4902174" sideWeight="0.5053305" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26354167" sideWeight="0.4936034" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7423913" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.49583334" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46770832" sideWeight="0.4936034" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7416667" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25159913" sideWeight="0.49583334" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24626866" sideWeight="0.50416666" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22014925" sideWeight="0.49583334" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24626866" sideWeight="0.50416666" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.546875" sideWeight="0.4946695" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32708332" sideWeight="0.4946695" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56145835" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.50416666" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4902174" sideWeight="0.5053305" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.49583334" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32708332" sideWeight="0.4946695" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56145835" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7416667" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46770832" sideWeight="0.4936034" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.50416666" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21375267" sideWeight="0.49583334" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24626866" sideWeight="0.50416666" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1055,434 +1263,420 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="354" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/TestSocket.java</url>
+          <line>12</line>
+          <properties />
+          <option name="timeStamp" value="1698" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/TestSocket.java</url>
+          <line>14</line>
+          <properties />
+          <option name="timeStamp" value="1699" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="1701" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/ScOperation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="310" column="19" lean-forward="false" selection-start-line="310" selection-start-column="19" selection-end-line="310" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/service/warehouse/out/Ml_Sc_BlockService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="734">
+          <caret line="32" column="26" lean-forward="false" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wap/model/Cargo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="53" lean-forward="true" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/bootStrap/js/bootstrap-datetimepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-52716">
+          <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/bootStrap/css/bootstrap-datetimepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10150">
+          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/service/warehouse/out/Sc_Ml_BlockService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="96" column="59" lean-forward="true" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/service/block/impl/Lf_BlockServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="36" column="42" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/service/warehouse/Lf_El_BlockService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="716">
+          <caret line="51" column="53" lean-forward="true" selection-start-line="51" selection-start-column="53" selection-end-line="51" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/order/OrderCenterThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="137" column="84" lean-forward="true" selection-start-line="137" selection-start-column="84" selection-end-line="137" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/service/block/impl/Sc_BlockServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="58" column="75" lean-forward="true" selection-start-line="58" selection-start-column="75" selection-end-line="58" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/js/publicMethod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/js/cargo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="278" column="50" lean-forward="false" selection-start-line="278" selection-start-column="23" selection-end-line="278" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wap/dao/CargoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/block/util/BlockOperationDBUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="39" column="30" lean-forward="false" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/service/operation/StationOperation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-62">
+          <caret line="43" column="64" lean-forward="true" selection-start-line="43" selection-start-column="64" selection-end-line="43" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/cargoData.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="98" column="30" lean-forward="true" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/js/cargoData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wap/control/ControlCc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="44">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcReadThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wap/dao/daoImpl/CargoMapperImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+        <state relative-caret-position="324">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/communication/socket/thread/TestIPCThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/cargo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="312" column="6" lean-forward="true" selection-start-line="292" selection-start-column="0" selection-end-line="312" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/communication/socket/thread/IPCThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/模板.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="1379">
+          <caret line="60" column="61" lean-forward="false" selection-start-line="60" selection-start-column="61" selection-end-line="60" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/communication/socket/thread/ServerThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/cargoDetail.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="1757">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/init/InitService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/js/cargoDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="218">
+          <caret line="66" column="119" lean-forward="true" selection-start-line="66" selection-start-column="119" selection-end-line="66" selection-end-column="119" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logs/debug.log">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/CargoMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="380">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/wcsMessage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="31" column="20" lean-forward="false" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/block.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/monitor.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/js/block.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="95" column="43" lean-forward="true" selection-start-line="95" selection-start-column="43" selection-end-line="95" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/js/order.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="20" column="63" lean-forward="true" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/monitor/VariantDumper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="78" column="53" lean-forward="true" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/OpcTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/LogTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/org.openscada.opc.lib_1.1.0.v20130529.jar!/org/openscada/opc/lib/da/Server.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="146" column="16" lean-forward="false" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/monitor/MonitorThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="247" column="64" lean-forward="true" selection-start-line="247" selection-start-column="64" selection-end-line="247" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/server/OpcDBDataCacheCenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+          <folding>
+            <element signature="e#731#741#0" expanded="false" />
+            <element signature="e#874#890#0" expanded="false" />
+            <element signature="e#977#998#0" expanded="false" />
+            <element signature="e#1069#1083#0" expanded="false" />
+            <element signature="e#1146#1158#0" expanded="false" />
+            <element signature="e#1268#1303#0" expanded="false" />
+            <element signature="e#1449#1480#0" expanded="false" />
+            <element signature="e#1596#1613#0" expanded="false" />
+            <element signature="e#1668#1669#0" expanded="false" />
+            <element signature="e#1699#1700#0" expanded="false" />
+            <element signature="e#1934#1935#0" expanded="false" />
+            <element signature="e#1969#1970#0" expanded="false" />
+            <element signature="e#2166#2167#0" expanded="false" />
+            <element signature="e#2200#2201#0" expanded="false" />
+            <element signature="e#2417#2418#0" expanded="false" />
+            <element signature="e#2461#2462#0" expanded="false" />
+            <element signature="e#2707#2708#0" expanded="false" />
+            <element signature="e#2742#2743#0" expanded="false" />
+            <element signature="e#2928#2929#0" expanded="false" />
+            <element signature="e#2958#2959#0" expanded="false" />
+            <element signature="e#3014#3015#0" expanded="false" />
+            <element signature="e#3068#3069#0" expanded="false" />
+            <element signature="e#3129#3130#0" expanded="false" />
+            <element signature="e#3161#3162#0" expanded="false" />
+            <element signature="e#3236#3237#0" expanded="false" />
+            <element signature="e#3294#3295#0" expanded="false" />
+            <element signature="e#4371#4372#0" expanded="false" />
+            <element signature="e#4429#4430#0" expanded="false" />
+            <marker date="1524102379979" expanded="false" signature="5481:5492" ph=" { " />
+            <marker date="1524102379979" expanded="false" signature="5521:5527" ph=" }" />
+            <marker date="1524102379979" expanded="false" signature="5576:5587" ph=" { " />
+            <marker date="1524102379979" expanded="false" signature="5609:5615" ph=" }" />
+            <marker date="1524102379979" expanded="false" signature="5683:5694" ph=" { " />
+            <marker date="1524102379979" expanded="false" signature="5731:5737" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        <state relative-caret-position="458">
+          <caret line="34" column="65" lean-forward="true" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/www/util/LoggerUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="79" column="35" lean-forward="true" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="12" lean-forward="true" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/CommunicationException.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="540">
+          <caret line="37" column="51" lean-forward="true" selection-start-line="37" selection-start-column="51" selection-end-line="37" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/Receiver.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wap/control/WcsCc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="333">
+          <caret line="250" column="39" lean-forward="true" selection-start-line="250" selection-start-column="39" selection-end-line="250" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/server/OpcServerIns.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="22" column="80" lean-forward="true" selection-start-line="22" selection-start-column="80" selection-end-line="22" selection-end-column="80" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/Sender.java">
+    <entry file="file://$PROJECT_DIR$/test/TestSocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        <state relative-caret-position="297">
+          <caret line="11" column="58" lean-forward="true" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
           <folding>
-            <element signature="e#268#269#0" expanded="false" />
-            <element signature="e#302#303#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/pro/StatusProThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/UnknownMsgProcessException.java">
+    <entry file="file://$PROJECT_DIR$/test/AsyncOPCPerfTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/CommunicationException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/BccGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/ConnectionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/service/block/impl/El_BlockServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/init/servlet/InitServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="53" column="46" lean-forward="true" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer26.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer35.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer42.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer50.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="13" column="49" lean-forward="false" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message03.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message02.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/SeqGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="19" column="31" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/BccGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="32" column="45" lean-forward="true" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
-          <folding>
-            <element signature="e#205#206#0" expanded="false" />
-            <element signature="e#263#264#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/MessageCenterQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/pro/HeartBeatProThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="32" column="56" lean-forward="true" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/L777.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/MessageBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/SocketTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="138" column="60" lean-forward="true" selection-start-line="138" selection-start-column="60" selection-end-line="138" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/UnMsgConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/www/util/LoggerUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.2.5.RELEASE/spring-context-4.2.5.RELEASE.jar!/org/springframework/context/support/AbstractApplicationContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="575" column="0" lean-forward="false" selection-start-line="575" selection-start-column="0" selection-end-line="575" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.2.5.RELEASE/spring-context-4.2.5.RELEASE.jar!/org/springframework/context/support/AbstractRefreshableApplicationContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/entity/Plc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="e#2062#2063#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/thread/consumer/MsgConsumerCenterThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1424">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#595#616#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/ConnectionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message30.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#496#497#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer30.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="26" column="57" lean-forward="false" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/msg/consumer/MsgConsumer23.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/MsgException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/dto/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/communication/PlcConnections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="134" column="39" lean-forward="true" selection-start-line="134" selection-start-column="39" selection-end-line="134" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/www/util/SpringTool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="e#968#969#0" expanded="true" />
-            <element signature="e#1020#1021#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcServer.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
-          <caret line="53" column="33" lean-forward="true" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
-          <folding>
-            <element signature="e#1496#1512#0" expanded="true" />
-            <element signature="e#1620#1621#0" expanded="true" />
-            <element signature="e#1654#1655#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/OpcServerModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <caret line="89" column="44" lean-forward="false" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/ShengJiangJiMsgModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/thread/block/Sc_BlockThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/ZiCheMsgModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kepware/opc/DuiDuoJiMsgModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/www/util/CalmLakeStringUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/thief/wcs/remark.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        <state relative-caret-position="491">
+          <caret line="119" column="24" lean-forward="true" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1493,7 +1687,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>wms-wap:war</last-edited>
+          <last-edited>wms-wap:war exploded</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

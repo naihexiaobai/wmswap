@@ -7,7 +7,7 @@ var typeAll = 1;
  * 数据刷新时间 /毫秒
  * @type {number}
  */
-var freshTime = 200;
+var freshTime = 100;
 /**
  * 定时刷新变量
  * @type {null}
@@ -21,7 +21,7 @@ $(function () {
     var oTableZ = new TableInitZ();
     oTableZ.init();
     // $('#table_monitor_info').bootstrapTable("removeAll");
-    initMonitorStatus();
+    // initMonitorStatus();
 });
 
 /**
@@ -29,14 +29,14 @@ $(function () {
  */
 function initMonitorStatus() {
     $.ajax({
-        url: "http://localhost:8080/wmsWap/monitoringCc/checkMonitorStatus",
+        url: "http://localhost:8080/wmsWap/wcsCc/getMonitorData",
         type: "post",
         dataType: "json",
         success: function (resultData) {
             if (resultData.result) {
                 $("#startMonitor_btn").button('loading');
                 $("#stopMonitor_btn").button('reset');
-            }else {
+            } else {
                 $("#startMonitor_btn").button('reset');
                 $("#stopMonitor_btn").button('loading');
             }
@@ -78,7 +78,7 @@ var TableInitZ = function () {
     //初始化Table
     oTableInit.init = function () {
         $('#table_monitor_info').bootstrapTable({
-            url: 'http://localhost:8080/wmsWap/monitoringCc/getMonitorData?type=' + typeAll,         //请求后台的URL（*）
+            url: 'http://localhost:8080/wmsWap/wcsCc/getMonitorData?type=' + typeAll,         //请求后台的URL（*）
             method: 'post',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             dataType: "json",                  //服务器返回数据类型
@@ -107,38 +107,23 @@ var TableInitZ = function () {
             detailView: false,                   //是否显示父子表
             columns: [
                 {field: 'name', title: '名称'},
-                {field: 'ziShouDong', title: '自/手动'},
-                {field: 'daiMing', title: '待命'},
-                {field: 'kongXian', title: '空闲'},
-                {field: 'tiShengZhong', title: '顶升'},
-                {field: 'xiaJiangZhong', title: '下降'},
-                {field: 'qianJinZhong', title: '前进'},
-                {field: 'houTuiZhong', title: '后退'},
-                {field: 'AYuanDianDaiJi', title: 'A点'},
-                {field: 'BYuanDianDaiJi', title: 'B点'},
-                {field: 'zaiWu', title: '载荷'},
-                {field: 'shiFouGuZhang', title: '故障'},
-                {field: 'beiYongZhuangTai', title: '备用'},
-                {field: 'jingGao', title: '警告'},
-                {field: 'chongDian', title: '充电'},
-                {field: 'tiShengJiShangDaiJI', title: 'RS待机'},
-                {field: 'muCheShangDaiJi', title: 'RGV待机'},
-                {field: 'dianLiang', title: '电量'},
-                {field: 'renWuMa', title: '任务码'},
-                {field: 'lie', title: '列'},
-                {field: 'pai', title: '排'},
-                {field: 'ceng', title: '层'},
-                {field: 'wcsRenWuMa', title: 'wcs任务码'},
-                // {field: 'yaoKongQiRenWuMa', title: '遥控器任务码'},
-                // {field: 'panDianTuoPanShu', title: '盘点数'},
-                {field: 'guZhangXinXi', title: '故障码'},
-                // {field: 'dangQIanBianMaQiZhi', title: '当前编码器值'},
-                // {field: 'shangCiBianMaQiZhi', title: '上次编码器值'},
-                // {field: 'dongZuoZhiLing', title: '动作指令'},
-                // {field: 'dongZuoRenWuHao', title: '动作任务号'},
-                // {field: 'muBiaoCeng', title: '目标层'},
-                // {field: 'muBiaoLie', title: '目标列'},
-                // {field: 'muBiaoPai', title: '目标排'}
+                {field: 'auto', title: '自/手动'},
+                {field: 'onStandBy', title: '待命'},
+                {field: 'free', title: '空闲'},
+                {field: 'A', title: 'A点'},
+                {field: 'B', title: 'B点'},
+                {field: 'load', title: '载荷'},
+                {field: 'error', title: '警告'},
+                {field: 'charging', title: '充电'},
+                {field: 'elevator', title: 'RS待机'},
+                {field: 'RGV', title: 'RGV待机'},
+                {field: 'kWh', title: '电量'},
+                {field: 'plcTaskID', title: '任务码'},
+                {field: 'line', title: '列'},
+                {field: 'row', title: '排'},
+                {field: 'tier', title: '层'},
+                {field: 'command', title: '动作指令'},
+                {field: 'taskID', title: 'wcs任务码'},
             ]
             ,
             rowStyle: function (row, index) {
@@ -162,13 +147,6 @@ var TableInitZ = function () {
         };
         return temp;
     };
-
-    // function operateFormatter(value, row, index) {//赋予的参数
-    //     return [
-    //         '<a  href="#" onclick="closeSocket(\'' + row.idNumSocket + '\');" title="删除" ><i class="glyphicon  glyphicon-remove"></i></a>'
-    //     ].join('');
-    // }
-
     return oTableInit;
 };
 
@@ -179,33 +157,26 @@ function monitoeZiChe() {
     $('#table_monitor_info').bootstrapTable(
         "refreshOptions",
         {
-            url: 'http://localhost:8080/wmsWap/monitoringCc/getMonitorData?type=' + typeAll, // 获取数据的地址
+            url: 'http://localhost:8080/wmsWap/wcsCc/getMonitorData?type=' + typeAll, // 获取数据的地址
             columns: [
                 {field: 'name', title: '名称'},
-                {field: 'ziShouDong', title: '自/手动'},
-                {field: 'daiMing', title: '待命'},
-                {field: 'kongXian', title: '空闲'},
-                {field: 'tiShengZhong', title: '顶升'},
-                {field: 'xiaJiangZhong', title: '下降'},
-                {field: 'qianJinZhong', title: '前进'},
-                {field: 'houTuiZhong', title: '后退'},
-                {field: 'AYuanDianDaiJi', title: 'A点'},
-                {field: 'BYuanDianDaiJi', title: 'B点'},
-                {field: 'zaiWu', title: '载荷'},
-                {field: 'shiFouGuZhang', title: '故障'},
-                {field: 'beiYongZhuangTai', title: '备用'},
-                {field: 'jingGao', title: '警告'},
-                {field: 'chongDian', title: '充电'},
-                {field: 'tiShengJiShangDaiJI', title: 'RS待机'},
-                {field: 'muCheShangDaiJi', title: 'RGV待机'},
-                {field: 'dianLiang', title: '电量'},
-                {field: 'renWuMa', title: '任务码'},
-                {field: 'lie', title: '列'},
-                {field: 'pai', title: '排'},
-                {field: 'ceng', title: '层'},
-                {field: 'wcsRenWuMa', title: 'wcs任务码'},
-                {field: 'guZhangXinXi', title: '故障码'},
-                {field: 'dongZuoZhiLing', title: '动作指令'}
+                {field: 'auto', title: '自/手动'},
+                {field: 'onStandBy', title: '待命'},
+                {field: 'free', title: '空闲'},
+                {field: 'A', title: 'A点'},
+                {field: 'B', title: 'B点'},
+                {field: 'load', title: '载荷'},
+                {field: 'error', title: '警告'},
+                {field: 'charging', title: '充电'},
+                {field: 'elevator', title: 'RS待机'},
+                {field: 'RGV', title: 'RGV待机'},
+                {field: 'kWh', title: '电量'},
+                {field: 'plcTaskID', title: '任务码'},
+                {field: 'line', title: '列'},
+                {field: 'row', title: '排'},
+                {field: 'tier', title: '层'},
+                {field: 'command', title: '动作指令'},
+                {field: 'taskID', title: 'wcs任务码'},
             ],
         }
     );
@@ -218,30 +189,20 @@ function monitorMuChe() {
     $('#table_monitor_info').bootstrapTable(
         "refreshOptions",
         {
-            url: 'http://localhost:8080/wmsWap/monitoringCc/getMonitorData?type=' + typeAll, // 获取数据的地址
+            url: 'http://localhost:8080/wmsWap/wcsCc/getMonitorData?type=' + typeAll, // 获取数据的地址
             columns: [
                 {field: 'name', title: '名称'},
-                {field: 'ziShouDong', title: '自/手动'},
-                {field: 'daiMing', title: '待命'},
-                {field: 'kongXian', title: '空闲'},
-                {field: 'qianJinZhong', title: '前进'},
-                {field: 'houTuiZhong', title: '后退'},
-                {field: 'huoChaZuoShen', title: '链条反转'},
-                {field: 'huoChaZuoHui', title: '链条正转'},
-                // {field: 'huoChaYouShen', title: '右伸'},
-                // {field: 'huoChaYouHui', title: '右回'},
-                // {field: 'huoChaZhongWei', title: '中位'},
-                {field: 'zaiWu', title: '载荷'},
-                {field: 'zaiChe', title: '载车'},
-                {field: 'shiFouGuZhang', title: '故障'},
-                {field: 'fuWei', title: '复位'},
-                {field: 'renWuMa', title: '任务码'},
-                // {field: 'wcsRenWuMa', title: 'wcs任务码'},
-                {field: 'lie', title: '列'},
-                {field: 'guZhangXinXi', title: '故障码'},
-                {field: 'muBiaoLie', title: '目标列'},
-                {field: 'dongZuoZhiLing', title: '动作指令'},
-                {field: 'dongZuoRenWuHao', title: '动作任务码'}
+                {field: 'auto', title: '自/手动'},
+                {field: 'onStandBy', title: '待命'},
+                {field: 'free', title: '空闲'},
+                {field: 'load', title: '载荷'},
+                {field: 'theCar', title: '载车'},
+                {field: 'error', title: '故障'},
+                {field: 'plcTaskID', title: '任务码'},
+                {field: 'line', title: '列'},
+                {field: 'targetLine', title: '目标列'},
+                {field: 'command', title: '动作指令'},
+                {field: 'taskID', title: '动作任务码'}
             ],
         }
     );
@@ -254,33 +215,22 @@ function monitorDuiDuoJi() {
     $('#table_monitor_info').bootstrapTable(
         "refreshOptions",
         {
-            url: 'http://localhost:8080/wmsWap/monitoringCc/getMonitorData?type=' + typeAll, // 获取数据的地址
+            url: 'http://localhost:8080/wmsWap/wcsCc/getMonitorData?type=' + typeAll, // 获取数据的地址
             columns: [
                 {field: 'name', title: '名称'},
-                {field: 'ziShouDong', title: '自/手动'},
-                {field: 'daiMing', title: '待命'},
-                {field: 'kongXian', title: '空闲'},
-                {field: 'tiSheng', title: '上升'},
-                {field: 'xiaJiang', title: '下降'},
-                {field: 'qianJinZhong', title: '前进'},
-                {field: 'houTuiZhong', title: '后退'},
-                // {field: 'huoChaZuoShen', title: '左伸'},
-                // {field: 'huoChaZuoHui', title: '左回'},
-                // {field: 'huoChaYouShen', title: '右伸'},
-                // {field: 'huoChaYouHui', title: '右回'},
-                // {field: 'huoChaZhongWei', title: '中位'},
-                {field: 'zaiWu', title: '载荷'},
-                {field: 'zaiChe', title: '载车'},
-                {field: 'shiFouGuZhang', title: '故障'},
-                {field: 'beiYongZhuangTai', title: '备用'},
-                {field: 'renWuMa', title: '任务码'},
-                {field: 'lie', title: '列'},
-                {field: 'ceng', title: '层'},
-                {field: 'guZhangXinXi', title: '故障码'},
-                {field: 'muBiaoLie', title: '目标列'},
-                {field: 'muBiaoCeng', title: '目标层'},
-                {field: 'dongZuoZhiLing', title: '动作指令'},
-                {field: 'dongZuoRenWuHao', title: '动作任务码'}
+                {field: 'auto', title: '自/手动'},
+                {field: 'onStandBy', title: '待命'},
+                {field: 'free', title: '空闲'},
+                {field: 'load', title: '载荷'},
+                {field: 'theCar', title: '载车'},
+                {field: 'error', title: '故障'},
+                {field: 'plcTaskID', title: '任务码'},
+                {field: 'line', title: '列'},
+                {field: 'tier', title: '层'},
+                {field: 'targetTier', title: '目标层'},
+                {field: 'targetLine', title: '目标列'},
+                {field: 'command', title: '动作指令'},
+                {field: 'taskID', title: '动作任务码'}
             ],
         }
     );
@@ -293,30 +243,20 @@ function monitorShengJiangJi() {
     $('#table_monitor_info').bootstrapTable(
         "refreshOptions",
         {
-            url: 'http://localhost:8080/wmsWap/monitoringCc/getMonitorData?type=' + typeAll, // 获取数据的地址
+            url: 'http://localhost:8080/wmsWap/wcsCc/getMonitorData?type=' + typeAll, // 获取数据的地址
             columns: [
                 {field: 'name', title: '名称'},
-                {field: 'ziShouDong', title: '自/手动'},
-                {field: 'daiMing', title: '待命'},
-                {field: 'kongXian', title: '空闲'},
-                {field: 'tiSheng', title: '上升'},
-                {field: 'xiaJiang', title: '下降'},
-                // {field: 'huoChaZuoShen', title: '左伸'},
-                // {field: 'huoChaZuoHui', title: '左回'},
-                // {field: 'huoChaYouShen', title: '右伸'},
-                // {field: 'huoChaYouHui', title: '右回'},
-                // {field: 'huoChaZhongWei', title: '中位'},
-                {field: 'zaiWu', title: '载荷'},
-                {field: 'zaiChe', title: '载车'},
-                {field: 'shiFouGuZhang', title: '故障'},
-                {field: 'beiYongZhuangTai', title: '备用'},
-                {field: 'fuWei', title: '复位'},
-                {field: 'renWuMa', title: '任务码'},
-                {field: 'ceng', title: '层'},
-                {field: 'guZhangXinXi', title: '故障码'},
-                {field: 'muBiaoCeng', title: '目标层'},
-                {field: 'dongZuoZhiLing', title: '动作指令'},
-                {field: 'dongZuoRenWuHao', title: '动作任务码'}
+                {field: 'auto', title: '自/手动'},
+                {field: 'onStandBy', title: '待命'},
+                {field: 'free', title: '空闲'},
+                {field: 'load', title: '载荷'},
+                {field: 'theCar', title: '载车'},
+                {field: 'error', title: '故障'},
+                {field: 'plcTaskID', title: '任务码'},
+                {field: 'tier', title: '层'},
+                {field: 'targetTier', title: '目标列'},
+                {field: 'command', title: '动作指令'},
+                {field: 'taskID', title: '动作任务码'}
             ],
         }
     );
@@ -329,7 +269,7 @@ function monitorShuSongXian() {
     $('#table_monitor_info').bootstrapTable(
         "refreshOptions",
         {
-            url: 'http://localhost:8080/wmsWap/monitoringCc/getMonitorData?type=' + typeAll, // 获取数据的地址
+            url: 'http://localhost:8080/wmsWap/wcsCc/getMonitorData?type=' + typeAll, // 获取数据的地址
             columns: [
                 {field: 'name', title: '名称'},
                 {field: 'ZhuangTai', title: '状态'},

@@ -15,7 +15,7 @@ public class LoggerUtil {
     /**
      * 日志存放目录
      */
-    private static String path = "E:\\logs";
+    private static String path = "D:\\logs";
 
     public LoggerUtil() {
     }
@@ -57,7 +57,7 @@ public class LoggerUtil {
         FileAppender appender = new RollingFileAppender();
         PatternLayout layout = new PatternLayout();
         // log的输出形式
-        String conversionPattern = "%-d{yyyy-MM-dd HH:mm:ss} [%t:%r] - [%p] [%c{1}:%L] [%M] %m%n";
+        String conversionPattern = "%-d{yyyy-MM-dd HH:mm:ss:SSS} [%t:%r] - [%p] [%c{1}:%L] [%M] %m%n";
         layout.setConversionPattern(conversionPattern);
         appender.setLayout(layout);
         // log输出路径
@@ -83,14 +83,4 @@ public class LoggerUtil {
         return logger;
     }
 
-
-    public static void main(String args[]) {
-        org.apache.log4j.Logger.getLogger("test").debug("111111111111111111");
-        SetLogFileName("ha");
-        org.apache.log4j.Logger.getLogger("test").info("222222222222");
-        SetLogFileName("ceshi");
-        org.apache.log4j.Logger.getLogger("test").warn("3333333333333333");
-        SetLogFileName("chengGong");
-        org.apache.log4j.Logger.getLogger("test").error("4444444444444444444");
-    }
 }

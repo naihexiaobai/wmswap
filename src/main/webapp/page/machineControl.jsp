@@ -48,37 +48,39 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="machineId" class="col-sm-1 control-label">设备序号:</label>
-                        <div class="col-lg-3">
-                            <select id="machineId" name="machineId"
-                                    class="selectpicker show-tick input-sm form-control"
-                                    data-live-search="true">
-                                <option selected="selected" value="4">子车A1</option>
-                                <option value="5">子车A2</option>
-                                <option value="6">子车A3</option>
-                                <option value="7">母车A1</option>
-                                <option value="8">母车A2</option>
-                                <option value="9">母车A3</option>
-                                <option value="10">堆垛机A1</option>
-                                <option value="11">升降机A1</option>
-                            </select>
-                        </div>
-                    </div>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="machineId" class="col-sm-1 control-label">设备序号:</label>--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<select id="machineId" name="machineId"--%>
+                                    <%--class="selectpicker show-tick input-sm form-control"--%>
+                                    <%--data-live-search="true">--%>
+                                <%--<option selected="selected" value="SC01">SC01</option>--%>
+                                <%--<option value="SC02">SC02</option>--%>
+                                <%--<option value="SC03">SC03</option>--%>
+                                <%--<option value="SC04">SC04</option>--%>
+                                <%--<option value="MC01">MC01</option>--%>
+                                <%--<option value="MC02">MC02</option>--%>
+                                <%--<option value="MC03">MC03</option>--%>
+                                <%--<option value="ML01">ML01</option>--%>
+                                <%--<option value="EL01">EL01</option>--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <div class="form-group">
                         <label for="targetMachineId" class="col-sm-1 control-label">目标设备:</label>
                         <div class="col-lg-3">
                             <select id="targetMachineId" name="targetMachineId"
                                     class="selectpicker show-tick input-sm form-control"
                                     data-live-search="true">
-                                <option selected="selected" value="4">子车A1</option>
-                                <option value="5">子车A2</option>
-                                <option value="6">子车A3</option>
-                                <option value="7">母车A1</option>
-                                <option value="8">母车A2</option>
-                                <option value="9">母车A3</option>
-                                <option value="10">堆垛机A1</option>
-                                <option value="11">升降机A1</option>
+                                <option selected="selected" value="SC01">SC01</option>
+                                <option value="SC02">SC02</option>
+                                <option value="SC03">SC03</option>
+                                <option value="SC04">SC04</option>
+                                <option value="MC01">MC01</option>
+                                <option value="MC02">MC02</option>
+                                <option value="MC03">MC03</option>
+                                <option value="ML01">ML01</option>
+                                <option value="EL01">EL01</option>
                             </select>
                         </div>
                     </div>

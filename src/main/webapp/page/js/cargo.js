@@ -4,6 +4,16 @@
  */
 var y = 1;
 
+/**
+ * 源货位赋值标识
+ * @type {number}
+ */
+var moveOutStorage = 0;
+/**
+ * 目标货位赋值标识
+ * @type {number}
+ */
+var moveInStorage = 0;
 
 $(function () {
     //时间控件初始化
@@ -99,6 +109,10 @@ function createTd(json_storage) {
                 "<button style='height: 59px;width:59px;margin-top: 1px;margin-left: 1px;background-color:  #31b0d5' disabled='disabled'></button>" +
                 "</td>";
         }
+    } else if (json_storage.status == 6 || json_storage.status == 7) {
+        td_html = "<td style='height: 60px;border: 1px solid #000000;background-color: darkgreen' width='60px'>" +
+            "<button style='height: 59px;width:59px;margin-top: 1px;margin-left: 1px;background-color: darkgreen' disabled='disabled' ></button>" +
+            "</td>";
     } else if (json_storage.status == 11) {
         td_html = "<td style='height: 60px;border: 1px solid #122b40;background-color: #122b40' width='60px'></td>";
     }
@@ -158,8 +172,16 @@ function yBtnInit(y) {
  * @param storageNo
  */
 function commandTask(storageNo) {
-    $("#cargoStorageNo").val(storageNo);
-    $("#cargoStorageNoOut").val(storageNo);
+    if (moveInStorage == 1) {
+        $("#cargoStorageNoMoveIn").val(storageNo);
+        moveInStorage = 0;
+    } else if (moveOutStorage == 1) {
+        $("#cargoStorageNoMoveOut").val(storageNo);
+        moveOutStorage = 0;
+    } else {
+        $("#cargoStorageNo").val(storageNo);
+        $("#cargoStorageNoOut").val(storageNo);
+    }
 }
 
 /**
@@ -170,13 +192,24 @@ function onclickA(type, btnId) {
     if (type == 1) {
         $("#outCargoInfo").show();
         $("#inCargoInfo").hide();
+        $("#moveCargoInfo").hide();
         $("#outStorage").button("loading");
         $("#inStorage").button("reset");
+        $("#moveStorage").button("reset");
     } else if (type == 2) {
         $("#inCargoInfo").show();
         $("#outCargoInfo").hide();
+        $("#moveCargoInfo").hide();
         $("#outStorage").button("reset");
         $("#inStorage").button("loading");
+        $("#moveStorage").button("reset");
+    } else {
+        $("#moveCargoInfo").show();
+        $("#outCargoInfo").hide();
+        $("#inCargoInfo").hide();
+        $("#outStorage").button("reset");
+        $("#moveStorage").button("loading");
+        $("#inStorage").button("reset");
     }
     commandTask("");
 }
@@ -213,12 +246,25 @@ function initTime() {
 
 /**
  *
- * @param type 1-出库，2-入库
+ * @param type 1-出库，2-入库,3-移库
  * @constructor
  */
 function CargoBtn(type) {
     if (type == 1) {
         outCargo();
+    } else if (type == 2) {
+        inCargo();
+    } else {
+        moveCargo()
+    }
+}
+
+
+function valueTo(typeMove) {
+    if (typeMove == 1) {
+        moveOutStorage = 1;
+    } else {
+        moveInStorage = 1;
     }
 }
 
@@ -226,16 +272,65 @@ function CargoBtn(type) {
  * 出库
  */
 function outCargo() {
-    var jsonuserinfo = $('#outCargoInfo').serializeObject();
+    var jsonSerInfo = $('#outCargoInfo').serializeObject();
     $.ajax({
         url: "http://localhost:8080/wmsWap/wcsCc/outStorageCargo",
         type: "post",
-        data: {"data": JSON.stringify(jsonuserinfo)},
+        data: {"data": JSON.stringify(jsonSerInfo)},
         dataType: "json",
         success: function (resultData) {
-
+            if (resultData.result) {
+                modelDiv(2);
+            } else {
+                modelDiv(3);
+            }
         }, error: function () {
             modelDiv(3);
         }
     });
 }
+
+/**
+ * 入库
+ */
+function inCargo() {
+    var jsonSerInfo = $('#inCargoInfo').serializeObject();
+    $.ajax({
+        url: "http://localhost:8080/wmsWap/wcsCc/inStorageCargo",
+        type: "post",
+        data: {"data": JSON.stringify(jsonSerInfo)},
+        dataType: "json",
+        success: function (resultData) {
+            if (resultData.result) {
+                modelDiv(2);
+            } else {
+                modelDiv(3);
+            }
+        }, error: function () {
+            modelDiv(3);
+        }
+    });
+}
+
+/**
+ * 移库
+ */
+function moveCargo() {
+    var jsonSerInfo = $('#moveCargoInfo').serializeObject();
+    $.ajax({
+        url: "http://localhost:8080/wmsWap/wcsCc/moveStorageCargo",
+        type: "post",
+        data: {"data": JSON.stringify(jsonSerInfo)},
+        dataType: "json",
+        success: function (resultData) {
+            if (resultData.result) {
+                modelDiv(2);
+            } else {
+                modelDiv(3);
+            }
+        }, error: function () {
+            modelDiv(3);
+        }
+    });
+}
+
