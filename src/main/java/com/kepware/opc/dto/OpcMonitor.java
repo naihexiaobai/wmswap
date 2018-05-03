@@ -15,6 +15,7 @@ public class OpcMonitor implements Serializable{
     private String plcName;
     private Server server;
     private AccessBase accessBase;
+    private boolean monitorStatus;
 
     public String getPlcName() {
         return plcName;
@@ -38,5 +39,13 @@ public class OpcMonitor implements Serializable{
 
     public void setAccessBase(AccessBase accessBase) {
         this.accessBase = accessBase;
+    }
+
+    public boolean isMonitorStatus() {
+        return monitorStatus;
+    }
+
+    public void setMonitorStatus(boolean monitorStatus) {
+        this.monitorStatus = monitorStatus;
     }
 }

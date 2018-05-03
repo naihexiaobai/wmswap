@@ -49,6 +49,7 @@ public class BlockOperationDBUtil {
         return OpcDBDataCacheCenter.getMonitorBlockStatusMap().get(blockNo);
     }
 
+
     public OpcOrder getOpcOrderByOrderKey(String orderKey) {
         return ((OpcOrderMapper) SpringTool.getBean("opcOrderMapper")).selectByOrderKey(orderKey);
     }
@@ -91,6 +92,10 @@ public class BlockOperationDBUtil {
         return ((OpcBlockMapper) SpringTool.getBeanByClass(OpcBlockMapper.class)).selectByMcKey(mcKey);
     }
 
+    public int updateOpcBlockBykey(String key) {
+        return ((OpcBlockMapper) SpringTool.getBeanByClass(OpcBlockMapper.class)).updateByKey(key);
+    }
+
     public int updateOpcBlock(OpcBlock opcBlock) {
         return ((OpcBlockMapper) SpringTool.getBeanByClass(OpcBlockMapper.class)).updateByPrimaryKeySelective(opcBlock);
     }
@@ -120,6 +125,22 @@ public class BlockOperationDBUtil {
      */
     public OpcOrder getNewOpcOrder(int status) {
         return ((OpcOrderMapper) SpringTool.getBeanByClass(OpcOrderMapper.class)).selectByStatus(status);
+    }
+
+    public OpcOrder getNewOpcOrderIn(int status) {
+        return ((OpcOrderMapper) SpringTool.getBeanByClass(OpcOrderMapper.class)).selectOrderInByStatus(status);
+    }
+
+    public OpcOrder getNewOpcOrderOut(int status) {
+        return ((OpcOrderMapper) SpringTool.getBeanByClass(OpcOrderMapper.class)).selectOrderOutByStatus(status);
+    }
+
+    public OpcOrder getNewOpcOrderMove(int status) {
+        return ((OpcOrderMapper) SpringTool.getBeanByClass(OpcOrderMapper.class)).selectOrderMoveByStatus(status);
+    }
+
+    public List<OpcOrder> selectOpcOrderListByStatus(int status) {
+        return ((OpcOrderMapper) SpringTool.getBeanByClass(OpcOrderMapper.class)).selectOpcOrderListByStatus(status);
     }
 
     public List<Storage> getStorageList(Storage storage) {

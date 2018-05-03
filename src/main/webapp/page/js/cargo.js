@@ -46,25 +46,25 @@ function initTable(jsonData) {
     for (var i = 1; i < 8; i++) {
         var td_htmls = "";
         if (i == 1) {
-            json_storage = jQuery.parseJSON(jsonData.x1);
+            json_storage = JSON.parse(jsonData.x1);
         }
         if (i == 2) {
-            json_storage = jQuery.parseJSON(jsonData.x2);
+            json_storage = JSON.parse(jsonData.x2);
         }
         if (i == 3) {
-            json_storage = jQuery.parseJSON(jsonData.x3);
+            json_storage = JSON.parse(jsonData.x3);
         }
         if (i == 4) {
-            json_storage = jQuery.parseJSON(jsonData.x4);
+            json_storage = JSON.parse(jsonData.x4);
         }
         if (i == 5) {
-            json_storage = jQuery.parseJSON(jsonData.x5);
+            json_storage = JSON.parse(jsonData.x5);
         }
         if (i == 6) {
-            json_storage = jQuery.parseJSON(jsonData.x6);
+            json_storage = JSON.parse(jsonData.x6);
         }
         if (i == 7) {
-            json_storage = jQuery.parseJSON(jsonData.x7);
+            json_storage = JSON.parse(jsonData.x7);
         }
         for (var n = 0; n < json_storage.length; n++) {
             var td_html = createTd(json_storage[n]);
@@ -182,6 +182,7 @@ function commandTask(storageNo) {
         $("#cargoStorageNo").val(storageNo);
         $("#cargoStorageNoOut").val(storageNo);
     }
+    $("#divStorageMap").modal('hide');
 }
 
 /**
@@ -257,6 +258,7 @@ function CargoBtn(type) {
     } else {
         moveCargo()
     }
+    //刷新当前页面
 }
 
 

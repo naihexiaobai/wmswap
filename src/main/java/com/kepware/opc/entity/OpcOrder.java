@@ -25,6 +25,10 @@ public class OpcOrder implements Serializable {
      * 禁止
      */
     public static final Byte STATUS_SUSPEND = 5;
+    /**
+     * 取消
+     */
+    public static final Byte STATUS_CANCEL = 6;
 
     public static final Byte ORDERTYPE_IN = 1;
     public static final Byte ORDERTYPE_OUT = 2;

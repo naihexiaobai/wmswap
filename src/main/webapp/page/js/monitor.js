@@ -124,6 +124,7 @@ var TableInitZ = function () {
                 {field: 'tier', title: '层'},
                 {field: 'command', title: '动作指令'},
                 {field: 'taskID', title: 'wcs任务码'},
+                {field: 'lastTime', title: '时间'}
             ]
             ,
             rowStyle: function (row, index) {
@@ -177,6 +178,7 @@ function monitoeZiChe() {
                 {field: 'tier', title: '层'},
                 {field: 'command', title: '动作指令'},
                 {field: 'taskID', title: 'wcs任务码'},
+                {field: 'lastTime', title: '时间'}
             ],
         }
     );
@@ -202,7 +204,8 @@ function monitorMuChe() {
                 {field: 'line', title: '列'},
                 {field: 'targetLine', title: '目标列'},
                 {field: 'command', title: '动作指令'},
-                {field: 'taskID', title: '动作任务码'}
+                {field: 'taskID', title: '动作任务码'},
+                {field: 'lastTime', title: '时间'}
             ],
         }
     );
@@ -230,7 +233,8 @@ function monitorDuiDuoJi() {
                 {field: 'targetTier', title: '目标层'},
                 {field: 'targetLine', title: '目标列'},
                 {field: 'command', title: '动作指令'},
-                {field: 'taskID', title: '动作任务码'}
+                {field: 'taskID', title: '动作任务码'},
+                {field: 'lastTime', title: '时间'}
             ],
         }
     );
@@ -256,7 +260,8 @@ function monitorShengJiangJi() {
                 {field: 'tier', title: '层'},
                 {field: 'targetTier', title: '目标列'},
                 {field: 'command', title: '动作指令'},
-                {field: 'taskID', title: '动作任务码'}
+                {field: 'taskID', title: '动作任务码'},
+                {field: 'lastTime', title: '时间'}
             ],
         }
     );
@@ -280,7 +285,8 @@ function monitorShuSongXian() {
                 {field: 'zaiWu', title: '载荷'},
                 {field: 'renWuMa', title: '任务码'},
                 {field: 'dongZuoZhiLing', title: '动作指令'},
-                {field: 'wcsRenWuMa', title: 'wcs任务码'}
+                {field: 'wcsRenWuMa', title: 'wcs任务码'},
+                {field: 'lastTime', title: '时间'}
             ],
         }
     );

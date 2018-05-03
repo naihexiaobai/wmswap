@@ -29,6 +29,12 @@
     delete from routesite
     where ID = #{id,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deleteByRouteId" parameterType="java.lang.Integer" >
+    delete from routesite
+    where routeID = #{routeid,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="com.thief.wcs.entity.RouteSite" >
     insert into routesite (ID, routeID, presentBlockNo, 
       nextBlockNo, status)

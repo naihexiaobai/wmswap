@@ -53,14 +53,39 @@
         select
         <include refid="Base_Column_List"/>
         from opc_order
-        where status = #{status,jdbcType=TINYINT} LIMIT 0,1;
+        where status = #{status,jdbcType=TINYINT} ;
     </select>
+
     <select id="selectByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
         from opc_order
         where status = #{status,jdbcType=TINYINT} LIMIT 0,1;
     </select>
+
+
+    <select id="selectOrderOutByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_order
+        where status = #{status,jdbcType=TINYINT}  AND  orderType =2 LIMIT 0,1;
+    </select>
+
+
+    <select id="selectOrderInByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_order
+        where status = #{status,jdbcType=TINYINT}  AND  orderType =1  LIMIT 0,1;
+    </select>
+
+    <select id="selectOrderMoveByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from opc_order
+        where status = #{status,jdbcType=TINYINT}  AND  orderType =3  LIMIT 0,1;
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from opc_order
     where ID = #{id,jdbcType=INTEGER}

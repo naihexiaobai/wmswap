@@ -352,7 +352,7 @@ public class ScOperation implements Operation {
                 } else if (scBlockStatus.isError()) {
                     LoggerUtil.getLoggerByName(logName).warn("子车故障！");
                     throw new Exception();
-                } else if (sss > 10) {
+                } else if (sss > 10 && sss < 60) {
                     //判断写入是否成功
                     boolean isWriteSuccess = isWriteSuccess(blockCommand, blockNo);
                     if (!isWriteSuccess) {
@@ -370,7 +370,7 @@ public class ScOperation implements Operation {
 //                        throw new Exception();
 //                    }
                 }
-                Thread.sleep(55);
+                Thread.sleep(10);
             }
         } catch (Exception e) {
             e.printStackTrace();

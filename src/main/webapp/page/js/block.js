@@ -59,7 +59,9 @@ var TableInitZ = function () {
                     field: 'id',
                     align: 'center',
                     formatter: function (value, row, index) {
-                        var e = '<button  class="glyphicon glyphicon-send" onclick="sendBlockNo(\'' + row.id + '\')"></button> ';  //row.id为每行的id
+                        var e = '<button  class="glyphicon glyphicon-send" onclick="sendBlockNo(\'' + row.id + '\')" title="发送"></button> ' +
+                            '<button  class="glyphicon glyphicon-off" onclick="startMonitor(\'' + row.id + '\')" title="开启监控"></button>' +
+                            '<button  class="glyphicon glyphicon-stop" onclick="shutMonitor(\'' + row.id + '\')" title="停止监控"></button> ';  //row.id为每行的id
                         // var d = '<a  class="glyphicon glyphicon-remove" onclick="del(\'' + row.id + '\')"></a> ';
                         return e;
                     }
@@ -101,6 +103,54 @@ function sendBlockNo(id) {
             if (resultData.result) {
                 modelDiv(2);
             } else {
+                modelDiv(3);
+            }
+        }, error: function () {
+            modelDiv(3);
+        }
+    });
+}
+
+/**
+ * 开启监控
+ * @param id
+ */
+function startMonitor(id) {
+    $("#msg").html("");
+    $.ajax({
+        url: "http://localhost:8080/wmsWap/wcsCc/startMonitor",
+        type: "post",
+        data: {"data": id},
+        dataType: "json",
+        success: function (resultData) {
+            if (resultData.result) {
+                modelDiv(2);
+            } else {
+                $("#msg").html(resultData.msg);
+                modelDiv(3);
+            }
+        }, error: function () {
+            modelDiv(3);
+        }
+    });
+}
+
+/**
+ * 关闭监控
+ * @param id
+ */
+function shutMonitor(id) {
+    $("#msg").html("");
+    $.ajax({
+        url: "http://localhost:8080/wmsWap/wcsCc/shutMonitor",
+        type: "post",
+        data: {"data": id},
+        dataType: "json",
+        success: function (resultData) {
+            if (resultData.result) {
+                modelDiv(2);
+            } else {
+                $("#msg").html(resultData.msg);
                 modelDiv(3);
             }
         }, error: function () {

@@ -139,7 +139,7 @@ public class OpcDBDataCacheCenter {
             orderKey.put(controlBlockNo, new LinkedBlockingQueue<String>());
         }
         String key = orderKey.get(controlBlockNo).take();
-//        LoggerUtil.getLoggerByName("orderKey").info("get --- blockNo:" + controlBlockNo + ",orderKey:" + key);
+        LoggerUtil.getLoggerByName("orderKey").info("get --- blockNo:" + controlBlockNo + ",orderKey:" + key);
         return key;
     }
 

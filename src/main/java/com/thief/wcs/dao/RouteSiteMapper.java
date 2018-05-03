@@ -9,6 +9,8 @@ import java.util.List;
 public interface RouteSiteMapper {
     int deleteByPrimaryKey(Integer id);
 
+    int deleteByRouteId(Integer routeId);
+
     int insert(RouteSite record);
 
     int insertSelective(RouteSite record);

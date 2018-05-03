@@ -3,20 +3,26 @@ package com.wap.control;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kepware.opc.dto.OpcMonitor;
 import com.kepware.opc.dto.command.*;
-import com.kepware.opc.dto.status.ElBlockStatus;
-import com.kepware.opc.dto.status.McBlockStatus;
-import com.kepware.opc.dto.status.MlBlockStatus;
-import com.kepware.opc.dto.status.ScBlockStatus;
+import com.kepware.opc.dto.status.*;
 import com.kepware.opc.entity.OpcBlock;
+import com.kepware.opc.entity.OpcItem;
 import com.kepware.opc.entity.OpcOrder;
 import com.kepware.opc.entity.OpcWcsControlInfo;
 import com.kepware.opc.server.OpcDBDataCacheCenter;
 import com.kepware.opc.server.OpcWrite;
+import com.kepware.opc.service.enums.status.*;
+import com.kepware.opc.service.enums.type.OrderTypeEnum;
+import com.kepware.opc.service.enums.type.RouteTypeEnum;
+import com.kepware.opc.service.operation.StationOperation;
 import com.kepware.opc.thread.block.util.BlockOperationDBUtil;
 import com.kepware.opc.thread.block.util.BlockStatusOperationUtil;
+import com.kepware.opc.thread.monitor.MonitorThread;
 import com.thief.wcs.dao.PlcMapper;
 import com.thief.wcs.entity.Plc;
+import com.thief.wcs.entity.Route;
+import com.thief.wcs.entity.RouteSite;
 import com.wap.model.Cargo;
 import com.www.util.CalmLakeStringUtil;
 import com.wap.model.Storage;
@@ -24,12 +30,13 @@ import com.www.util.LoggerUtil;
 import com.www.util.SpringTool;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.jinterop.dcom.common.JIException;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +49,303 @@ import java.util.List;
 @Controller
 @RequestMapping("wcsCc")
 public class WcsCc extends ControlCc {
+
+
+    @RequestMapping("deleteRoute")
+    @ResponseBody
+    public JSONObject deleteRoute(HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        String data = request.getParameter("data");
+        if (StringUtils.isEmpty(data)) {
+            jsonObject.put("msg", "数据为空");
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        Route route = routeMapper.selectByPrimaryKey(Integer.valueOf(data));
+        routeSiteMapper.deleteByRouteId(route.getId());
+        routeMapper.deleteByPrimaryKey(route.getId());
+        jsonObject.put("result", true);
+        return jsonObject;
+    }
+
+    @RequestMapping("addRoute")
+    @ResponseBody
+    public JSONObject addRoute(HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        String data = request.getParameter("data");
+        if (StringUtils.isEmpty(data)) {
+            jsonObject.put("msg", "数据为空");
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        try {
+            JSONObject jsonObjectData = JSONObject.parseObject(data);
+            String startBlockNo = jsonObjectData.getString("startBlockNo");
+            String endBlockNo = jsonObjectData.getString("endBlockNo");
+            Byte routeType = jsonObjectData.getByte("routeType");
+            Route route = new Route();
+            route.setStartblockno(startBlockNo);
+            route.setEndblockno(endBlockNo);
+            route.setType(routeType);
+            route.setStatus(Byte.valueOf("0"));
+            routeMapper.insertSelective(route);
+            jsonObject.put("msg", "成功");
+            jsonObject.put("result", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonObject.put("msg", "异常中断");
+            jsonObject.put("result", false);
+        }
+        return jsonObject;
+    }
+
+
+    @RequestMapping("getRoute")
+    @ResponseBody
+    public JSONArray getRoute(HttpServletRequest request) {
+        JSONArray jsonArray = new JSONArray();
+        List<Route> routeList = routeMapper.selectAll();
+        for (Route route : routeList) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id", route.getId());
+            jsonObject.put("startBlockNo", route.getStartblockno());
+            jsonObject.put("endBlockNo", route.getEndblockno());
+            jsonObject.put("type", RouteTypeEnum.getName(route.getType()));
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
+    }
+
+    @RequestMapping("getRouteSite")
+    @ResponseBody
+    public JSONArray getRouteSite(HttpServletRequest request) {
+        JSONArray jsonArray = new JSONArray();
+        String data = request.getParameter("routeId");
+        if (StringUtils.isEmpty(data)) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("msg", "数据为空");
+            jsonObject.put("result", false);
+            jsonArray.add(jsonObject);
+            return jsonArray;
+        }
+        List<RouteSite> routeSiteList = routeSiteMapper.selectByRouteId(Integer.valueOf(data));
+        for (RouteSite routeSite : routeSiteList) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("routeSiteId", routeSite.getId());
+            jsonObject.put("presentBlockNo", routeSite.getPresentblockno());
+            jsonObject.put("nextBlockNo", routeSite.getNextblockno());
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
+    }
+
+    @RequestMapping("startMonitor")
+    @ResponseBody
+    public JSONObject startMonitor(HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        String data = request.getParameter("data");
+        if (StringUtils.isEmpty(data)) {
+            jsonObject.put("msg", "数据为空");
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        OpcBlock opcBlock = opcBlockMapper.selectByPrimaryKey(Integer.valueOf(data));
+        Plc plc = plcMapper.selectByPlcName(opcBlock.getPlcname());
+        if (plc.getStatus() == 0) {
+            jsonObject.put("msg", "监控已开启");
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        List<OpcItem> opcItemList = opcItemMapper.selectAll();
+        //2.1 开启监控线程
+        List<OpcItem> opcItems = new ArrayList<OpcItem>();
+        for (OpcItem opcItem : opcItemList) {
+            if (plc.getId() == opcItem.getMachineinfoid()) {
+                opcItems.add(opcItem);
+            }
+        }
+        new Thread(new MonitorThread.MachineThread(opcItems, plc.getPlcname())).start();
+        //2.2 初始化写入item
+        for (OpcItem opcItem : opcItemList) {
+            if (plc.getId() == opcItem.getMachineinfoid()) {
+                MonitorThread.OpcWriteItem(opcItem);
+            }
+        }
+
+        plc.setStatus(Plc._STATUS_SUCCESS);
+        opcBlock.setStatus(Plc._STATUS_SUCCESS);
+        plcMapper.updateByPrimaryKeySelective(plc);
+        opcBlockMapper.updateByPrimaryKeySelective(opcBlock);
+        jsonObject.put("result", true);
+        return jsonObject;
+    }
+
+
+    @RequestMapping("shutMonitor")
+    @ResponseBody
+    public JSONObject shutMonitor(HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        String data = request.getParameter("data");
+        if (StringUtils.isEmpty(data)) {
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        OpcBlock opcBlock = opcBlockMapper.selectByPrimaryKey(Integer.valueOf(data));
+        List<OpcMonitor> opcMonitorList = OpcDBDataCacheCenter.instance().getOpcMonitorList();
+        try {
+            for (OpcMonitor opcMonitor : opcMonitorList) {
+                if (opcBlock.getPlcname().equals(opcMonitor.getPlcName())) {
+                    opcMonitor.setMonitorStatus(false);
+                    opcMonitor.getAccessBase().unbind();
+                    opcMonitor.getServer().dispose();
+                    opcBlock.setStatus(Plc._STATUS_DISABLED);
+                    Plc plc = plcMapper.selectByPlcName(opcBlock.getPlcname());
+                    plc.setStatus(Plc._STATUS_DISABLED);
+                    plcMapper.updateByPrimaryKeySelective(plc);
+                    opcBlockMapper.updateByPrimaryKeySelective(opcBlock);
+//                    OpcDBDataCacheCenter.getMonitorBlockStatusMap().remove(plc.getPlcname());
+                    jsonObject.put("result", true);
+                }
+            }
+        } catch (JIException e) {
+            e.printStackTrace();
+            LoggerUtil.getLoggerByName("WcsCc").info("关闭监控异常：" + e.getMessage());
+            jsonObject.put("result", false);
+        }
+        return jsonObject;
+    }
+
+    /**
+     * 人工完成
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("finishOrder")
+    @ResponseBody
+    public JSONObject finishOrder(HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        String data = request.getParameter("data");
+        if (StringUtils.isEmpty(data)) {
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        StationOperation stationOperation = new StationOperation();
+        OpcOrder opcOrder = opcOrderMapper.selectByPrimaryKey(Integer.valueOf(data));
+        try {
+            if (opcOrder.getOrdertype() == OpcOrder.ORDERTYPE_IN) {
+                stationOperation.finishBePutInStorageByPeople(opcOrder.getOrderkey());
+                BlockOperationDBUtil.getInstance().updateOpcBlockBykey(opcOrder.getOrderkey());
+                jsonObject.put("result", true);
+            } else if (opcOrder.getOrdertype() == OpcOrder.ORDERTYPE_OUT) {
+                stationOperation.finishOutPutWorkByPeople(opcOrder.getOrderkey());
+                BlockOperationDBUtil.getInstance().updateOpcBlockBykey(opcOrder.getOrderkey());
+                jsonObject.put("result", true);
+            } else if (opcOrder.getOrdertype() == OpcOrder.ORDERTYPE_MOVE) {
+                stationOperation.finishBeMoveInStorageByPeople(opcOrder.getOrderkey());
+                BlockOperationDBUtil.getInstance().updateOpcBlockBykey(opcOrder.getOrderkey());
+                jsonObject.put("result", true);
+            } else {
+                LoggerUtil.getLoggerByName("WcsCc").info("人工完成,暂无该订单类型！");
+                jsonObject.put("result", false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            LoggerUtil.getLoggerByName("WcsCc").info("人工完成异常：" + e.getMessage());
+            jsonObject.put("result", false);
+        }
+        return jsonObject;
+    }
+
+    /**
+     * 取消订单
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("deleteOrder")
+    @ResponseBody
+    public JSONObject deleteOrder(HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        String data = request.getParameter("data");
+        if (StringUtils.isEmpty(data)) {
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        int orderId = Integer.valueOf(data);
+        OpcOrder opcOrder = opcOrderMapper.selectByPrimaryKey(orderId);
+        if (opcOrder == null || opcOrder.getId() < 1) {
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        if (opcOrder.getOrdertype() == OpcOrder.ORDERTYPE_IN) {
+            String storageNo = opcOrder.getTolocation();
+            Storage storage = storageMapperImpl.selectByStorageNo(storageNo);
+            if (storage != null || storage.getId() > 0) {
+                storage.setStatus(Storage.STATUS_FREE);
+                storageMapperImpl.updateByPrimaryKeySelective(storage);
+            }
+            Cargo cargo = cargoMapperImpl.selectByCargoStorageNo(storageNo);
+            if (cargo != null || cargo.getId() > 0) {
+                cargoMapperImpl.deleteByPrimaryKey(cargo.getId());
+            }
+        } else if (opcOrder.getOrdertype() == OpcOrder.ORDERTYPE_OUT) {
+            String storageNo = opcOrder.getFromlocation();
+            Storage storage = storageMapperImpl.selectByStorageNo(storageNo);
+            if (storage != null || storage.getId() > 0) {
+                storage.setStatus(Storage.STATUS_USEING);
+                storageMapperImpl.updateByPrimaryKeySelective(storage);
+            }
+            Cargo cargo = cargoMapperImpl.selectByCargoStorageNo(storageNo);
+            if (cargo != null || cargo.getId() > 0) {
+                cargo.setStatus(Cargo.STATUS_INFISH_TWO);
+                cargoMapperImpl.updateByPrimaryKey(cargo);
+            }
+        } else if (opcOrder.getOrdertype() == OpcOrder.ORDERTYPE_MOVE) {
+            String storageNoTo = opcOrder.getTolocation();
+            Storage storageTo = storageMapperImpl.selectByStorageNo(storageNoTo);
+            if (storageTo != null || storageTo.getId() > 0) {
+                storageTo.setStatus(Storage.STATUS_FREE);
+                storageMapperImpl.updateByPrimaryKeySelective(storageTo);
+            }
+            String storageNoFrom = opcOrder.getFromlocation();
+            Storage storageFrom = storageMapperImpl.selectByStorageNo(storageNoFrom);
+            if (storageFrom != null || storageFrom.getId() > 0) {
+                storageFrom.setStatus(Storage.STATUS_USEING);
+                storageMapperImpl.updateByPrimaryKeySelective(storageFrom);
+            }
+            Cargo cargo = cargoMapperImpl.selectByCargoStorageNo(storageNoFrom);
+            if (cargo != null || cargo.getId() > 0) {
+                cargo.setStatus(Cargo.STATUS_INING_ONE);
+                cargoMapperImpl.updateByPrimaryKey(cargo);
+            }
+        } else {
+            //TODO  订单种类暂无
+            jsonObject.put("result", false);
+            return jsonObject;
+        }
+        String orderKey = opcOrder.getOrderkey();
+        List<OpcBlock> opcBlockList = opcBlockMapper.selectAll();
+        for (OpcBlock opcBlock : opcBlockList) {
+            boolean result = false;
+            if (orderKey.equals(opcBlock.getMckey())) {
+                opcBlock.setMckey("");
+                result = true;
+            }
+            if (orderKey.equals(opcBlock.getReservedmckey())) {
+                opcBlock.setReservedmckey("");
+                result = true;
+            }
+            if (result) {
+                opcBlockMapper.updateByPrimaryKeySelective(opcBlock);
+            }
+        }
+        opcOrder.setStatus(OpcOrder.STATUS_CANCEL);
+        opcOrderMapper.updateByPrimaryKeySelective(opcOrder);
+        opcBlockMapper.updateByKey(opcOrder.getOrderkey());
+        jsonObject.put("result", true);
+        return jsonObject;
+    }
 
     @RequestMapping("getCargoDate")
     @ResponseBody
@@ -61,14 +365,18 @@ public class WcsCc extends ControlCc {
             return jsonObject;
         }
         Cargo cargo = cargoMapperImpl.selectByPrimaryKey(Integer.valueOf(data));
-        Storage storage = storageMapperImpl.selectByStorageNo(cargo.getStorageid());
-        if (cargo == null || storage == null) {
-            jsonObject.put("result", false);
-            return jsonObject;
+        if (StringUtils.isEmpty(cargo.getStorageid())) {
+
+        } else {
+            Storage storage = storageMapperImpl.selectByStorageNo(cargo.getStorageid());
+            if (cargo == null || storage == null) {
+                jsonObject.put("result", false);
+                return jsonObject;
+            }
+            storage.setStatus(Storage.STATUS_FREE);
+            storageMapperImpl.updateByPrimaryKeySelective(storage);
         }
         cargoMapperImpl.deleteByPrimaryKey(cargo.getId());
-        storage.setStatus(Storage.STATUS_FREE);
-        storageMapperImpl.updateByPrimaryKeySelective(storage);
         jsonObject.put("result", true);
         return jsonObject;
     }
@@ -125,7 +433,7 @@ public class WcsCc extends ControlCc {
             jsonObject.put("shelfLife", cargo.getShelflife());
             jsonObject.put("specific", cargo.getSpecifiction());
             jsonObject.put("storageNo", cargo.getStorageid());
-            jsonObject.put("status", cargo.getStatus());
+            jsonObject.put("status", CargoEnum.getName(cargo.getStatus()));
             jsonArray.add(jsonObject);
         }
         return jsonArray;
@@ -192,6 +500,7 @@ public class WcsCc extends ControlCc {
                 jsonObject.put("result", false);
                 return jsonObject;
             }
+            //TODO   校验当前货位是否可以出货
             Cargo cargo = cargoMapperImpl.selectByCargoStorageNo(cargoStorageNo);
             if (cargo == null || cargo.getStatus() != Cargo.STATUS_INFISH_TWO) {
                 LoggerUtil.getLoggerByName("wcsCc").info("订单创建失败！货物状态错误！");
@@ -248,8 +557,9 @@ public class WcsCc extends ControlCc {
             opcOrder.setWmsmckey("WMS" + CalmLakeStringUtil.getRandomNum());
             opcOrder.setCreatetime(new Date());
             if (storage.getY() == 1) {
-                opcOrder.setRouteid(1);
+                opcOrder.setRouteid(9);
             } else if (storage.getY() == 2) {
+                //TODO 二层子车 1号,6 或者 2号,8 ，现在未判断
                 opcOrder.setRouteid(6);
             } else if (storage.getY() == 3) {
                 //TODO  三层无设备暂不做处理
@@ -372,27 +682,34 @@ public class WcsCc extends ControlCc {
             jsonObject.put("tier", scBlockStatus.getTier());
             jsonObject.put("command", scBlockStatus.getCommand());
             jsonObject.put("taskID", scBlockStatus.getTaskID());
+            jsonObject.put("lastTime", DateFormatUtils.format(scBlockStatus.getLastUpdateTime(), "yyyy-MM-dd HH:mm:ss:SSS"));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return jsonObject;
     }
 
+
     public JSONObject getMcJSON(String blockNo) throws Exception {
         McBlockStatus mcBlockStatus = (McBlockStatus) BlockStatusOperationUtil.getBlockStatus(blockNo);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", blockNo);
-        jsonObject.put("auto", mcBlockStatus.isAuto());
-        jsonObject.put("onStandBy", mcBlockStatus.isOnStandby());
-        jsonObject.put("free", mcBlockStatus.isFree());
-        jsonObject.put("load", mcBlockStatus.isLoad());
-        jsonObject.put("theCar", mcBlockStatus.isTheCar());
-        jsonObject.put("error", mcBlockStatus.isError());
-        jsonObject.put("plcTaskID", mcBlockStatus.getPlcTaskID());
-        jsonObject.put("line", mcBlockStatus.getLine());
-        jsonObject.put("command", mcBlockStatus.getCommand());
-        jsonObject.put("targetLine", mcBlockStatus.getTargetLine());
-        jsonObject.put("taskID", mcBlockStatus.getTaskID());
+        try {
+            jsonObject.put("name", blockNo);
+            jsonObject.put("auto", mcBlockStatus.isAuto());
+            jsonObject.put("onStandBy", mcBlockStatus.isOnStandby());
+            jsonObject.put("free", mcBlockStatus.isFree());
+            jsonObject.put("load", mcBlockStatus.isLoad());
+            jsonObject.put("theCar", mcBlockStatus.isTheCar());
+            jsonObject.put("error", mcBlockStatus.isError());
+            jsonObject.put("plcTaskID", mcBlockStatus.getPlcTaskID());
+            jsonObject.put("line", mcBlockStatus.getLine());
+            jsonObject.put("command", mcBlockStatus.getCommand());
+            jsonObject.put("targetLine", mcBlockStatus.getTargetLine());
+            jsonObject.put("taskID", mcBlockStatus.getTaskID());
+            jsonObject.put("lastTime", DateFormatUtils.format(mcBlockStatus.getLastUpdateTime(), "yyyy-MM-dd HH:mm:ss:SSS"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return jsonObject;
     }
 
@@ -400,38 +717,48 @@ public class WcsCc extends ControlCc {
     public JSONObject getMlJSON(String blockNo) throws Exception {
         MlBlockStatus mlBlockStatus = (MlBlockStatus) BlockStatusOperationUtil.getBlockStatus(blockNo);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", blockNo);
-        jsonObject.put("auto", mlBlockStatus.isAuto());
-        jsonObject.put("onStandBy", mlBlockStatus.isOnStandby());
-        jsonObject.put("free", mlBlockStatus.isFree());
-        jsonObject.put("load", mlBlockStatus.isLoad());
-        jsonObject.put("theCar", mlBlockStatus.isTheCar());
-        jsonObject.put("error", mlBlockStatus.isError());
-        jsonObject.put("plcTaskID", mlBlockStatus.getPlcTaskID());
-        jsonObject.put("line", mlBlockStatus.getLine());
-        jsonObject.put("tier", mlBlockStatus.getTier());
-        jsonObject.put("targetTier", mlBlockStatus.getTargetTier());
-        jsonObject.put("command", mlBlockStatus.getCommand());
-        jsonObject.put("targetLine", mlBlockStatus.getTargetLine());
-        jsonObject.put("taskID", mlBlockStatus.getTaskID());
+        try {
+            jsonObject.put("name", blockNo);
+            jsonObject.put("auto", mlBlockStatus.isAuto());
+            jsonObject.put("onStandBy", mlBlockStatus.isOnStandby());
+            jsonObject.put("free", mlBlockStatus.isFree());
+            jsonObject.put("load", mlBlockStatus.isLoad());
+            jsonObject.put("theCar", mlBlockStatus.isTheCar());
+            jsonObject.put("error", mlBlockStatus.isError());
+            jsonObject.put("plcTaskID", mlBlockStatus.getPlcTaskID());
+            jsonObject.put("line", mlBlockStatus.getLine());
+            jsonObject.put("tier", mlBlockStatus.getTier());
+            jsonObject.put("targetTier", mlBlockStatus.getTargetTier());
+            jsonObject.put("command", mlBlockStatus.getCommand());
+            jsonObject.put("targetLine", mlBlockStatus.getTargetLine());
+            jsonObject.put("taskID", mlBlockStatus.getTaskID());
+            jsonObject.put("lastTime", DateFormatUtils.format(mlBlockStatus.getLastUpdateTime(), "yyyy-MM-dd HH:mm:ss:SSS"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return jsonObject;
     }
 
     public JSONObject getElJSON(String blockNo) throws Exception {
         ElBlockStatus elBlockStatus = (ElBlockStatus) BlockStatusOperationUtil.getBlockStatus(blockNo);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", blockNo);
-        jsonObject.put("auto", elBlockStatus.isAuto());
-        jsonObject.put("onStandBy", elBlockStatus.isOnStandby());
-        jsonObject.put("free", elBlockStatus.isFree());
-        jsonObject.put("load", elBlockStatus.isLoad());
-        jsonObject.put("theCar", elBlockStatus.isTheCar());
-        jsonObject.put("error", elBlockStatus.isError());
-        jsonObject.put("plcTaskID", elBlockStatus.getPlcTaskID());
-        jsonObject.put("tier", elBlockStatus.getTier());
-        jsonObject.put("targetTier", elBlockStatus.getTargetTier());
-        jsonObject.put("command", elBlockStatus.getCommand());
-        jsonObject.put("taskID", elBlockStatus.getTaskID());
+        try {
+            jsonObject.put("name", blockNo);
+            jsonObject.put("auto", elBlockStatus.isAuto());
+            jsonObject.put("onStandBy", elBlockStatus.isOnStandby());
+            jsonObject.put("free", elBlockStatus.isFree());
+            jsonObject.put("load", elBlockStatus.isLoad());
+            jsonObject.put("theCar", elBlockStatus.isTheCar());
+            jsonObject.put("error", elBlockStatus.isError());
+            jsonObject.put("plcTaskID", elBlockStatus.getPlcTaskID());
+            jsonObject.put("tier", elBlockStatus.getTier());
+            jsonObject.put("targetTier", elBlockStatus.getTargetTier());
+            jsonObject.put("command", elBlockStatus.getCommand());
+            jsonObject.put("taskID", elBlockStatus.getTaskID());
+            jsonObject.put("lastTime", DateFormatUtils.format(elBlockStatus.getLastUpdateTime(), "yyyy-MM-dd HH:mm:ss:SSS"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return jsonObject;
     }
 
@@ -492,13 +819,13 @@ public class WcsCc extends ControlCc {
             jsonObject.put("createTime", DateFormatUtils.format(opcOrder.getCreatetime(), "yyyy-MM-dd HH:mm:ss"));
             jsonObject.put("startTime", startTime);
             jsonObject.put("endTime", endTime);
-            jsonObject.put("orderType", opcOrder.getOrdertype());
+            jsonObject.put("orderType", OrderTypeEnum.getName(opcOrder.getOrdertype()));
             jsonObject.put("routeId", opcOrder.getRouteid());
             jsonObject.put("fromStation", opcOrder.getFromstation());
             jsonObject.put("toStation", opcOrder.getTostation());
             jsonObject.put("fromLocation", opcOrder.getFromlocation());
             jsonObject.put("toLocation", opcOrder.getTolocation());
-            jsonObject.put("status", opcOrder.getStatus());
+            jsonObject.put("status", OrderStatusEnum.getName(opcOrder.getStatus()));
             jsonArray.add(jsonObject);
         }
         return jsonArray;
@@ -525,7 +852,7 @@ public class WcsCc extends ControlCc {
             jsonObject.put("orderKey", opcWcsControlInfo.getOrderkey());
             jsonObject.put("createTime", startTime);
             jsonObject.put("endTime", endTime);
-            jsonObject.put("status", opcWcsControlInfo.getStatus());
+            jsonObject.put("status", OpcWcsControlInfoEnum.getName(opcWcsControlInfo.getStatus()));
             jsonObject.put("taskID", opcWcsControlInfo.getWcstaskno());
             jsonObject.put("command", opcWcsControlInfo.getMovementid());
             jsonObject.put("x", opcWcsControlInfo.getX());
@@ -547,7 +874,11 @@ public class WcsCc extends ControlCc {
             jsonObject.put("blockNo", opcBlock.getBlockno());
             jsonObject.put("mcKey", opcBlock.getMckey());
             jsonObject.put("receivedMcKey", opcBlock.getReservedmckey());
-            jsonObject.put("status", opcBlock.getStatus());
+            if (opcBlock.getStatus() == 1) {
+                jsonObject.put("status", "启用");
+            } else {
+                jsonObject.put("status", "禁用");
+            }
             jsonArray.add(jsonObject);
         }
         return jsonArray;

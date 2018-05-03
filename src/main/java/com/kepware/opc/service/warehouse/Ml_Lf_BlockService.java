@@ -52,7 +52,7 @@ public class Ml_Lf_BlockService extends Ml_BlockServiceImpl {
             BlockOperationDBUtil.getInstance().updateOpcBlock(opcBlock);
             //直接完成出库
             StationOperation stationOperation = new StationOperation(blockNo_ml, key);
-            stationOperation.finishOutPutWork();
+            stationOperation.finishOutPutWork(key);
         } else {
             OpcDBDataCacheCenter.instance().setBlockDock(blockNo_ml, false);
             BlockOperationDBUtil.getInstance().wcsInfoFailUpdate(opcWcsControlInfo);

@@ -255,12 +255,14 @@ public class McOperation implements Operation {
                 } else if (mcBlockStatus.isError()) {
                     LoggerUtil.getLoggerByName(logName).warn("母车故障！");
                     throw new Exception();
-                } else if (sss > 10) {
+                } else if (sss > 5 && sss < 60) {
                     //判断写入是否成功
                     boolean isWriteSuccess = isWriteSuccess(blockCommand, blockNo);
                     if (!isWriteSuccess) {
                         OpcWrite.instance().writeByBlockCommand(blockCommand, blockNo);
                         dateStart = new Date();
+                    }else {
+
                     }
                 }
                 else if (sss > 60) {
@@ -269,7 +271,7 @@ public class McOperation implements Operation {
                 } else {
                     //TODO   循环判断成功时问题
                 }
-                Thread.sleep(55);
+                Thread.sleep(10);
             }
         } catch (Exception e) {
             e.printStackTrace();

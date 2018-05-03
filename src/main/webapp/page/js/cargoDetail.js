@@ -62,9 +62,10 @@ var TableInitZ = function () {
                     field: 'id',
                     align: 'center',
                     formatter: function (value, row, index) {
-                        var e = '<button  class="glyphicon glyphicon-arrow-up" data-toggle="tooltip"  title="出库"></button>' +
-                            '<button  class="glyphicon glyphicon-arrow-down" data-toggle="tooltip"  title="入库"></button>' +
-                            ' <button  class="glyphicon glyphicon-edit" data-toggle="tooltip"   title="修改"></button>' +
+                        var e =
+                            '<button  class="glyphicon glyphicon-arrow-up" data-toggle="tooltip"  onclick="OutStorageCargoDiv(\'' + row.storageNo + '\')"  title="出库"></button>' +
+                            '<button  class="glyphicon glyphicon-arrow-down" data-toggle="tooltip"  onclick="showInStorageCargoDiv(\'' + row.palletNo + '\')"  title="入库"></button>' +
+                            // ' <button  class="glyphicon glyphicon-edit" data-toggle="tooltip"   title="修改"></button>' +
                             '<button  class="glyphicon glyphicon-remove" data-toggle="tooltip"  onclick="deleteCargo(\'' + row.id + '\')"   title="删除"></button>';  //row.id为每行的id
                         return e;
                     }
@@ -104,6 +105,52 @@ function deleteCargo(id) {
         dataType: "json",
         success: function (resultData) {
             if (resultData.result) {
+                modelDiv(2);
+            } else {
+                modelDiv(3);
+            }
+        }, error: function () {
+            modelDiv(3);
+        }
+    });
+}
+
+
+function showInStorageCargoDiv(palletNo) {
+    $("#divStorage").modal("show");
+    $("#cargoPalletNO").val(palletNo);
+}
+
+function OutStorageCargoDiv(storageNo) {
+    $("#cargoStorageNoOut").val(storageNo);
+    var jsonSerInfo = $('#outCargoInfo').serializeObject();
+    $.ajax({
+        url: "http://localhost:8080/wmsWap/wcsCc/outStorageCargo",
+        type: "post",
+        data: {"data": JSON.stringify(jsonSerInfo)},
+        dataType: "json",
+        success: function (resultData) {
+            if (resultData.result) {
+                modelDiv(2);
+            } else {
+                modelDiv(3);
+            }
+        }, error: function () {
+            modelDiv(3);
+        }
+    });
+}
+
+function CargoIn() {
+    var jsonSerInfo = $('#inCargoInfo').serializeObject();
+    $.ajax({
+        url: "http://localhost:8080/wmsWap/wcsCc/inStorageCargo",
+        type: "post",
+        data: {"data": JSON.stringify(jsonSerInfo)},
+        dataType: "json",
+        success: function (resultData) {
+            if (resultData.result) {
+                $("#divStorage").modal('hide');
                 modelDiv(2);
             } else {
                 modelDiv(3);

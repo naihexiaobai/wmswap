@@ -40,7 +40,7 @@ public class MonitorThread implements Runnable {
         Plc plc = new Plc();
         List<Plc> plcList = ((PlcMapper) SpringTool.getBeanByClass(PlcMapper.class)).selectByPlc(plc);
         List<OpcItem> opcItemList = ((OpcItemMapper) SpringTool.getBeanByClass(OpcItemMapper.class)).selectAll();
-        //2.1 开启线程
+        //2.1 开启监控线程
         for (Plc plc1 : plcList) {
             if (plc1.getStatus() != 9) {
                 List<OpcItem> opcItems = new ArrayList<OpcItem>();
@@ -50,15 +50,20 @@ public class MonitorThread implements Runnable {
                     }
                 }
                 new Thread(new MachineThread(opcItems, plc1.getPlcname())).start();
+                try {
+                    Thread.sleep(1 * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         try {
-            Thread.sleep(15 * 1000);
+            Thread.sleep(10 * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        //2.2 初始化写入item
         for (Plc plc1 : plcList) {
             if (plc1.getStatus() != 9) {
                 for (OpcItem opcItem : opcItemList) {
@@ -72,7 +77,7 @@ public class MonitorThread implements Runnable {
 //        new Thread(new ServerLifeThread()).start();
     }
 
-    public void initWriteItemMap(Item item, String key, OpcItem opcItem) {
+    public static void initWriteItemMap(Item item, String key, OpcItem opcItem) {
         if (OpcDBDataCacheCenter.instance().getItemWriteMap().containsKey(key)) {
         } else {
             OpcDBDataCacheCenter.instance().getItemWriteMap().put(key, item);
@@ -80,7 +85,7 @@ public class MonitorThread implements Runnable {
         }
     }
 
-    private void OpcWriteItem(OpcItem opcItem) {
+    public static void OpcWriteItem(OpcItem opcItem) {
         if (OpcItem.ITEMTYPE_WRITE != opcItem.getItemtype()) {
 
         } else {
@@ -139,7 +144,7 @@ public class MonitorThread implements Runnable {
         }
     }
 
-    class MachineThread implements Runnable {
+    public static class MachineThread implements Runnable {
 
         private List<OpcItem> opcItemList;
 
@@ -156,9 +161,7 @@ public class MonitorThread implements Runnable {
 
         @Override
         public void run() {
-            Server server = OpcServerIns.instance().getServer();
-            LoggerUtil.getLoggerByName("opcMonitor").info(plcName + ",获取server," + server.isDefaultActive());
-            initMonitorV3(server);
+            initMonitorV3();
         }
 
         /**
@@ -239,9 +242,13 @@ public class MonitorThread implements Runnable {
             }
         }
 
-        private void initMonitorV3(Server server) {
+        private void initMonitorV3() {
+            Server server = null;
+            AccessBase accessBase = null;
             try {
-                AccessBase accessBase = new Async20Access(server, PERIOD, true);
+                server = OpcServerIns.instance().createServer();
+                LoggerUtil.getLoggerByName("opcMonitor").info(plcName + ",获取server," + server.isDefaultActive());
+                accessBase = new Async20Access(server, PERIOD, true);
                 accessBase.connectionStateChanged(true);
                 for (final OpcItem opcItem1 : opcItemList) {
                     final String key = opcItem1.getChanels() + "." + opcItem1.getGroups() + "." + opcItem1.getItem();
@@ -258,72 +265,92 @@ public class MonitorThread implements Runnable {
                         }
                     });
                 }
-                if (!accessBase.isBound()) {
-                    accessBase.bind();
+//                accessBase.bind();
+                List<OpcMonitor> opcMonitorList = OpcDBDataCacheCenter.instance().getOpcMonitorList();
+                for (OpcMonitor opcMonitor : opcMonitorList) {
+                    if (plcName.equals(opcMonitor.getPlcName())) {
+                        opcMonitorList.remove(opcMonitor);
+                    }
                 }
-                while (true) {
+                OpcMonitor opcMonitor = new OpcMonitor();
+                opcMonitor.setPlcName(plcName);
+                opcMonitor.setServer(server);
+                opcMonitor.setAccessBase(accessBase);
+                opcMonitor.setMonitorStatus(true);
+                OpcDBDataCacheCenter.instance().getOpcMonitorList().add(opcMonitor);
+                boolean whileResultStatus = true;
+                while (true && whileResultStatus) {
                     try {
-                        Thread.sleep(5 * 60 * 1000);
-                        accessBase.unbind();
-                        accessBase.bind();
-                        LoggerUtil.getLoggerByName("opcMonitor").info(plcName + ",重新监听," + accessBase.isBound());
+                        int count = 0;
+                        List<OpcMonitor> opcMonitorLists = OpcDBDataCacheCenter.instance().getOpcMonitorList();
+                        for (OpcMonitor opcMonitorWhile : opcMonitorLists) {
+                            if (plcName.equals(opcMonitorWhile.getPlcName()) && opcMonitorWhile.isMonitorStatus()) {
+                                count = 1;
+                                opcMonitor = opcMonitorWhile;
+                            } else if (plcName.equals(opcMonitorWhile.getPlcName()) && !opcMonitorWhile.isMonitorStatus()) {
+                                count = 2;
+                            } else {
+
+                            }
+                        }
+                        if (count == 1) {
+                            accessBase.unbind();
+                            accessBase.bind();
+                            LoggerUtil.getLoggerByName("opcMonitor").info(plcName + ",重新监听," + accessBase.isBound());
+                            long startTime = new Date().getTime();
+                            while (true) {
+                                long nowTime = new Date().getTime();
+                                long second = (nowTime - startTime) / 1000;
+                                long minute = second / 60;
+                                Thread.sleep(5 * 1000);
+                                if (minute > 5) {
+                                    break;
+                                }
+                                if (!opcMonitor.isMonitorStatus()) {
+                                    whileResultStatus = false;
+                                    break;
+                                }
+                            }
+                        } else if (count == 2) {
+                            accessBase.unbind();
+                            Thread.sleep(3 * 1000);
+                        } else {
+                            LoggerUtil.getLoggerByName("opcMonitorException").info(plcName + ",找不到对应的OpcMonitor");
+                            break;
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        LoggerUtil.getLoggerByName("opcMonitorException").info(e.getMessage());
+                        break;
                     }
                 }
+
             } catch (UnknownHostException e) {
                 e.printStackTrace();
-                LoggerUtil.getLoggerByName("opcMonitorException").info(e.toString());
+                LoggerUtil.getLoggerByName("opcMonitorException").info(e.getMessage());
             } catch (NotConnectedException e) {
-                LoggerUtil.getLoggerByName("opcMonitorException").info(e.toString());
+                LoggerUtil.getLoggerByName("opcMonitorException").info(e.getMessage());
                 e.printStackTrace();
             } catch (JIException e) {
-                LoggerUtil.getLoggerByName("opcMonitorException").info(e.toString());
+                LoggerUtil.getLoggerByName("opcMonitorException").info(e.getMessage());
                 e.printStackTrace();
             } catch (DuplicateGroupException e) {
-                LoggerUtil.getLoggerByName("opcMonitorException").info(e.toString());
+                LoggerUtil.getLoggerByName("opcMonitorException").info(e.getMessage());
                 e.printStackTrace();
             } catch (AddFailedException e) {
-                LoggerUtil.getLoggerByName("opcMonitorException").info(e.toString());
+                LoggerUtil.getLoggerByName("opcMonitorException").info(e.getMessage());
                 e.printStackTrace();
-            }
-            LoggerUtil.getLoggerByName("opcMonitorException").info(plcName + ",循环监听跳出！");
-        }
-
-        private void createAccessList(AccessBase accessBase, Server server) {
-            try {
-                List<OpcMonitor> opcMonitorList = OpcDBDataCacheCenter.instance().getOpcMonitorList();
-                if (opcMonitorList.size() < 1) {
-                    addOpcMonitor(accessBase, server);
-                } else {
-                    for (OpcMonitor opcMonitor : opcMonitorList) {
-                        if (plcName.equals(opcMonitor.getPlcName())) {
-                            if (opcMonitor.getAccessBase().isActive() && opcMonitor.getServer().isDefaultActive()) {
-
-                            } else {
-                                opcMonitor.getAccessBase().unbind();
-                                opcMonitor.getServer().disconnect();
-                                opcMonitorList.remove(opcMonitor);
-                                addOpcMonitor(accessBase, server);
-                            }
-                        } else {
-                            addOpcMonitor(accessBase, server);
-                        }
-                    }
+            } finally {
+                try {
+                    accessBase.clear();
+                    accessBase.unbind();
+                    server.dispose();
+                } catch (JIException e) {
+                    e.printStackTrace();
                 }
-            } catch (JIException e) {
-                e.printStackTrace();
-                LoggerUtil.getLoggerByName("createAccessList").warn(e.getMessage());
+                LoggerUtil.getLoggerByName("opcMonitorException").info(plcName + ",循环监听跳出！");
             }
 
-        }
-
-        private void addOpcMonitor(AccessBase accessBase, Server server) {
-            OpcMonitor opcMonitor = new OpcMonitor();
-            opcMonitor.setAccessBase(accessBase);
-            opcMonitor.setServer(server);
-            opcMonitor.setPlcName(plcName);
-            OpcDBDataCacheCenter.instance().getOpcMonitorList().add(opcMonitor);
         }
 
 
@@ -355,18 +382,18 @@ public class MonitorThread implements Runnable {
                 }
             } catch (UnknownHostException e) {
                 e.printStackTrace();
-                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.toString());
+                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.getMessage());
             } catch (JIException e) {
                 e.printStackTrace();
-                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.toString());
+                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.getMessage());
             } catch (NotConnectedException e) {
                 e.printStackTrace();
-                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.toString());
+                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.getMessage());
             } catch (DuplicateGroupException e) {
                 e.printStackTrace();
-                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.toString());
+                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.getMessage());
             } catch (AddFailedException e) {
-                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.toString());
+                LoggerUtil.getLoggerByName(plcName + "monitorException").info("异常：" + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -386,7 +413,7 @@ public class MonitorThread implements Runnable {
                         value = itemState.getValue().getObjectAsUnsigned().getValue().toString();
                     } catch (JIException e) {
                         e.printStackTrace();
-                        LoggerUtil.getLoggerByName(plcName + "monitorJIException").warn("读取信息：key :" + key + ",异常信息" + e.toString());
+                        LoggerUtil.getLoggerByName(plcName + "monitorJIException").warn("读取信息：key :" + key + ",异常信息" + e.getMessage());
                     }
                     OpcDBDataCacheCenter.instance().getMonitorData().put(key, value);
                     LoggerUtil.getLoggerByName(plcName + "monitor").info("读取信息：key :" + key + ",value :" + value);
@@ -397,13 +424,13 @@ public class MonitorThread implements Runnable {
                 }
             } catch (JIException e) {
                 e.printStackTrace();
-                LoggerUtil.getLoggerByName(plcName + "monitorJIException").info("读取信息：key :" + key + ",异常信息" + e.toString());
+                LoggerUtil.getLoggerByName(plcName + "monitorJIException").info("读取信息：key :" + key + ",异常信息" + e.getMessage());
             }
         }
     }
 
 
-    public void initMonitorBlockStatus(String key, String value, OpcItem opcItem) {
+    public static void initMonitorBlockStatus(String key, String value, OpcItem opcItem) {
         if (value == null) {
             return;
         }
@@ -422,7 +449,7 @@ public class MonitorThread implements Runnable {
     }
 
 
-    private void addMonitorBlockStatus(String key, String value, OpcItem opcItem) {
+    private static void addMonitorBlockStatus(String key, String value, OpcItem opcItem) {
         BlockStatusOperation blockStatusOperation = null;
         if (opcItem.getGroups().contains(OpcItem.MACHINE_TYPE_EL)) {
             blockStatusOperation = new ELBlockStatusOperation();
@@ -440,7 +467,7 @@ public class MonitorThread implements Runnable {
         blockStatusOperation.addMonitorData(key, value, opcItem);
     }
 
-    private void updateMonitorBlockStatus(String key, String value, OpcItem opcItem, BlockStatus blockStatus) {
+    private static void updateMonitorBlockStatus(String key, String value, OpcItem opcItem, BlockStatus blockStatus) {
         BlockStatusOperation blockStatusOperation = null;
         blockStatus.setLastUpdateTime(new Date());
         if (blockStatus instanceof ElBlockStatus) {

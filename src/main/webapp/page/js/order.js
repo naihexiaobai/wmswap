@@ -60,7 +60,18 @@ var TableInitZ = function () {
                 {field: 'startTime', title: '开始时间'},
                 {field: 'endTime', title: '结束时间'},
                 {field: 'status', title: '状态'},
-                {field: 'routeId', title: '路径'}
+                {field: 'routeId', title: '路径'},
+                {
+                    title: '操作',
+                    field: 'id',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var e =
+                            '<button  class="glyphicon glyphicon-ok" data-toggle="tooltip"  onclick="finishOrder(\'' + row.id + '\')"   title="完成"></button>' +
+                            '<button  class="glyphicon glyphicon-remove" data-toggle="tooltip"  onclick="deleteOrder(\'' + row.id + '\')"   title="取消"></button>';  //row.id为每行的id
+                        return e;
+                    }
+                }
             ]
             ,
             rowStyle: function (row, index) {
@@ -86,3 +97,41 @@ var TableInitZ = function () {
     };
     return oTableInit;
 };
+
+
+function deleteOrder(orderId) {
+    $.ajax({
+        url: "http://localhost:8080/wmsWap/wcsCc/deleteOrder",
+        type: "post",
+        data: {"data": orderId},
+        dataType: "json",
+        success: function (resultData) {
+            if (resultData.result) {
+                modelDiv(2);
+            } else {
+                modelDiv(3);
+            }
+        }, error: function () {
+            modelDiv(3);
+        }
+    });
+}
+
+
+function finishOrder(orderId) {
+    $.ajax({
+        url: "http://localhost:8080/wmsWap/wcsCc/finishOrder",
+        type: "post",
+        data: {"data": orderId},
+        dataType: "json",
+        success: function (resultData) {
+            if (resultData.result) {
+                modelDiv(2);
+            } else {
+                modelDiv(3);
+            }
+        }, error: function () {
+            modelDiv(3);
+        }
+    });
+}

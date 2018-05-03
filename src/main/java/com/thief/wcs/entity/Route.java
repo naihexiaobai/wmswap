@@ -3,6 +3,10 @@ package com.thief.wcs.entity;
 import java.io.Serializable;
 
 public class Route implements Serializable {
+    public static final byte TYPE_IN = 1;
+    public static final byte TYPE_OUT = 2;
+    public static final byte TYPE_MOVE = 3;
+    public static final byte TYPE_MOVE_DEFAULT = 4;
     private Integer id;
 
     private String startblockno;

@@ -30,14 +30,19 @@ public class OpcWrite {
 
     public void writeByBlockCommand(BlockCommand blockCommand, String blockNo) {
         if (blockCommand instanceof ElBlockCommand) {
+            LoggerUtil.getLoggerByName("OpcWrite").info(blockNo + "," + ((ElBlockCommand) blockCommand).toString());
             writeEl(blockNo, (ElBlockCommand) blockCommand);
         } else if (blockCommand instanceof LBlockCommand) {
+            LoggerUtil.getLoggerByName("OpcWrite").info(blockNo + "," + ((LBlockCommand) blockCommand).toString());
             writeL(blockNo, (LBlockCommand) blockCommand);
         } else if (blockCommand instanceof MlBlockCommand) {
+            LoggerUtil.getLoggerByName("OpcWrite").info(blockNo + "," + ((MlBlockCommand) blockCommand).toString());
             writeMl(blockNo, (MlBlockCommand) blockCommand);
         } else if (blockCommand instanceof McBlockCommand) {
+            LoggerUtil.getLoggerByName("OpcWrite").info(blockNo + "," + ((McBlockCommand) blockCommand).toString());
             writeMc(blockNo, (McBlockCommand) blockCommand);
         } else if (blockCommand instanceof ScBlockCommand) {
+            LoggerUtil.getLoggerByName("OpcWrite").info(blockNo + "," + ((ScBlockCommand) blockCommand).toString());
             writeSc(blockNo, (ScBlockCommand) blockCommand);
         } else {
 

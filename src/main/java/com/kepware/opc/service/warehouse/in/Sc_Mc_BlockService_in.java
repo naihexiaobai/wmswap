@@ -57,13 +57,8 @@ public class Sc_Mc_BlockService_in extends Sc_BlockServiceImpl {
             OpcDBDataCacheCenter.instance().setBlockDock(blockNo_other, true);
             type = 2;
         } else {
-            ++countNum;
-            if (countNum < 6) {
-                withReceivedMcKey();
-            } else {
-                LoggerUtil.getLoggerByName("Sc_Mc_BlockService_in").info("重试检测设备状态失败：" + blockNo_sc + ",key:" + key);
-                return;
-            }
+            //TODO   这是一个凑合使用的办法
+            OpcDBDataCacheCenter.instance().addOrderKey(blockNo_sc, key);
         }
         OpcWcsControlInfo opcWcsControlInfo = opcWcsCcInfoOperation.createOpcWcsInfo(scBlockCommand, blockNo_sc, key);
         OpcWrite.instance().writeByBlockCommand(scBlockCommand, blockNo_sc);

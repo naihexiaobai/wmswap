@@ -11,7 +11,7 @@ public class Cargo implements Serializable {
     public static final Byte STATUS_INING_ONE = 1;
     public static final Byte STATUS_INFISH_TWO = 2;
     public static final Byte STATUS_OUTTING_FIVE = 5;
-    public static final Byte STATUS_DOUTFISH_SIX = 6;
+    public static final Byte STATUS_DOUTFINISH_SIX = 6;
 
     private Integer id;
 

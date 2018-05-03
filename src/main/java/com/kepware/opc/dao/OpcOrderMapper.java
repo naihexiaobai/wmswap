@@ -17,6 +17,12 @@ public interface OpcOrderMapper {
 
     List<OpcOrder> selectOpcOrderListByStatus(Integer status);
 
+    OpcOrder selectOrderOutByStatus(Integer integer);
+
+    OpcOrder selectOrderInByStatus(Integer integer);
+
+    OpcOrder selectOrderMoveByStatus(Integer integer);
+
     int insertSelective(OpcOrder record);
 
     OpcOrder selectByPrimaryKey(Integer id);

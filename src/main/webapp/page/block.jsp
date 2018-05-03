@@ -30,7 +30,7 @@
             <li>Home</li>
             <li>设备管理</li>
             <li>设备状态</li>
-            <li class="active">故障解除</li>
+            <li class="active">设备查看</li>
         </ol>
     </div>
     <div class="row">
@@ -53,8 +53,8 @@
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body alert alert alert-danger">
-                失败！
+            <div   class="modal-body alert alert alert-danger">
+                失败！<p id="msg"></p>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->

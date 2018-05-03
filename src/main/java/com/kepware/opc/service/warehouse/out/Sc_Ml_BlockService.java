@@ -68,7 +68,6 @@ public class Sc_Ml_BlockService extends Sc_BlockServiceImpl {
 //            return;
 //        }
         OpcWcsControlInfo opcWcsControlInfo = opcWcsCcInfoOperation.createOpcWcsInfo(scBlockCommand, blockNo_sc, key);
-        LoggerUtil.getLoggerByName(logName).info("scBlockCommand:" + scBlockCommand.toString());
         OpcWrite.instance().writeByBlockCommand(scBlockCommand, blockNo_sc);
         boolean result = scOperation.isFinishWork(scBlockCommand, blockNo_sc);
         if (result) {

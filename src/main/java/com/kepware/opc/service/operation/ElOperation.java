@@ -138,7 +138,7 @@ public class ElOperation implements Operation {
                 } else if (elBlockStatus.isError()) {
                     LoggerUtil.getLoggerByName(logName).warn("升降机故障！");
                     throw new Exception();
-                } else if (sss > 10) {
+                } else if (sss > 10 && sss < 60) {
                     //判断写入是否成功
                     boolean isWriteSuccess = isWriteSuccess(blockCommand, blockNo);
                     if (!isWriteSuccess) {
@@ -151,7 +151,7 @@ public class ElOperation implements Operation {
                 } else {
                     //TODO   循环判断成功时问题
                 }
-                Thread.sleep(55);
+                Thread.sleep(10);
             }
         } catch (Exception e) {
             e.printStackTrace();

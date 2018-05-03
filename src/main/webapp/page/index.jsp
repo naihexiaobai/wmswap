@@ -47,39 +47,39 @@
                             <li><a>何人不起故乡情</a></li>
                         </ul>
                     </li>
-                    <li class="panel">
-                        <a data-toggle="collapse" data-parent="#example-navbar-collapse"
-                           href="#collapseTwo2"><i class="glyphicon glyphicon-th-large">&nbsp;</i> Socket</a>
-                        <ul id="collapseTwo2" class="panel-collapse collapse nav nav-pills nav-stacked">
-                            <li class="panel">
-                                <a data-toggle="collapse" href="#collapseTwo21" data-parent="#collapseTwo2">socket创建</a>
-                                <ul id="collapseTwo21" class="panel-collapse collapse nav nav-pills nav-stacked">
-                                    <li><a onclick="goToPage('<%=basePath %>page/createSocketClient.jsp')">创建SocketClient</a>
-                                    </li>
-                                    <li><a onclick="goToPage('<%=basePath %>page/createSocketServer.jsp')">创建SocketServer</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="panel">
-                                <a data-toggle="collapse" href="#collapseTwo22" data-parent="#collapseTwo2">Socket属性</a>
-                                <ul id="collapseTwo22" class="panel-collapse collapse nav nav-pills nav-stacked">
-                                    <li><a onclick="goToPage('<%=basePath %>page/socketInfo.jsp')">Socket信息</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="panel">
-                                <a data-toggle="collapse" href="#collapseTwo24" data-parent="#collapseTwo2">Socket消息</a>
-                                <ul id="collapseTwo24" class="panel-collapse collapse nav nav-pills nav-stacked">
-                                    <li><a onclick="goToPage('<%=basePath %>page/sendMsg.jsp')">发送消息</a>
-                                    </li>
-                                    <li><a onclick="goToPage('<%=basePath %>page/sendMsgWCS.jsp')">WCS消息</a>
-                                    </li>
-                                    <li><a>历史消息</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                    <%--<li class="panel">--%>
+                    <%--<a data-toggle="collapse" data-parent="#example-navbar-collapse"--%>
+                    <%--href="#collapseTwo2"><i class="glyphicon glyphicon-th-large">&nbsp;</i> Socket</a>--%>
+                    <%--<ul id="collapseTwo2" class="panel-collapse collapse nav nav-pills nav-stacked">--%>
+                    <%--<li class="panel">--%>
+                    <%--<a data-toggle="collapse" href="#collapseTwo21" data-parent="#collapseTwo2">socket创建</a>--%>
+                    <%--<ul id="collapseTwo21" class="panel-collapse collapse nav nav-pills nav-stacked">--%>
+                    <%--<li><a onclick="goToPage('<%=basePath %>page/createSocketClient.jsp')">创建SocketClient</a>--%>
+                    <%--</li>--%>
+                    <%--<li><a onclick="goToPage('<%=basePath %>page/createSocketServer.jsp')">创建SocketServer</a>--%>
+                    <%--</li>--%>
+                    <%--</ul>--%>
+                    <%--</li>--%>
+                    <%--<li class="panel">--%>
+                    <%--<a data-toggle="collapse" href="#collapseTwo22" data-parent="#collapseTwo2">Socket属性</a>--%>
+                    <%--<ul id="collapseTwo22" class="panel-collapse collapse nav nav-pills nav-stacked">--%>
+                    <%--<li><a onclick="goToPage('<%=basePath %>page/socketInfo.jsp')">Socket信息</a>--%>
+                    <%--</li>--%>
+                    <%--</ul>--%>
+                    <%--</li>--%>
+                    <%--<li class="panel">--%>
+                    <%--<a data-toggle="collapse" href="#collapseTwo24" data-parent="#collapseTwo2">Socket消息</a>--%>
+                    <%--<ul id="collapseTwo24" class="panel-collapse collapse nav nav-pills nav-stacked">--%>
+                    <%--<li><a onclick="goToPage('<%=basePath %>page/sendMsg.jsp')">发送消息</a>--%>
+                    <%--</li>--%>
+                    <%--<li><a onclick="goToPage('<%=basePath %>page/sendMsgWCS.jsp')">WCS消息</a>--%>
+                    <%--</li>--%>
+                    <%--<li><a>历史消息</a>--%>
+                    <%--</li>--%>
+                    <%--</ul>--%>
+                    <%--</li>--%>
+                    <%--</ul>--%>
+                    <%--</li>--%>
                     <li class="panel">
                         <a data-toggle="collapse" data-parent="#example-navbar-collapse"
                            href="#collapseTwo211"><i class="glyphicon glyphicon-eye-open">&nbsp;</i> 设备管理</a>
@@ -104,16 +104,16 @@
 
                                 </ul>
                             </li>
-                            <li class="panel">
-                                <a data-toggle="collapse" href="#collapseTwo34"
-                                   data-parent="#collapseTwo211">Socket消息</a>
-                                <ul id="collapseTwo34" class="panel-collapse collapse nav nav-pills nav-stacked">
-                                    <li><a onclick="goToPage('<%=basePath %>page/sendMsg.jsp')">发送消息</a>
-                                    </li>
-                                    <li><a>历史消息</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            <%--<li class="panel">--%>
+                            <%--<a data-toggle="collapse" href="#collapseTwo34"--%>
+                            <%--data-parent="#collapseTwo211">Socket消息</a>--%>
+                            <%--<ul id="collapseTwo34" class="panel-collapse collapse nav nav-pills nav-stacked">--%>
+                            <%--<li><a onclick="goToPage('<%=basePath %>page/sendMsg.jsp')">发送消息</a>--%>
+                            <%--</li>--%>
+                            <%--<li><a>历史消息</a>--%>
+                            <%--</li>--%>
+                            <%--</ul>--%>
+                            <%--</li>--%>
                         </ul>
                     </li>
                     <li class="panel">
@@ -144,6 +144,20 @@
                                    data-parent="#collapseTwoCW">订单管理</a>
                                 <ul id="collapseTwoHWWW" class="panel-collapse collapse nav nav-pills nav-stacked">
                                     <li><a onclick="goToPage('<%=basePath %>page/order.jsp')">订单查询</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="panel">
+                        <a data-toggle="collapse" data-parent="#example-navbar-collapse"
+                           href="#collapseSystemData"><i class="glyphicon glyphicon-wrench">&nbsp;</i> 系统管理</a>
+                        <ul id="collapseSystemData" class="panel-collapse collapse nav nav-pills nav-stacked">
+                            <li class="panel">
+                                <a data-toggle="collapse" href="#collapseRoute"
+                                   data-parent="#collapseSystemData">路径数据</a>
+                                <ul id="collapseRoute" class="panel-collapse collapse nav nav-pills nav-stacked">
+                                    <li><a onclick="goToPage('<%=basePath %>page/route.jsp')">路径详情</a>
                                     </li>
                                 </ul>
                             </li>

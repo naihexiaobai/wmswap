@@ -224,7 +224,7 @@ public class MlOperation implements Operation {
                 } else if (MlBlockStatus.isError()) {
                     LoggerUtil.getLoggerByName(logName).warn("堆垛机故障！");
                     throw new Exception();
-                }else if (sss > 10) {
+                }else if (sss > 10 && sss < 60) {
                     //判断写入是否成功
                     boolean isWriteSuccess = isWriteSuccess(blockCommand, blockNo);
                     if (!isWriteSuccess) {

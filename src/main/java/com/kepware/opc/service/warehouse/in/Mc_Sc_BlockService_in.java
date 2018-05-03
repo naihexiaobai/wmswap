@@ -54,6 +54,7 @@ public class Mc_Sc_BlockService_in extends Mc_BlockServiceImpl {
             withKey();
         }
         if (StringUtils.isEmpty(opcBlock.getReservedmckey())) {
+            opcBlock = BlockOperationDBUtil.getInstance().getOpcBlockByBlockNo(blockNo_other);
             opcBlock.setReservedmckey(key);
             BlockOperationDBUtil.getInstance().updateOpcBlock(opcBlock);
         }

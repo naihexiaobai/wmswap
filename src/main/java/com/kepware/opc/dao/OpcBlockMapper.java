@@ -17,6 +17,13 @@ public interface OpcBlockMapper {
 
     int clearKeyByKey(String mckey);
 
+    /**
+     * 清除key,两条sql语句
+     * @param key
+     * @return
+     */
+    int updateByKey(String key);
+
     OpcBlock selectByMcKey(String mcKey);
 
     OpcBlock selectByBlockNo(String blockNo);

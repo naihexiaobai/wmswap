@@ -39,7 +39,6 @@ public class Lf_Mc_BlockService extends Lf_BlockServiceImpl {
         OpcDBDataCacheCenter.instance().setBlockDock(blockNo_other, true);
         OpcWcsControlInfo opcWcsControlInfo = opcWcsCcInfoOperation.createOpcWcsInfo(mcBlockCommand, blockNo_other, key);
         OpcWrite.instance().writeByBlockCommand(mcBlockCommand, blockNo_other);
-        LoggerUtil.getLoggerByName(blockNo_other).info(mcBlockCommand.toString());
         boolean result = mcOperation.isFinishWork(mcBlockCommand, blockNo_other);
         if (result) {
             OpcDBDataCacheCenter.instance().setBlockDock(blockNo_other, false);
@@ -54,7 +53,6 @@ public class Lf_Mc_BlockService extends Lf_BlockServiceImpl {
             BlockOperationDBUtil.getInstance().updateOpcBlock(opcBlock);
             BlockOperationDBUtil.getInstance().updateOpcBlock(opcBlock1);
             OpcDBDataCacheCenter.instance().addOrderKey(blockNo_other, key);
-            LoggerUtil.getLoggerByName(blockNo_other).info("移栽取货完成，key:" + key);
         } else {
             OpcDBDataCacheCenter.instance().setBlockDock(blockNo_other, false);
             BlockOperationDBUtil.getInstance().wcsInfoFailUpdate(opcWcsControlInfo);
